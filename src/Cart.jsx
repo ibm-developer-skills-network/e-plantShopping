@@ -15,8 +15,8 @@ const Cart = ({ onContinueShopping }) => {
     });
     return total;
   };
-  const handleContinueShopping = () => {
-    onContinueShopping(); // Call the function passed from the parent component
+  const handleContinueShopping = (e) => {
+    onContinueShopping(e); // Call the function passed from the parent component
   };
   return (
     <div className="cart-container" >
@@ -29,9 +29,9 @@ const Cart = ({ onContinueShopping }) => {
       <div style={{ marginTop: '20px', color:'black' }} className='total_cart_amount'></div> {/* Display total amount */}
       <div className="continue_shopping_btn">
     <button className="get-started-button" onClick={(e)=>handleContinueShopping(e)}>
-      <a href="/" className="get-started-button" style={{textDecoration:'none'}}>
+   
             Continue Shopping
-            </a>
+
           </button>
     </div>
     </div>
