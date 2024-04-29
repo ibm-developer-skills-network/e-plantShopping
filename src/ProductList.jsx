@@ -12,7 +12,7 @@ function ProductList() {
     const [showCart, setShowCart] = useState(false); // State to control the visibility of the Cart component
     const [addedToCart, setAddedToCart] = useState({}); // State to track which products are added to the cart
     const cartItems = useSelector((state) => state.cart.items); // Get cart items from Redux store
-    const [showAboutUs, setShowAboutUs] = useState(false); // State to control the visibility of the About Us page
+    const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
 
     // Array of product details
     const plantsArray = [
@@ -243,9 +243,9 @@ function ProductList() {
         }));
     };
 
-    const handleAboutUsClick = (e) => {
+    const handlePlantsClick = (e) => {
         e.preventDefault();
-        setShowAboutUs(true); // Set showAboutUs to true when "About Us" link is clicked
+        setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
         setShowCart(false); // Hide the cart when navigating to About Us
     };
 
@@ -261,25 +261,33 @@ function ProductList() {
         setShowCart(true); // Set showCart to true when cart icon is clicked
         setShowAboutUs(false); // Hide the About Us page when opening the cart
     };
-
+    const handleContinueShopping = (e) => {
+        e.preventDefault();
+        setShowCart(false);
+      };
     return (
         <div>
         <div className="navbar">
             <div className="tag">
-                <img src="https://st4.depositphotos.com/32986944/38957/v/450/depositphotos_389579716-stock-illustration-green-tree-growing-in-hand.jpg" alt="" />
-                <div className="luxury">
-                    <h3>Paradise Nursery-</h3>
+               <div className="luxury">
+               <img src="https://st4.depositphotos.com/32986944/38957/v/450/depositphotos_389579716-stock-illustration-green-tree-growing-in-hand.jpg" alt="" />
+               <a href="/" onClick={() => handleHomeClick()}>
+                        <div className="tag_home_link">
+                    <h3>Paradise Nursery</h3>
                     <i>Where Green Meets Serenity</i>
+                    </div>
+                    </a>
                 </div>
+              
             </div>
             <div className="ul">
-                <div> <a href="/" onClick={() => handleHomeClick()}>Home</a></div>
-                <div> <a href="/aboutus" onClick={(e)=>handleAboutUsClick(e)}>About Us</a></div>
-                <div> <a href="/cart" onClick={(e) => handleCartClick(e)}><h1 className='cart'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="78" width="78"><rect width="156" height="156" fill="none"></rect><circle cx="80" cy="216" r="12"></circle><circle cx="184" cy="216" r="12"></circle><path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path></svg><div className='cart_quantity_count'>{totalQuantity}</div></h1></a></div>
+                {/* <div> <a href="/" onClick={() => handleHomeClick()}>Home</a></div> */}
+                <div> <a href="/plants" onClick={(e)=>handlePlantsClick(e)}>Plants</a></div>
+                <div> <a href="/cart" onClick={(e) => handleCartClick(e)}><h1 className='cart'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68"><rect width="156" height="156" fill="none"></rect><circle cx="80" cy="216" r="12"></circle><circle cx="184" cy="216" r="12"></circle><path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path></svg><div className='cart_quantity_count'>{totalQuantity}</div></h1></a></div>
             </div>
         </div>
 
-        {!showCart && !showAboutUs ? (
+        {!showCart? (
             <div className="product-grid">
                 {/* Map through the products array to display product cards */}
                 {plantsArray.map((category, index) => (
@@ -305,10 +313,8 @@ function ProductList() {
                     </div>
                 ))}
             </div>
-        ) : showAboutUs ? (
-            <AboutUs />
-        ) : (
-            <Cart />
+        ) :  (
+            <Cart onContinueShopping={handleContinueShopping}/>
         )}
     </div>
     );

@@ -18,14 +18,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 20px;
 }
 
 .navbar .ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 700px;
-    gap: 50px;
+    width: 1100px;
 }
 
 .navbar li {
@@ -34,7 +34,7 @@ body {
 
 .navbar .ul div a {
     color: white;
-    font-size: 20px;
+    font-size: 30px;
     text-decoration: none;
    
 }
@@ -122,15 +122,28 @@ body {
     padding: 5px 10px;
     border-radius: 0 0 0 5px;
 }
-
+.tag_home_link{
+    display: flex;
+    /* background-color: red; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+.tag_home_link h3{
+    font-size: 30px;
+}
+.tag a{
+    text-decoration: none;
+}
 .tag {
-    width: 650px;
+    width: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    /* background-color: green; */
-
 }
 
 .tag img {
@@ -144,7 +157,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: pink; */
     width: 650px;
     font-size: 19px;
 }
@@ -153,11 +165,11 @@ body {
     display: flex;
 }
 .cart_quantity_count{
-    margin-top: 18px;
+    margin-top: 16px;
     /* background-color: red; */
-    margin-left: 30px;
+    margin-left: 27px;
     position: absolute;
-    font-size: 35px;
+    font-size: 29px;
 
 }
 .plantname_heading{

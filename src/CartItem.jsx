@@ -30,6 +30,8 @@ const CartItem = ({ item }) => {
   };
 
   return (
+    <>
+   
     <div className="cart-item">
       <img className="cart-item-image" src={item.image} alt={item.name} />
       <div className="cart-item-details">
@@ -44,6 +46,8 @@ const CartItem = ({ item }) => {
         <button className="cart-item-delete" onClick={handleRemove}>Delete</button>
       </div>
     </div>
+    
+    </>
   );
 };
 
