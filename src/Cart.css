@@ -25,3 +25,16 @@
       font-size: 18px; /* Reduce font size */
     }
   }
+
+  .get-started-button1 {
+    padding: 15px 75px;
+    font-size: 23px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 40px;
+  }
+  

@@ -30,8 +30,7 @@ function App() {
           <AboutUs/>
           </div>
           </div>
-          
-        
+
       </div>
       <div className={`product-list-container ${showProductList ? 'visible' : ''}`}>
         <ProductList />
