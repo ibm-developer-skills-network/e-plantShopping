@@ -271,7 +271,7 @@ function ProductList() {
         <div className="navbar">
             <div className="tag">
                <div className="luxury">
-               <img src="https://st4.depositphotos.com/32986944/38957/v/450/depositphotos_389579716-stock-illustration-green-tree-growing-in-hand.jpg" alt="" />
+               <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
                <a href="/" onClick={() => handleHomeClick()}>
                         <div className="tag_home_link">
                     <h3>Paradise Nursery</h3>
