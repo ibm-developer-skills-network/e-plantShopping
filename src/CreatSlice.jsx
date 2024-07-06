@@ -25,6 +25,20 @@ export const CreatSlice = createSlice({
                 itemToUpdate.quantity = quantity;
             }
         },
+        // increaseItemQuantity(state, action) {
+        //     const { name } = action.payload;
+        //     const itemToIncrease = state.items.find(item => item.name === name);
+        //     if (itemToIncrease) {
+        //         itemToIncrease.quantity += 1;
+        //     }
+        // },
+        // decreaseItemQuantity(state, action) {
+        //     const { name } = action.payload;
+        //     const itemToDecrease = state.items.find(item => item.name === name);
+        //     if (itemToDecrease && itemToDecrease.quantity > 1) {
+        //         itemToDecrease.quantity -= 1;
+        //     }
+        // },
     },
 });
 

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './ProductList.css';
 import { addItem } from "./CreatSlice"
 function ProductList() {
+    const dispatch = useDispatch();
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -234,6 +236,7 @@ function ProductList() {
 
     const handleAddToCart = (product) => {
         dispatch(addItem(product));
+        console.log(dispatch(addItem(product)));
         setAddedToCart((prevState) => ({
             ...prevState,
             [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
