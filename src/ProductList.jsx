@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css';
-import { addItem, removeItem, updateQuantity } from "./CreatSlice"
+import { addItem } from "./CreatSlice"
 function ProductList() {
     const plantsArray = [
         {
@@ -275,9 +275,7 @@ function ProductList() {
                         </div>
                     </div>
                 ))}
-
             </div>
-
         </div>
     );
 }
