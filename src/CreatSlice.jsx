@@ -9,12 +9,12 @@ const CreatSlice = createSlice({
     initialState,
     reducers: {
         addItem: (state, action) => {
-            const { id, name, imageUrl, cost } = action.payload;
+            const { id, name, image, cost } = action.payload;
             const existingItem = state.items.find((item) => item.id === id);
             if (existingItem) {
                 existingItem.quantity++;
             } else {
-                state.items.push({ id, name, imageUrl, cost, quantity: 1 });
+                state.items.push({ id, name, image, cost, quantity: 1 });
             }
         },
         removeItem: (state, action) => {

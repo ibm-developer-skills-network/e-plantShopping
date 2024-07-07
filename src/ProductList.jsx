@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './ProductList.css';
 import { addItem } from "./CreatSlice"
+import CartItem from './CartItem';
 function ProductList() {
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart.items);
@@ -319,7 +320,7 @@ function ProductList() {
                                             alt="lavender"
                                         />
                                     </div>
-                                    <div className="product-price">${plant.cost}</div>
+                                    <div className="product-price">{plant.cost}</div>
                                     <div className="product-description">{plant.description}</div>
                                     <button
                                         className={`product-button ${disabledProductIds.includes(plant.id) ? 'disabled' : ''
@@ -336,6 +337,7 @@ function ProductList() {
                     </div>
                 ))}
             </div>
+            <CartItem />
         </div>
     );
 }
