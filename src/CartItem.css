@@ -110,6 +110,7 @@
     justify-content: center;
     gap: 20px;
     margin-top: 20px;
+    overflow: scroll;
    }
    .total_cart_amount{
     font-size: 20px;

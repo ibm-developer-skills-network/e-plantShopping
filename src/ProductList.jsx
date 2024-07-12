@@ -1,5 +1,10 @@
 import React, { useState,useEffect } from 'react';
-import './ProductList.css'
+import './ProductList.css';
+import {addItem} from './CreatSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import CartItems from './CartItem';
+
+
 function ProductList() {
   
     const plantsArray = [
@@ -229,7 +234,31 @@ function ProductList() {
     fontSize: '30px',
     textDecoration: 'none',
    }
-    return (
+
+
+   
+   const dispatch = useDispatch();
+   const [addedToCart, setAddedToCart] = useState({});
+   const cartItems = useSelector(state => state.cart.items); // Assuming your cart state is structured this way
+   const handleAddToCart = (product) => {
+       dispatch(addItem(product));
+       setAddedToCart((prevState) => ({
+           ...prevState,
+           [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
+       }));
+   }; const isAddedToCart = (productName) => {
+    return addedToCart[productName];
+};
+
+
+const [viewCart, setViewCart] = useState(false);
+
+const showCart = () => {
+    setViewCart(true);
+};
+
+
+   return (
         <div>
              <div className="navbar" style={styleObj}>
             <div className="tag">
@@ -245,15 +274,41 @@ function ProductList() {
               
             </div>
             <div style={styleObjUl}>
-                <div> <a href="#" style={styleA}>Plants</a></div>
-                <div> <a href="#" style={styleA}><h1 className='cart'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68"><rect width="156" height="156" fill="none"></rect><circle cx="80" cy="216" r="12"></circle><circle cx="184" cy="216" r="12"></circle><path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path></svg></h1></a></div>
+            <div> <a href="#" style={styleA}>Plants</a></div>
+            <div onClick={showCart}> 
+                    <h1 className='cart'>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" height="68" width="68">
+                            <rect width="156" height="156" fill="none"></rect>
+                            <circle cx="80" cy="216" r="12"></circle>
+                            <circle cx="184" cy="216" r="12"></circle>
+                            <path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
+                        </svg>
+                        <span className="cart_quantity_count">{Object.keys(cartItems).length}</span> {/* Display cart item count */}
+                    </h1>
             </div>
         </div>
-
-        <div className="product-grid">
-
-
         </div>
+        {!viewCart && <div className="product-grid">
+                {plantsArray.map((categoryObj, index) => (
+                    <div key={index} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                        <h2 className='plant_heading'>{categoryObj.category}</h2>
+                        <div className="product-list">
+                            {categoryObj.plants.map((plant, plantIndex) => (
+                                <div className="product-card" key={plantIndex}>
+                                    <img src={plant.image} alt={plant.name} className='product-image'/>
+                                    <p className='product-title'>{plant.name}</p>
+                                    <p>{plant.description}</p>
+                                    <p className='product-price'>{plant.cost}</p>
+                                    <button className={`product-button ${isAddedToCart(plant.name) ? 'added-to-cart' : ''}`} onClick={() => handleAddToCart(plant)}>
+                                        {isAddedToCart(plant.name) ? 'Added to Cart' : 'Add to Cart'}
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>}
+            {viewCart && <CartItems setViewCart={setViewCart} />}
 
     </div>
     );
