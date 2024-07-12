@@ -11,9 +11,12 @@
   width: 100vw;
   height: 100vh;
   background-color: #f8f8f8;
+  
 }
 
 .background-image {
+  background-image: url('./assets/bg.jpg');
+  background-size: cover;
   position: absolute;
   top: 0;
   left: 0;
@@ -35,9 +38,6 @@ background-color: lightgrey;
 }
 
 .landing_content {
- margin-top: 430px;
-  margin-left: 100px;
-  transform: translate(-50%, -50%);
   z-index: 1;
   text-align: center;
   /* background-color: red; */
