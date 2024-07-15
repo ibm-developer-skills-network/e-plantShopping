@@ -229,6 +229,33 @@ function ProductList() {
     fontSize: '30px',
     textDecoration: 'none',
    }
+
+    const categoryElements = [];
+
+    plantsArray.forEach((category, categoryIndex) => {
+        const plantElements = [];
+        category.plants.forEach((plant, plantIndex) => {
+            plantElements.push(
+                <div key={plantIndex} className="plant">
+                   <h3>{plant.name}</h3>
+                   <img src={plant.image} alt={plant.name} />
+                   <p>{plant.description}</p>
+                   <p>Cost: {plant.cost}</p>
+                   <button>Add to Cart</button>
+                </div>
+            );
+        });
+
+        categoryElements.push(
+            <div key={categoryIndex} className="category">
+               <h2>{category.category}</h2>
+               <div className="plants">
+                   {plantElements}
+               </div>
+            </div>
+        );
+    });
+
     return (
         <div>
              <div className="navbar" style={styleObj}>
@@ -251,8 +278,7 @@ function ProductList() {
         </div>
 
         <div className="product-grid">
-
-
+            {categoryElements}
         </div>
 
     </div>
