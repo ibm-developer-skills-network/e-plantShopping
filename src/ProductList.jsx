@@ -1,8 +1,11 @@
 import React, { useState,useEffect } from 'react';
 import './ProductList.css';
+import { addItem } from './CreatSlice';
+import { useDispatch } from 'react-redux';
 
 function ProductList() {
-  
+    const dispatch = useDispatch(); // Initialize dispatch
+
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -295,7 +298,6 @@ function ProductList() {
 
     </div>
     );
-}
-import { addItem } from './CreatSlice';
+};
 
 export default ProductList;
