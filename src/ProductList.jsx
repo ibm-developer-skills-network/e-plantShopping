@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react';
-import './ProductList.css'
+import './ProductList.css';
+
 function ProductList() {
   
     const plantsArray = [
@@ -230,6 +231,15 @@ function ProductList() {
     textDecoration: 'none',
    }
 
+   const [addedToCart, setAddedToCart] = useState({});
+   const handleAddToCart = (product) => {
+    dispatch(addItem(product));
+    setAddedToCart((prevState) => ({
+        ...prevState,
+        [product.name]: true,
+    }));
+   };
+
     const categoryElements = [];
 
     plantsArray.forEach((category, categoryIndex) => {
@@ -237,11 +247,13 @@ function ProductList() {
         category.plants.forEach((plant, plantIndex) => {
             plantElements.push(
                 <div key={plantIndex} className="plant">
-                   <h3>{plant.name}</h3>
-                   <img src={plant.image} alt={plant.name} />
-                   <p>{plant.description}</p>
-                   <p>Cost: {plant.cost}</p>
-                   <button>Add to Cart</button>
+                    <h3>{plant.name}</h3>
+                    <img src={plant.image} alt={plant.name} />
+                    <p>{plant.description}</p>
+                    <p className="cost">{plant.cost}</p>
+                    <button onClick={() => handleAddToCart(plant)}>
+                        {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
+                    </button>
                 </div>
             );
         });
@@ -284,5 +296,6 @@ function ProductList() {
     </div>
     );
 }
+import { addItem } from './CreatSlice';
 
 export default ProductList;
