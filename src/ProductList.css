@@ -45,14 +45,14 @@ body {
     flex-direction: column;
     width: 100vw;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 .product-list {
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
-    /* background-color: pink; */
-    /* justify-content: space-between; */
+    background-color: pink; 
+    justify-content: space-between;
     padding: 20px;
     width: 100%;
     align-items: center;
@@ -62,7 +62,8 @@ body {
 /* Product Card */
 .product-card {
     flex: 0 0 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap */
-    max-width: calc(26.33% - 20px); /* Adjust max-width for 3 cards per row with 20px gap */
+    max-width: calc(26.33% - 20px);  /*Adjust max-width for 3 cards per row with 20px gap */
+    margin-left: 20px;
     margin-bottom: 20px;
     padding: 20px;
     background-color: #fff;
@@ -70,7 +71,7 @@ body {
     border-radius: 5px;
     text-align: center;
     position: relative;
-    
+    align-items: center;
     gap: 20px;
 }
 
