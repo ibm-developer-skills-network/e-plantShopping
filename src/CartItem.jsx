@@ -1,3 +1,4 @@
+// CartItem.jsx
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem, removeItem, updateQuantity } from './CartSlice';
@@ -79,8 +80,5 @@ const CartItem = ({ onContinueShopping }) => {
 
 export default CartItem;
 
-};
-
-export default CartItem;
 
 
