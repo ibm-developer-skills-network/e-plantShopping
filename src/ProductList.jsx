@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '/root/src/CartSlice';
-import '/root/src/ProductList.css';
+import { addItem } from './src/CartSlice';
+import './src/ProductList.css';
 
 function ProductList() {
   const [addedToCart, setAddedToCart] = useState({});
