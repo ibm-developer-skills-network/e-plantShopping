@@ -1,5 +1,5 @@
 import React from 'react';
-import '/e-plantShopping/src/AboutUs.css';
+import './src/AboutUs.css';
 
 function AboutUs() {
   return (
