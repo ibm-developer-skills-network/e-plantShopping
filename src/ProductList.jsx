@@ -12,6 +12,7 @@ function ProductList() {
     dispatch(addItem(plant));
     setAddedToCart({ ...addedToCart, [plant.name]: true });
   };
+  
     const plantsArray = [
         {
             category: "Air Purifying Plants",
