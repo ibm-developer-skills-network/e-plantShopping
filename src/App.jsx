@@ -1,9 +1,9 @@
 // App.jsx
 import React, { useState } from 'react';
-import ProductList from './ProductList';
-import CartItem from './CartItem';
-import './App.css';
-import AboutUs from './AboutUs';
+import ProductList from '/e-plantShopping/src/ProductList';
+import CartItem from '/e-plantShopping/src/CartItem';
+import '/e-plantShopping/src/App.css';
+import AboutUs from '/e-plantShopping/src/AboutUs';
 
 function App() {
   const [showProductList, setShowProductList] = useState(false);
