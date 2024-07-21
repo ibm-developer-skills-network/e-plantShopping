@@ -1,8 +1,8 @@
 // main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import './index.css';
+import App from '/e-plantShopping/src/App.jsx';
+import '/e-plantShopping/src/index.css';
 import { Provider } from 'react-redux';
 import store from '/e-plantShopping/src/store.js';
 
