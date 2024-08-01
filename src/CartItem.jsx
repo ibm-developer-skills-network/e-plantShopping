@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
-const CartItem = ({ setViewCart }) => {
+const Cart = ({ setViewCart }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
@@ -81,6 +81,6 @@ const handleCheckoutShopping = () => {
   );
 };
 
-export default CartItem;
+export default Cart;
 
 
