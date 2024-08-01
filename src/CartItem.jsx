@@ -3,34 +3,52 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
-const CartItem = ({ onContinueShopping }) => {
+const CartItem = ({ setViewCart }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
-  const calculateTotalAmount = () => {
- 
-  };
+const calculateTotalAmount = () => {
+  let totalCost = 0;
+  cart.forEach(item => {
+  // Remove '$' from item.cost and convert to integer
+    const costWithoutCurrency = parseInt(item.cost.replace('$', ''), 10);
+    const itemTotalCost = item.quantity * costWithoutCurrency;
+    totalCost += itemTotalCost;
+  });
+  
+  return totalCost;
+};
 
-  const handleContinueShopping = (e) => {
-   
-  };
+const handleContinueShopping = () => {
+  // Implement your logic here for continuing shopping
+  // For example, you can close the cart view
+  setViewCart(false); // This assumes setViewCart is passed as a prop
+};
 
+const handleIncrement = (item) => {
+  dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
+};
 
+const handleDecrement = (item) => {
+  if (item.quantity > 1) {
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+  }
+};
 
-  const handleIncrement = (item) => {
-  };
+const handleRemove = (item) => {
+  dispatch(removeItem(item.name));
+};
 
-  const handleDecrement = (item) => {
-   
-  };
+// Calculate total cost based on quantity for an item
+const calculateTotalCost = (item) => {
+  const costWithoutCurrency = parseInt(item.cost.replace('$', ''), 10);
+  return item.quantity * costWithoutCurrency;
+};
 
-  const handleRemove = (item) => {
-  };
-
-  // Calculate total cost based on quantity for an item
-  const calculateTotalCost = (item) => {
-  };
+const handleCheckoutShopping = () => {
+  alert('Functionality to be added for future reference');
+};
 
   return (
     <div className="cart-container">
