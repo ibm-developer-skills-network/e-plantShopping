@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
-import { addItem } from './CartSlice';
+import { addItem} from './CartSlice';
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
@@ -234,6 +234,14 @@ function ProductList() {
     fontSize: '30px',
     textDecoration: 'none',
    }
+   const styleCatagory={
+    margin: 'auto',
+    padding: '10px',
+    width:'30%',
+    textAlign: 'center',
+    borderTop: '1px solid green',
+    borderBottom: '1px solid green',
+   }
    const handleCartClick = (e) => {
     e.preventDefault();
     setShowCart(true); // Set showCart to true when cart icon is clicked
@@ -281,13 +289,14 @@ const handlePlantsClick = (e) => {
         <div className="product-grid">
               {plantsArray.map((category, index) => (
             <div key={index}>
-        <h1><div>{category.category}</div></h1>
+        <h1><div style={styleCatagory}>{category.category}</div></h1>
         <div className="product-list">
             {category.plants.map((plant, plantIndex) => (
             <div className="product-card" key={plantIndex}>
-                <img className="product-image" src={plant.image} alt={plant.name} />
                 <div className="product-title">{plant.name}</div>
-                {/*Similarly like the above plant.name show other details like description and cost*/}
+                <img className="product-image" src={plant.image} alt={plant.name} />
+                <div className="product-price">{plant.cost}</div>
+                <div className="product-description">{plant.description}</div>
                 <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
             </div>
             ))}
