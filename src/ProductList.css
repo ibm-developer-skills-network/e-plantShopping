@@ -8,6 +8,7 @@ body, h1, ul {
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    align-items: center;
 }
 
 /* Navbar */
@@ -45,14 +46,15 @@ body {
     flex-direction: column;
     width: 100vw;
     align-items: center;
+    text-align: center;
     justify-content: center;
 }
 .product-list {
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
-    /* background-color: pink; */
-    /* justify-content: space-between; */
+    background-color: pink;
+    justify-content: space-between;
     padding: 20px;
     width: 100%;
     align-items: center;
@@ -84,6 +86,7 @@ body {
 .product-title {
     font-weight: bold;
     margin-bottom: 10px;
+    
 }
 
 .product-price {
