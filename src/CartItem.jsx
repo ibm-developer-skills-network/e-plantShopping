@@ -1,38 +1,48 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, updateQuantity } from './CartSlice';
+import { addItem, removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
-  const cart = useSelector(state => state.cart.items);
-  const dispatch = useDispatch();
+    const cart = useSelector(state => state.cart.items);
+    const dispatch = useDispatch();
 
-  // Calculate total amount for all products in the cart
-  const calculateTotalAmount = () => {
- 
-  };
+    // Calculate total amount for all products in the cart
+    const calculateTotalAmount = () => {
+        cart.CartItem.forEach((item) => {
+            totalCost += item.cost * item.quantity;
+        });
+        return totalCost;
+    };
 
-  const handleContinueShopping = (e) => {
-   
-  };
+    const handleCheckoutShopping = (e) => {
+        alert('Functionality to be added for future reference');
+    };
 
+    const handleIncrement = (item) => {
+        dispatch(updateQuantity(item.CartItem.quantity++));
+    };
 
+    const handleDecrement = (item) => {    
+        if (item) {
+            if (item.quantity > 0){
+                dispatch(updateQuantity(item.CartItem.quantity--));
+            } else if (item.quantity == 0){
+                dispatch(removeItem(item));
+            }
+        }        
+    };
 
-  const handleIncrement = (item) => {
-  };
+    const handleRemove = (item) => {
+        dispatch(removeItem(item));
+    };
 
-  const handleDecrement = (item) => {
-   
-  };
+    // Calculate total cost based on quantity for an item
+    const calculateTotalCost = (item) => {
+        return item.quantity * item.cost;
+    };
 
-  const handleRemove = (item) => {
-  };
-
-  // Calculate total cost based on quantity for an item
-  const calculateTotalCost = (item) => {
-  };
-
-  return (
+    return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
       <div>
