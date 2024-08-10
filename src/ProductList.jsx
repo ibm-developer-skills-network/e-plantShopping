@@ -1,18 +1,19 @@
-import React, { useState,useEffect } from 'react';
-import './ProductList.css'
+import React, { useState } from 'react';
+import './ProductList.css';
 import CartItem from './CartItem';
-import { addItem } from './CartSlice'; // import the action
+import { addItem } from './CartSlice'; // Import the action
 import { useDispatch, useSelector } from 'react-redux';
+
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
-    const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-const [addedToCart, setAddedToCart] = useState({});
-const dispatch = useDispatch ();
-const cartItems = useSelector(state => state.cart.items);
+    const [showPlants, setShowPlants] = useState(false);
+    const [addedToCart, setAddedToCart] = useState({});
+    const dispatch = useDispatch();
+    const cartItems = useSelector(state => state.cart.items);
 
-const calculateTotalQuantity = () => {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
-};
+    const calculateTotalQuantity = () => {
+        return cartItems.reduce((total, item) => total + item.quantity, 0);
+    };
 
     const plantsArray = [
         {
@@ -242,26 +243,28 @@ const calculateTotalQuantity = () => {
     textDecoration: 'none',
    }
    const handleAddToCart = (product) => {
-    dispatch(addItem(product));
-    setAddedToCart((prevState) => ({
-       ...prevState,
-       [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-     }));
-  };
-   const handleCartClick = (e) => {
-    e.preventDefault();
-    setShowCart(true); // Set showCart to true when cart icon is clicked
-};
-const handlePlantsClick = (e) => {
-    e.preventDefault();
-    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
-    setShowCart(false); // Hide the cart when navigating to About Us
-};
+        dispatch(addItem(product));
+        setAddedToCart(prevState => ({
+            ...prevState,
+            [product.name]: true,
+        }));
+    };
 
-   const handleContinueShopping = (e) => {
-    e.preventDefault();
-    setShowCart(false);
-  };
+    const handleCartClick = (e) => {
+        e.preventDefault();
+        setShowCart(true);
+    };
+
+    const handlePlantsClick = (e) => {
+        e.preventDefault();
+        setShowPlants(true);
+        setShowCart(false);
+    };
+
+    const handleContinueShopping = (e) => {
+        e.preventDefault();
+        setShowCart(false);
+    };
     return (
         <div>
              <div className="navbar" style={styleObj}>

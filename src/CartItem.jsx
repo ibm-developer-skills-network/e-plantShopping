@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './CartItem.css';
-import { removeItem, updateQuantity } from './CartSlice'; // import the action 
+import { removeItem, updateQuantity } from './CartSlice'; // Import the action 
 
 function CartItem({ onContinueShopping }) {
     const cart = useSelector(state => state.cart.items);
@@ -9,54 +9,34 @@ function CartItem({ onContinueShopping }) {
 
     // Calculate total amount for all products in the cart
     const calculateTotalAmount = () => {
-        const calculateTotalAmount = () => {
-            return cart.reduce((total, item) => total + calculateTotalCost(item), 0);
-        };
-        
+        return cart.reduce((total, item) => total + calculateTotalCost(item), 0);
     };
-
-    const handleContinueShopping = (e) => {
-        const handleContinueShopping = (e) => {
-            e.preventDefault();
-            onContinueShopping(e); // Calls the function from the parent component
-        };
-        
-    };
-
-
-    const handleIncrement = (item) => {
-        const handleIncrement = (item) => {
-            dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
-        };
-    };
-
-    const handleDecrement = (item) => {
-        const handleDecrement = (item) => {
-    if (item.quantity > 1) {
-        dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
-    } else {
-        dispatch(removeItem(item.name)); // Remove item if quantity is 0
-    }
-};
-    // Update cart icon quantity and total cost when the cart changes
-    useEffect(() => {
-        onUpdateCartIcon(calculateTotalQuantity()); // Update cart icon
-    }, [cart, onUpdateCartIcon]);
-    };
-
-    function handleRemove(item) {
-        const handleRemove = (item) => {
-            dispatch(removeItem(item.name)); // Remove item from cart
-        };
-    }
 
     // Calculate total cost based on quantity for an item
     const calculateTotalCost = (item) => {
-        const calculateTotalCost = (item) => {
-            return item.cost * item.quantity;
-        };
+        return item.cost * item.quantity;
     };
-    
+
+    const handleContinueShopping = (e) => {
+        e.preventDefault();
+        onContinueShopping(e); // Calls the function from the parent component
+    };
+
+    const handleIncrement = (item) => {
+        dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
+    };
+
+    const handleDecrement = (item) => {
+        if (item.quantity > 1) {
+            dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+        } else {
+            dispatch(removeItem(item.name)); // Remove item if quantity is 1
+        }
+    };
+
+    const handleRemove = (item) => {
+        dispatch(removeItem(item.name)); // Remove item from cart
+    };
 
     return (
         <div className="cart-container">
@@ -67,7 +47,7 @@ function CartItem({ onContinueShopping }) {
                         <img className="cart-item-image" src={item.image} alt={item.name} />
                         <div className="cart-item-details">
                             <div className="cart-item-name">{item.name}</div>
-                            <div className="cart-item-cost">{item.cost}</div>
+                            <div className="cart-item-cost">${item.cost}</div>
                             <div className="cart-item-quantity">
                                 <button className="cart-item-button cart-item-button-dec" onClick={() => handleDecrement(item)}>-</button>
                                 <span className="cart-item-quantity-value">{item.quantity}</span>
