@@ -257,13 +257,17 @@ function ProductList() {
         setShowCart(false);
     };
 
-    const handleAddToCart = (plant) => {
-        setAddedToCart((prevState) => ({
-            ...prevState,
-            [plant.name]: plant,
-        }));
-        setShowCart(true);
-    };
+
+const handleAddToCart = (plant) => {
+    // Update the state to include the new plant in the cart
+    setAddedToCart((prevState) => ({
+        ...prevState,        // Keep the previous cart items
+        [plant.name]: plant, // Add the new plant, keyed by its name
+    }));
+    
+    // Show the cart after adding the plant
+    setShowCart(true);
+};
 
     return (
         <div>
