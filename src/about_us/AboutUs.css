@@ -1,0 +1,36 @@
+.about-us-container {
+  width: 100%;
+  text-align: justify;
+  box-sizing: border-box;
+}
+
+.about-us-description {
+  font-size: 15px;
+  color: #675a5a;
+  margin-bottom: 30px;
+}
+
+.about-us-container p{
+  font-size: 1.4rem;
+  /* font-family: ,"Merriweather", serif; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 20px;
+  padding: 0 1rem;
+  color: #e7edf0;
+}
+
+
+    .about-us-heading {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .plant_logo_right{
+    text-align: right;
+  }
+  .plant_logo_left{
+    text-align: left;
+  }

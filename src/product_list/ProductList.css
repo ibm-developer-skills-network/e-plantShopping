@@ -39,6 +39,24 @@ body {
    
 }
 
+.cart-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-item-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 9px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+
 /* Product Grid */
 .product-grid {
     display:flex;
@@ -81,6 +99,11 @@ body {
     z-index: 1;
 }
 
+.plant-heading{
+    margin: 1rem;
+    text-align: center;
+}
+
 .product-title {
     font-weight: bold;
     margin-bottom: 10px;
@@ -112,6 +135,7 @@ body {
 }
 
 /* Pseudo-elements - Sale badge */
+
 .product-card::before {
     content: "SALE";
     background-color: #e74c3c;
