@@ -1,21 +1,21 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
+import PropTypes from 'prop-types';
 
 const CartItem = ({ onContinueShopping }) => {
-  const cart = useSelector(state => state.cart.items || []);
+  const cart = useSelector((state) => state.cart.items || []);
   const dispatch = useDispatch();
 
-  const totalAmount = useMemo(() => {
-    return cart.reduce((total, item) => {
-      return total + parseFloat(item.cost.replace('$', '')) * item.quantity;
-    }, 0).toFixed(2);
+  // useMemo is a React Hook that helps optimize the performance of components
+const totalAmount = useMemo(() => {
+    return cart
+      .reduce((total, item) => {
+        return total + parseFloat(item.cost.replace('$', '')) * item.quantity;
+      }, 0)
+      .toFixed(2);
   }, [cart]);
-
-  const handleContinueShopping = () => {
-    onContinueShopping();
-  };
 
   const handleCheckoutShopping = () => {
     alert('Functionality to be added for future reference');
@@ -49,19 +49,25 @@ const CartItem = ({ onContinueShopping }) => {
         <>
           <h2 style={{ color: 'black' }}>Total Cart Amount: ${totalAmount}</h2>
           <div>
-            {cart.map(item => (
+            {cart.map((item) => (
               <div className="cart-item" key={item.name}>
                 <img className="cart-item-image" src={item.image} alt={item.name} />
                 <div className="cart-item-details">
                   <div className="cart-item-name">{item.name}</div>
                   <div className="cart-item-cost">{item.cost}</div>
                   <div className="cart-item-quantity">
-                    <button className="cart-item-button cart-item-button-dec" onClick={() => handleDecrement(item)}>-</button>
+                    <button className="cart-item-button cart-item-button-dec" onClick={() => handleDecrement(item)}>
+                      -
+                    </button>
                     <span className="cart-item-quantity-value">{item.quantity}</span>
-                    <button className="cart-item-button cart-item-button-inc" onClick={() => handleIncrement(item)}>+</button>
+                    <button className="cart-item-button cart-item-button-inc" onClick={() => handleIncrement(item)}>
+                      +
+                    </button>
                   </div>
                   <div className="cart-item-total">Total: ${calculateTotalCost(item)}</div>
-                  <button className="cart-item-delete" onClick={() => handleRemove(item)}>Delete</button>
+                  <button className="cart-item-delete" onClick={() => handleRemove(item)}>
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}
@@ -69,12 +75,20 @@ const CartItem = ({ onContinueShopping }) => {
         </>
       )}
       <div className="continue_shopping_btn">
-        <button className="get-started-button" onClick={onContinueShopping}>Continue Shopping</button>
+        <button className="get-started-button" onClick={onContinueShopping}>
+          Continue Shopping
+        </button>
         <br />
-        <button className="get-started-button1" onClick={handleCheckoutShopping}>Checkout</button>
+        <button className="get-started-button1" onClick={handleCheckoutShopping}>
+          Checkout
+        </button>
       </div>
     </div>
   );
+};
+
+CartItem.propTypes = {
+  onContinueShopping: PropTypes.func.isRequired,
 };
 
 export default CartItem;
