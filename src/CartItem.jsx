@@ -37,9 +37,21 @@ const totalAmount = useMemo(() => {
     dispatch(removeItem(item.name));
   };
 
+
+  //Error handling implemented
   const calculateTotalCost = (item) => {
-    return (parseFloat(item.cost.replace('$', '')) * item.quantity).toFixed(2);
+    try {
+      const cost = parseFloat(item.cost.replace('$', ''));
+      if (isNaN(cost)) {
+        throw new Error(`Invalid cost value for item ${item.name}: ${item.cost}`);
+      }
+      return (cost * item.quantity).toFixed(2);
+    } catch (error) {
+      console.error(error.message);
+      return "0.00"; 
+    }
   };
+  
 
   return (
     <div className="cart-container">
