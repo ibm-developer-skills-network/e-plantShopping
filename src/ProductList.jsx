@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import "./ProductList.css";
 import CartItem from "./CartItem";
@@ -297,6 +298,16 @@ function ProductList() {
   const handleContinueShopping = () => {
     setShowCart(false);
   };
+
+  const handleTotalQuantity = () => {
+    let total = 0;
+    for (let i = 0; i < cart.length; i++) {
+      total += cart[i].quantity;
+    }
+
+    return total;
+  };
+
   return (
     <div>
       <div className="navbar" style={styleObj}>
@@ -352,7 +363,7 @@ function ProductList() {
                     fontSize="80"
                     fill="white"
                   >
-                    {cart.length}
+                    {handleTotalQuantity()}
                   </text>
                 </svg>
               </h1>

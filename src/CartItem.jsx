@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, updateQuantity } from "./CartSlice";
 import "./CartItem.css";
@@ -10,12 +11,8 @@ const CartItem = ({ onContinueShopping }) => {
   const calculateTotalAmount = () => {
     let totalAmount = 0;
     for (let item of cart) {
-      // item.cost = item.cost.replace("$", "");
-      console.log(item.cost.replace("$", "").trim());
       totalAmount += item.quantity * parseFloat(item.cost.replace("$", ""));
     }
-    console.log(totalAmount);
-
     return totalAmount;
   };
 
@@ -39,11 +36,14 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleRemove = (item) => {
+    console.log(item);
     dispatch(removeItem(item));
   };
 
   // Calculate total cost based on quantity for an item
-  const calculateTotalCost = (item) => {};
+  const calculateTotalCost = (item) => {
+    return (item.quantity * parseFloat(item.cost.replace("$", ""))).toFixed(2);
+  };
 
   return (
     <div className="cart-container">
