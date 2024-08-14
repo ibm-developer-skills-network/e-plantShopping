@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, updateQuantity } from './CartSlice';
+import { removeItem, updateQuantity, addItem } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
@@ -19,14 +19,23 @@ const CartItem = ({ onContinueShopping }) => {
       .toFixed(2);
   }, [cart]);
 
+  // Function to handle adding a product to the cart
+  const handleAddToCart = (product) => {
+    dispatch(addItem(product)); // Dispatch action to add the product to the cart
+    setAddedToCart((prevState) => ({
+      ...prevState,
+      [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
+    }));
+  };
+
   const handleCheckoutShopping = () => {
     alert('Functionality to be added for future reference');
   };
 
   const handleIncrement = (item) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
-    setAddedToCart((prev) => ({
-      ...prev,
+    setAddedToCart((prevState) => ({
+      ...prevState,
       [item.name]: true,
     }));
   };
@@ -36,8 +45,8 @@ const CartItem = ({ onContinueShopping }) => {
       dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
     } else {
       dispatch(removeItem(item.name));
-      setAddedToCart((prev) => ({
-        ...prev,
+      setAddedToCart((prevState) => ({
+        ...prevState,
         [item.name]: false,
       }));
     }
@@ -45,8 +54,8 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleRemove = (item) => {
     dispatch(removeItem(item.name));
-    setAddedToCart((prev) => ({
-      ...prev,
+    setAddedToCart((prevState) => ({
+      ...prevState,
       [item.name]: false,
     }));
   };
@@ -100,13 +109,13 @@ const CartItem = ({ onContinueShopping }) => {
         </>
       )}
       <div className="continue_shopping_btn">
-        <button 
-          className="get-started-button" 
+        <button
+          className="get-started-button"
           onClick={() => {
             if (typeof onContinueShopping === 'function') {
               onContinueShopping();
             } else {
-              console.error("onContinueShopping is not a function");
+              console.error('onContinueShopping is not a function');
             }
           }}
         >
