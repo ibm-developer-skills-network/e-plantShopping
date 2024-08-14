@@ -1,15 +1,17 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
-import PropTypes from 'prop-types';
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector((state) => state.cart.items || []);
   const dispatch = useDispatch();
 
-  // useMemo is a React Hook that helps optimize the performance of components
-const totalAmount = useMemo(() => {
+  // State management to track which products are added to the cart
+  const [addedToCart, setAddedToCart] = useState({});
+
+  // useMemo to optimize total amount calculation
+  const totalAmount = useMemo(() => {
     return cart
       .reduce((total, item) => {
         return total + parseFloat(item.cost.replace('$', '')) * item.quantity;
@@ -23,6 +25,10 @@ const totalAmount = useMemo(() => {
 
   const handleIncrement = (item) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
+    setAddedToCart((prev) => ({
+      ...prev,
+      [item.name]: true,
+    }));
   };
 
   const handleDecrement = (item) => {
@@ -30,15 +36,21 @@ const totalAmount = useMemo(() => {
       dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
     } else {
       dispatch(removeItem(item.name));
+      setAddedToCart((prev) => ({
+        ...prev,
+        [item.name]: false,
+      }));
     }
   };
 
   const handleRemove = (item) => {
     dispatch(removeItem(item.name));
+    setAddedToCart((prev) => ({
+      ...prev,
+      [item.name]: false,
+    }));
   };
 
-
-  //Error handling implemented
   const calculateTotalCost = (item) => {
     try {
       const cost = parseFloat(item.cost.replace('$', ''));
@@ -48,10 +60,9 @@ const totalAmount = useMemo(() => {
       return (cost * item.quantity).toFixed(2);
     } catch (error) {
       console.error(error.message);
-      return "0.00"; 
+      return '0.00';
     }
   };
-  
 
   return (
     <div className="cart-container">
@@ -80,6 +91,8 @@ const totalAmount = useMemo(() => {
                   <button className="cart-item-delete" onClick={() => handleRemove(item)}>
                     Delete
                   </button>
+                  {/* Show whether the item is added to the cart */}
+                  {addedToCart[item.name] && <div>Added to Cart</div>}
                 </div>
               </div>
             ))}
@@ -87,7 +100,16 @@ const totalAmount = useMemo(() => {
         </>
       )}
       <div className="continue_shopping_btn">
-        <button className="get-started-button" onClick={onContinueShopping}>
+        <button 
+          className="get-started-button" 
+          onClick={() => {
+            if (typeof onContinueShopping === 'function') {
+              onContinueShopping();
+            } else {
+              console.error("onContinueShopping is not a function");
+            }
+          }}
+        >
           Continue Shopping
         </button>
         <br />
@@ -97,10 +119,6 @@ const totalAmount = useMemo(() => {
       </div>
     </div>
   );
-};
-
-CartItem.propTypes = {
-  onContinueShopping: PropTypes.func.isRequired,
 };
 
 export default CartItem;
