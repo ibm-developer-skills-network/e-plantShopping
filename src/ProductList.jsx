@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import "./ProductList.css";
 import CartItem from "./CartItem";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "./CartSlice";
 function ProductList() {
   const [showCart, setShowCart] = useState(false);
   const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
   const [addedToCart, setAddedToCart] = useState({}); // State to control the visibility of the cart
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.items);
   const handleAddToCart = (product) => {
     dispatch(addItem(product));
     setAddedToCart((prevState) => ({
@@ -280,7 +281,12 @@ function ProductList() {
   };
   const handleCartClick = (e) => {
     e.preventDefault();
-    setShowCart(true); // Set showCart to true when cart icon is clicked
+    if (showCart) {
+      setShowCart(false);
+      return;
+    } else {
+      setShowCart(true); // Set showCart to true when cart icon is clicked
+    }
   };
   const handlePlantsClick = (e) => {
     e.preventDefault();
@@ -288,9 +294,7 @@ function ProductList() {
     setShowCart(false); // Hide the cart when navigating to About Us
   };
 
-  const handleContinueShopping = (e) => {
-    console.log(e);
-    e.preventDefault();
+  const handleContinueShopping = () => {
     setShowCart(false);
   };
   return (
@@ -337,9 +341,19 @@ function ProductList() {
                     stroke="#faf9f9"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth="2"
+                    strokeWidth="4"
                     id="mainIconPathAttribute"
                   ></path>
+                  <text
+                    x="50%"
+                    y="50%"
+                    dominantBaseline="middle"
+                    textAnchor="middle"
+                    fontSize="80"
+                    fill="white"
+                  >
+                    {cart.length}
+                  </text>
                 </svg>
               </h1>
             </a>
@@ -362,6 +376,8 @@ function ProductList() {
                       alt={plant.name}
                     />
                     <div className="product-title">{plant.name}</div>
+                    <div className="product-title">{plant.cost}</div>
+                    <div className="product-title">{plant.description}</div>
                     {/*Similarly like the above plant.name show other details like description and cost*/}
                     <button
                       className="product-button"
@@ -376,7 +392,9 @@ function ProductList() {
           ))}
         </div>
       ) : (
-        <CartItem onContinueShopping={handleContinueShopping} />
+        <>
+          <CartItem onContinueShopping={handleContinueShopping} />
+        </>
       )}
     </div>
   );
