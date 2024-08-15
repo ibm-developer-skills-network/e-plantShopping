@@ -1,8 +1,8 @@
 {
   "name": "e-plantshoppingnew",
-  "homepage": "https://github.com/Teyasinhasan/e-plantShoppingNew",
-  "private": true,
-  "version": "0.1.0",
+  "homepage": "https://Teyasinhasan.github.io/",
+  "private": false,
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
