@@ -6,27 +6,13 @@ import { addItem } from './CartSlice';
 function ProductList() {
 
     const baseUrl = import.meta.env.BASE_URL;
-    
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-
     const cart = useSelector(state => state.cart.items);
-
-
-    /* in my first attempt in this project,
-    i tried to make the cartQuantity at the store then use increment and decrement in the functions that adds / reduce item in cart ... 
-
-    doing it with a state and using useEffect  with the state as a parameter in the [ ] makes it update based on the cart itself so its kinda easier and faster
-    
-    
-    */
     const [cartQuantity, setCartQuantity] = useState(0);
 
     useEffect(() => {
-      // Update cart quantity whenever cartItems changes
-      //reduce accumulates into single result in an array. you add all item qty to a single value
       const quantity = cart.reduce((total, item) => total + item.quantity, 0);
-
       setCartQuantity(quantity);
     }, [cart]); // Dependency array with cartItems means this effect runs whenever cartItems changes
 
