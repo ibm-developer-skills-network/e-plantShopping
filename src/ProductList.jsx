@@ -8,7 +8,7 @@ function ProductList() {
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart.items);
-
+   
 
     const plantsArray = [
         {
@@ -256,6 +256,10 @@ function ProductList() {
         dispatch(addItem(plant));
     }
 
+    const IsAlreadyAddedToCart = ({name}) => {
+        return cart.findIndex(el => el.name === name) !== -1;
+    }
+
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -300,7 +304,7 @@ function ProductList() {
                                                 <img className='product-image' src={infoPlan.image} alt={infoPlan.name} />
                                                 <div className='product-price'>{infoPlan.cost}</div>
                                                 <div className=''>{infoPlan.description}</div>
-                                                <button className='product-button' onClick={() => handleAddToCart(infoPlan)}>Add to cart</button>
+                                                <button className={`product-button ${IsAlreadyAddedToCart(infoPlan) ? 'added-to-cart' : ''}  `}  disabled={IsAlreadyAddedToCart(infoPlan)} onClick={() => handleAddToCart(infoPlan)}>Add to cart</button>
                                             </div>
                                         )
                                     }

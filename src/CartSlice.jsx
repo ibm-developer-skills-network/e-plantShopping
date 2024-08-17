@@ -7,12 +7,7 @@ export const CartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-      const {payload} = action
-      if(state.items.findIndex(el => el.name === payload.name) !== -1)
-       state.items = state.items.
-                        map(el => el.name === payload.name ? 
-                                    {...el , quantity : el.quantity + 1 } : el )
-      else                   
+      const {payload} = action                 
         state.items.push({
           ...payload , 
           quantity : 1
