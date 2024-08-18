@@ -2,7 +2,9 @@
 body, h1, ul {
     margin: 0;
     padding: 0;
-}
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    }
+    
 
 /* Set a background color */
 body {
@@ -25,7 +27,27 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1100px;
+    width: 100%; /* Changed from 100vw to 100% */
+}
+
+Product Grid .product-grid class:
+
+css
+Copy code
+.product-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Changed from 100vw to 100% */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Navbar */
+.navbar .ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Changed from 100vw to 100% */
 }
 
 .navbar li {
@@ -39,14 +61,15 @@ body {
    
 }
 
-/* Product Grid */
-.product-grid {
-    display:flex;
+//* Product Grid */
+..product-grid {
+    display: flex;
     flex-direction: column;
-    width: 100vw;
+    width: 100%; /* Changed from 100vw to 100% */
     align-items: center;
     justify-content: center;
 }
+
 .product-list {
     display: flex;
     flex-wrap: wrap;
@@ -55,6 +78,7 @@ body {
     /* justify-content: space-between; */
     padding: 20px;
     width: 100%;
+
     align-items: center;
     justify-content: center;
 }
