@@ -372,12 +372,12 @@ function ProductList() {
                     return (
                       <li key={index} className="product-card">
                         <h3 className="product-title">{plant.name}</h3>
+                        <div className="product-price">{plant.cost}</div>
                         <img
                           src={plant.image}
                           alt={plant.name}
                           className="product-image"
                         />
-                        <div className="product-price">{plant.cost}</div>
                         <p>{plant.description}</p>
                         <button
                           type="button"
