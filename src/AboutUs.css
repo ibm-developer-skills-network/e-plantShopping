@@ -5,7 +5,7 @@
     /* padding: 20px; */
     /* background-color: red; */
     text-align: justify;
-   
+}
   
   .about-us-heading {
     font-size: 32px;
@@ -18,8 +18,6 @@
     font-size: 18px;
     color: #d3cccc;
     margin-bottom: 30px;
-   
-  
     text-align: center;
   }
   
@@ -31,6 +29,6 @@
     text-align: right;
   }
 
-  .plant_logo_left{
+  .plant_logo_left {
     text-align: left;
   }
