@@ -21,6 +21,7 @@ body {
     justify-content: space-between;
     align-items: center;
     font-size: 20px;
+    margin-bottom:  50px;  /* added for space below navbar*/
 }
 
 .navbar .ul {
@@ -30,17 +31,6 @@ body {
     width: 100%; /* Changed from 100vw to 100% */
 }
 
-Product Grid .product-grid class:
-
-css
-Copy code
-.product-grid {
-    display: flex;
-    flex-direction: column;
-    width: 100%; /* Changed from 100vw to 100% */
-    align-items: center;
-    justify-content: center;
-}
 
 /* Navbar */
 .navbar .ul {
@@ -83,6 +73,12 @@ Copy code
     justify-content: center;
 }
 
+/* added to bring title in */
+.product-list-title {
+    margin-left:  100px;  
+
+}
+
 /* Product Card */
 .product-card {
     flex: 0 0 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap */
@@ -94,7 +90,6 @@ Copy code
     border-radius: 5px;
     text-align: center;
     position: relative;
-    
     gap: 20px;
 }
 
