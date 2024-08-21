@@ -7,28 +7,21 @@ const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
-  // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     return cart.reduce((total, item) => {
-      // Ensure item properties are valid numbers
-      const cost = parseFloat(item.cost);
-      const quantity = parseFloat(item.quantity);
-  
-      // Handle invalid values
-      if (isNaN(cost) || isNaN(quantity)) {
-        console.error('Invalid cost or quantity for item:', item);
-        return total; // Skip this item
-      }
-  
+      // Remove dollar sign and convert cost to a number
+      const cost = parseFloat(item.cost.replace(/[$,]/g, ''));
+      
       // Calculate total cost for this item and add to total
-      return total + (quantity * cost);
+      return total + (item.quantity * cost);
     }, 0);
   };
+  
   
 
   // Calculate total cost for an individual item
   const calculateTotalCost = (item) => {
-    const cost = parseFloat(item.cost);
+    const cost = parseFloat(item.cost.replace(/[$,]/g, ''));
     return item.quantity * cost;
   };
 
