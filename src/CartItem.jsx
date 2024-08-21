@@ -10,17 +10,30 @@ const CartItem = ({ onContinueShopping }) => {
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     return cart.reduce((total, item) => {
-      return total + item.quantity * item.cost;
+      // Ensure item properties are valid numbers
+      const cost = parseFloat(item.cost);
+      const quantity = parseFloat(item.quantity);
+  
+      // Handle invalid values
+      if (isNaN(cost) || isNaN(quantity)) {
+        console.error('Invalid cost or quantity for item:', item);
+        return total; // Skip this item
+      }
+  
+      // Calculate total cost for this item and add to total
+      return total + (quantity * cost);
     }, 0);
   };
+  
 
   // Calculate total cost for an individual item
   const calculateTotalCost = (item) => {
-    return item.quantity * item.cost;
+    const cost = parseFloat(item.cost);
+    return item.quantity * cost;
   };
 
   const handleContinueShopping = (e) => {
-    onContinueShopping();
+    onContinueShopping(e);
   };
 
   const handleIncrement = (item) => {
@@ -36,7 +49,9 @@ const CartItem = ({ onContinueShopping }) => {
   const handleRemove = (item) => {
     dispatch(removeItem(item.name));
   };
-
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
+  };
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount().toFixed(2)}</h2>
@@ -46,7 +61,7 @@ const CartItem = ({ onContinueShopping }) => {
             <img className="cart-item-image" src={item.image} alt={item.name} />
             <div className="cart-item-details">
               <div className="cart-item-name">{item.name}</div>
-              <div className="cart-item-cost">${item.cost.toFixed(2)}</div>
+              <div className="cart-item-cost">{item.cost}</div>
               <div className="cart-item-quantity">
                 <button className="cart-item-button cart-item-button-dec" onClick={() => handleDecrement(item)}>-</button>
                 <span className="cart-item-quantity-value">{item.quantity}</span>
@@ -61,7 +76,7 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={handleContinueShopping}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={handleCheckoutShopping}>Checkout</button>
       </div>
     </div>
   );
