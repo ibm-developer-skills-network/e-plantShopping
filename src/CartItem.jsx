@@ -9,7 +9,7 @@ const CartItem = ({ onContinueShopping }) => {
 
   const calculateTotalAmount = () => {
     return cart.reduce((total, item) => {
-      // Remove dollar sign and convert cost to a number
+      // Remove dollar sign and convert cost to a 
       const cost = parseFloat(item.cost.replace(/[$,]/g, ''));
       
       // Calculate total cost for this item and add to total
