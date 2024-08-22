@@ -1,10 +1,11 @@
-.about-us-container {
-  /*Changed width*/
-    width: 800px;
-    /* margin: 0 auto; */
-    /* padding: 20px; */
-    /* background-color: red; */
-    text-align: justify;
+
+  .about-us-container {
+    width: 100%; 
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    text-align: justify; 
+    box-sizing: border-box; 
 }
   
   .about-us-heading {
@@ -19,6 +20,7 @@
     color: #d3cccc;
     margin-bottom: 30px;
     text-align: center;
+
   }
   
   .about-us-content {
