@@ -125,6 +125,12 @@
     padding: 15px;
   }
 
+  .get-started-btn {
+    display: none;
+  .about-us-heading {
+      font-size: 28px; /* Adjust font size for smaller screens */
+  }
+
   .landing_content {
     flex: 1;
     max-width: 100%;
@@ -169,8 +175,30 @@
   .landing_content p {
     font-size: 16px;
   }
+  .divider {
+    margin-bottom: 10px; /* Example margin causing the gap */
+    height: 2px;
+    background-color: #333;
+}
+
+.description {
+    margin-top: 20px; /* Another margin potentially causing the gap */
+    font-size: 16px;
+    color: #666;
+}
+
 
   .get-started-button {
-    width: 80%;
-    max-width: 200px; /* Ensure button doesn’t overflow */
+   display:none;
   }
+  /* Adjust styles specifically for screens 414px or smaller */
+@media (max-width: 390px) {
+  .divider {
+      margin-bottom: px; /* Reduce the bottom margin */
+  }
+
+  .description {
+      margin-top: 0px; /* Remove the top margin */
+  }
+}
+}

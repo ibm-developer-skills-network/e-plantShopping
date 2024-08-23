@@ -41,10 +41,7 @@
         padding: 5px; /* Reduce padding for smaller screens */
         gap: 0;
     }
-
-    .about-us-heading {
-        font-size: 28px; /* Adjust font size for smaller screens */
-    }
+    
 
     .about-us-description,
     .about-us-content {
