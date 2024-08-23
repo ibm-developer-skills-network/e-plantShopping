@@ -6,6 +6,7 @@
     padding: 20px; 
     text-align: justify; 
     box-sizing: border-box; 
+    overflow: hidden;
 }
   
   .about-us-heading {
@@ -34,3 +35,21 @@
   .plant_logo_left {
     text-align: left;
   }
+
+  @media (max-width: 768px) {
+    .about-us-container {
+        padding: 5px; /* Reduce padding for smaller screens */
+        gap: 0;
+    }
+
+    .about-us-heading {
+        font-size: 28px; /* Adjust font size for smaller screens */
+    }
+
+    .about-us-description,
+    .about-us-content {
+        font-size: 16px; /* Adjust font size for readability */
+        margin: 0;
+    }
+}
+
