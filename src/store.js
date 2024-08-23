@@ -7,4 +7,4 @@ import cartReducer from './CartSlice';
         
     },
 });
-export default store
+export default store;
