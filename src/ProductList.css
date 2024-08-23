@@ -86,6 +86,11 @@ body {
     margin-bottom: 10px;
 }
 
+.product-description {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
 .product-price {
     color: #e74c3c;
     font-size: 1.2rem;
