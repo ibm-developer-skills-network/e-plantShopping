@@ -268,7 +268,7 @@ const handleAddToCart = (product) => {
             <div className="navbar" style={styleObj}>
             <div className="tag">
                <div className="luxury">
-               <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
+               <img src="https://cdn.pixabay.com/photo/2012/04/24/16/15/broccoli-40295_1280.png" alt="" />
                <a href="/" style={{textDecoration:'none'}}>
                         <div>
                     <h3 style={{color:'white'}}>Plants4U</h3>
