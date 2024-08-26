@@ -250,14 +250,11 @@ function ProductList() {
         setShowCart(false);
     };
     const handleAddToCart = (product) => {
-        console.log("ProductList: handleAddToCart start");
-        console.log(product);
         dispatch(addItem(product));
         setAddedToCart((prevState) => ({
             ...prevState,
             [product.name]: true,
         }));
-        console.log("ProductList: handleAddToCart finish");
     };
     return (
         <div>
