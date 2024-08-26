@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ProductList from './ProductList';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem, removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
@@ -18,6 +19,11 @@ const CartItem = ({ onContinueShopping }) => {
 
     const handleCheckoutShopping = (e) => {
         alert('Functionality to be added for future reference');
+    };
+
+    // const [setShowProductList] = useState(false);
+    const handleContinueShopping = (e) => {
+        console.log(e);
     };
 
     const handleIncrement = (item) => {
