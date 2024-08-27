@@ -55,8 +55,8 @@ ul, ol {
     list-style-type: none; 
 }
 
-//* Product Grid */
-..product-grid {
+/* Product Grid */
+.product-grid {
     display: flex;
     flex-direction: column;
     width: 100%; /* Changed from 100vw to 100% */
