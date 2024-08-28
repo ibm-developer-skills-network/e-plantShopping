@@ -2,14 +2,14 @@ import React, { useState,useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import './ProductList.css'
 import CartItem from './CartItem';
-import { addItem } from './CartSlice';
+import { addItem, updateCartCount } from './CartSlice';
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
     const cartQuantityCount = useState(0);
     const dispatch = useDispatch();
-    const cart = useSelector(state => state.cart.items);
+    const cart = useSelector(state => state.cart);
 
     const plantsArray = [
         {
@@ -259,7 +259,8 @@ function ProductList() {
         }));
     };
     const calculateCartQuantityCount = () => {
-        return cart.length;
+        dispatch(updateCartCount());
+        return cart.count;
     };
     return (
         <div>
