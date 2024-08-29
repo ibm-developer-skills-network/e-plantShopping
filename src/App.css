@@ -48,7 +48,7 @@
 /* Landing Content */
 .landing_content {
   flex: 0 0 25%;
-  max-width: 25%;
+  max-width: 100vw;
   padding: 20px;
   color: white;
   text-align: center;
@@ -103,7 +103,7 @@
   position: absolute;
   top: 100vh;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.9);
   transition: top 0.5s ease;
@@ -154,17 +154,17 @@
 }
 
 /* Mobile Screens */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 414px) {
   .landing_content {
     flex: 1;
-    max-width: 100%; /* Full width on mobile */
+    max-width: 100lvw; /* Full width on mobile */
     padding: 10px;
     text-align: center; /* Center content */
   }
 }
   .aboutus_container {
     flex: 1;
-    max-width: 100%; /* Full width on mobile */
+    max-width: 100vw; /* Full width on mobile */
     padding: 10px;
   }
 
@@ -194,7 +194,8 @@
   /* Adjust styles specifically for screens 414px or smaller */
 @media (max-width: 390px) {
   .divider {
-      margin-bottom: px; /* Reduce the bottom margin */
+      margin-bottom: 3 px; /* Reduce the bottom margin */
+      width: 100vw;
   }
 
   .description {
