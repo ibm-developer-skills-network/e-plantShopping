@@ -15,7 +15,7 @@
 .landing-page {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 100vh; /* Ensure it takes up the full viewport height */
   background-color: #f8f8f8;
 }
 
@@ -30,6 +30,7 @@
   background-size: cover;
   background-position: center;
   filter: brightness(0.8);
+  z-index: 1;
 }
 
 /* Content Area */
@@ -42,43 +43,43 @@
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
-  gap: 20px;
+  gap: 0px; /* Set initial gap to 0 */
+  position: relative;
+  z-index: 2;
 }
 
 /* Landing Content */
 .landing_content {
-  flex: 0 0 25%;
-  max-width: 100vw;
+  flex: 0 0 33.33%; /* Set flex-basis to 33.33% for one-third width */
+  max-width: 33.33%; /* Set maximum width to 33.33% */
   padding: 20px;
   color: white;
   text-align: center;
+  margin: 0;
 }
 
-.landing_content h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
+/* About Us Container */
+.aboutus_container {
+  flex: 1 1 66.66%; /* Set flex-basis to 66.66% for two-thirds width */
+  max-width: 66.66%; /* Set maximum width to 66.66% */
+  padding: 20px;
+  color: white;
+  margin: 0;
 }
 
-.landing_content p {
-  font-size: 25px;
+/* Paragraph Spacing */
+.landing_content p,
+.aboutus_container p {
+  margin-bottom: 15px; /* Add a gap between paragraphs */
 }
 
 /* Divider */
 .divider {
-  width: 100%; /* Make the divider span the full width of the container */
-  max-width: 100%; /* Ensure it doesn't exceed 100% */
-  height: 2px; /* Maintain the height */
-  background-color: #4caf50; /* Keep the color as is */
-  margin: 10px 0; /* Maintain the margin */
-}
-
-
-
-/* About Us Container */
-.aboutus_container {
-  flex: 1;
-  padding: 20px;
-  color: white;
+  width: 100%;
+  max-width: 100%;
+  height: 2px;
+  background-color: #4caf50;
+  margin: 10px 0;
 }
 
 /* Get Started Button */
@@ -119,87 +120,52 @@
 /* Media Queries for Responsiveness */
 
 /* Tablet and Small Screens */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .content {
-    flex-direction: column; /* Stack content vertically */
-    padding: 15px;
+    flex-direction: column; /* Stack items vertically on small screens */
+    align-items: center; /* Center items in the column */
+    gap: 20px; /* Add space between items */
   }
 
-  .get-started-btn {
-    display: none;
-  .about-us-heading {
-      font-size: 28px; /* Adjust font size for smaller screens */
-  }
-
-  .landing_content {
-    flex: 1;
-    max-width: 100%;
-    padding: 15px;
-    text-align: center; /* Center content */
-  }
-
+  .landing_content,
   .aboutus_container {
-    flex: 1;
-    max-width: 100%;
-    padding: 15px;
+    max-width: 100%; /* Allow full width usage on small screens */
+    padding: 15px; /* Reduce padding to fit smaller screens */
+    margin-bottom: 15px; /* Adjust space between sections */
   }
 
-  .landing_content h1 {
-    font-size: 36px; /* Adjust font size */
+  .landing_content h1,
+  .aboutus_container h2 {
+    font-size: 1.5rem; /* Adjust font size for better readability */
   }
 
-  .landing_content p {
-    font-size: 20px;
+  .landing_content p,
+  .aboutus_container p {
+    font-size: 1rem; /* Adjust text size */
+    margin-bottom: 10px; /* Ensure spacing remains in smaller screens */
   }
 }
 
-/* Mobile Screens */
-@media screen and (max-width: 414px) {
-  .landing_content {
-    flex: 1;
-    max-width: 100lvw; /* Full width on mobile */
-    padding: 10px;
-    text-align: center; /* Center content */
+/* Very Small Screens */
+@media (max-width: 480px) {
+  .content {
+    padding: 10px; /* Further reduce padding */
   }
-}
+
+  .landing_content,
   .aboutus_container {
-    flex: 1;
-    max-width: 100vw; /* Full width on mobile */
-    padding: 10px;
+    padding: 10px; /* Further reduce padding */
+    margin-bottom: 10px; /* Reduce space between sections */
   }
 
-  .landing_content h1 {
-    font-size: 28px; /* Further adjust font size */
+  .landing_content h1,
+  .aboutus_container h2 {
+    font-size: 1.2rem; /* Further reduce font size */
   }
 
-  .landing_content p {
-    font-size: 16px;
+  .landing_content p,
+  .aboutus_container p {
+    font-size: 0.9rem; /* Further adjust text size */
+    margin-bottom: 8px; /* Ensure spacing remains in smaller screens */
   }
-  .divider {
-    margin-bottom: 10px; /* Example margin causing the gap */
-    height: 2px;
-    background-color: #333;
-}
-
-.description {
-    margin-top: 20px; /* Another margin potentially causing the gap */
-    font-size: 16px;
-    color: #666;
-}
-
-
-  .get-started-button {
-   display:none;
-  }
-  /* Adjust styles specifically for screens 414px or smaller */
-@media (max-width: 390px) {
-  .divider {
-      margin-bottom: 3 px; /* Reduce the bottom margin */
-      width: 100vw;
-  }
-
-  .description {
-      margin-top: 0px; /* Remove the top margin */
-  }
-}
 }
