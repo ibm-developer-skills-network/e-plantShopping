@@ -67,12 +67,6 @@
   margin: 0;
 }
 
-/* Paragraph Spacing */
-.landing_content p,
-.aboutus_container p {
-  margin-bottom: 15px; /* Add a gap between paragraphs */
-}
-
 /* Divider */
 .divider {
   width: 100%;
@@ -80,6 +74,12 @@
   height: 2px;
   background-color: #4caf50;
   margin: 10px 0;
+}
+
+/* Paragraph Spacing */
+.landing_content p,
+.aboutus_container p {
+  margin-bottom: 15px; /* Add a gap between paragraphs */
 }
 
 /* Get Started Button */
@@ -137,12 +137,20 @@
   .landing_content h1,
   .aboutus_container h2 {
     font-size: 1.5rem; /* Adjust font size for better readability */
+    margin-top: 20px; /* Lower the title by adding margin on top */
   }
 
   .landing_content p,
   .aboutus_container p {
     font-size: 1rem; /* Adjust text size */
     margin-bottom: 10px; /* Ensure spacing remains in smaller screens */
+  }
+
+  .divider {
+    height: 2px; /* Keep the height consistent */
+    margin: 10px 0; /* Maintain margin around the divider */
+    background-color: #4caf50; /* Ensure the divider color is visible */
+    display: block; /* Ensure the divider is visible on small screens */
   }
 }
 
@@ -161,11 +169,19 @@
   .landing_content h1,
   .aboutus_container h2 {
     font-size: 1.2rem; /* Further reduce font size */
+    margin-top: 30px; /* Lower the title even further for very small screens */
   }
 
   .landing_content p,
   .aboutus_container p {
     font-size: 0.9rem; /* Further adjust text size */
     margin-bottom: 8px; /* Ensure spacing remains in smaller screens */
+  }
+
+  .divider {
+    height: 2px; /* Keep the height consistent */
+    margin: 8px 0; /* Maintain margin around the divider */
+    background-color: #4caf50; /* Ensure the divider color is visible */
+    display: block; /* Ensure the divider is visible on very small screens */
   }
 }
