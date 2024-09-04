@@ -77,6 +77,7 @@ ul, ol {
     justify-content: center;
 }
 
+
 /* added to bring title in */
 .product-list-title {
     margin-left:  160px;  
@@ -110,7 +111,7 @@ ul, ol {
 }
 
 .product-price {
-    color: #180604;
+    color: #e42d18;
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
@@ -210,13 +211,7 @@ ul, ol {
 
     
 }
-/* Add Media Query for responsiveness */
-@media (max-width: 768px) {
-    .product-card {
-        flex: 1 1 calc(50% - 20px); /* Adjust width for 2 cards per row with 20px gap on smaller screens */
-        max-width: calc(50% - 20px); /* Adjust max-width for 2 cards per row with 20px gap on smaller screens */
-    }
-}
+
 /* ProductList.css */
 
 .product-button {
@@ -265,7 +260,7 @@ ul, ol {
       .ul {
         display: flex; /* Set display to flex */
         flex-direction: column; /* Change flex direction to stack items vertically */
-        gap: 10px; /* Add gap between items */
+       
       }
     
       .ul div {
