@@ -7,10 +7,19 @@ import AboutUs from './AboutUs';
 function App() {
   
   const [showProductList, setShowProductList] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+
 
   const handleGetStartedClick = () => {
     setShowProductList(true);
   };
+
+  // Function to handle navigation to the plant listing page
+  const handleContinueShopping = () => {
+    setShowCart(false); // Navigate back to the product listing by hiding the cart
+  };
+
+
 
   return (
     <div className="app-container">
