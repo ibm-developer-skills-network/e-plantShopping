@@ -11,10 +11,14 @@ const CartItem = ({ onContinueShopping }) => {
   const calculateTotalAmount = () => {
     let totalAmount = 0;
     cart.forEach((item) => {
-      totalAmount += item.quantity * item.cost;
+      const cleanCost = item.cost.replace(/[^0-9.-]+/g, '');
+
+      totalAmount += item.quantity * cleanCost;
+      
     });
+    console.log('Total amount:', totalAmount);
     return totalAmount;
-  };             
+  };           
   
 
   const handleContinueShopping = (e) => {
@@ -24,17 +28,29 @@ const CartItem = ({ onContinueShopping }) => {
 
 
   const handleIncrement = (item) => {
+    dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }));
   };
-
+  
   const handleDecrement = (item) => {
-   
+    if (item.quantity > 1) {
+      dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }));
+    }
   };
 
   const handleRemove = (item) => {
   };
 
-  // Calculate total cost based on quantity for an item
+  // TO DO Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    const cleanCost = item.cost.replace(/[^0-9.-]+/g, '');
+    
+    // Ensure that both itemCost and itemQuantity are valid numbers
+    if (isNaN(cleanCost) || isNaN(item.quantity)) {
+      console.log("cost * quantity =  0000000 ");
+      return 0; // Return 0 if either value is invalid
+    }
+    return (cleanCost * item.quantity);
+    
   };
 
   return (

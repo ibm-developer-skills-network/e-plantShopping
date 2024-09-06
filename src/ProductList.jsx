@@ -257,10 +257,12 @@ function ProductList() {
 
   const handleAddToCart = (plant) => {
     dispatch(addItem(plant));
+    console.log("Cost being dispatched:", plant.cost);
     setAddedToCart((prevState) => ({
         ...prevState,
         [plant.name] : true,  // Set the product name as key and value as true to indicate it's added to cart
     }))
+    
   };
         
 
