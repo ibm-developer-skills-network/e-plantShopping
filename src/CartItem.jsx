@@ -38,19 +38,19 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleRemove = (item) => {
+    if (item.quantity > 0) {
+      dispatch(removeItem(item.name));
+    }
   };
 
-  // TO DO Calculate total cost based on quantity for an item
+  // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
     const cleanCost = item.cost.replace(/[^0-9.-]+/g, '');
-    
     // Ensure that both itemCost and itemQuantity are valid numbers
     if (isNaN(cleanCost) || isNaN(item.quantity)) {
-      console.log("cost * quantity =  0000000 ");
-      return 0; // Return 0 if either value is invalid
+       return 0; // Return 0 if either value is invalid
     }
     return (cleanCost * item.quantity);
-    
   };
 
   const handleCheckoutShopping = (e) => {
