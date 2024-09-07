@@ -4,7 +4,7 @@ Welcome to **Ziad's Plants**, where green meets serenity! This project is a smal
 
 ## 🚀 Live Demo
 
-Check out the live demo of the website [here](https://arslanr369.github.io/e-plantShopping).
+Check out the live demo of the website [here](https://arslanr369.github.io/React-e-plantShopping).
 
 ## 🌟 Features
 
