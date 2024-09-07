@@ -12,7 +12,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color: #615EFC;
+    background-color: hsl(115, 85%, 30%);
     color: #fff!important;
     padding: 15px;
     display: flex;
@@ -208,7 +208,7 @@ body {
 /* ProductList.css */
 
 .product-button {
-    background-color: #615EFC; /* Green */
+    background-color: hsl(115, 85%, 30%); /* Green */
     border: none;
     color: white;
     padding: 10px 20px;
@@ -222,7 +222,7 @@ body {
   }
   
   .product-button:hover {
-    background-color: #615EFC;
+    background-color: hsl(115, 85%, 30%);
   }
   
   .product-button.added-to-cart {

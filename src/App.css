@@ -6,6 +6,16 @@
   overflow: hidden;
 }
 
+.navbar {
+  background-color: hsl(115, 85%, 30%);
+  color: #fff !important;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+}
+
 .landing-page {
   position: relative;
   width: 100vw;
@@ -73,7 +83,7 @@
 .divider {
   width: 50px;
   height: 2px;
-  background-color: #615EFC;
+  background-color: hsl(115, 85%, 30%);
   margin: 10px 0;
 }
 
@@ -82,7 +92,7 @@
   font-size: 23px;
   border: none;
   border-radius: 5px;
-  background-color: #615EFC;
+  background-color: hsl(115, 85%, 30%);
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -90,7 +100,7 @@
 }
 
 .get-started-button:hover {
-  background-color: #615EFC;
+  background-color: hsl(115, 85%, 30%);
 }
 
 /* ProductList.css */
