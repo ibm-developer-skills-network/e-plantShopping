@@ -11,6 +11,7 @@ function ProductList() {
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const dispatch = useDispatch();
     const numCartItem = useSelector(state => state.cart.items)
+    const productStatus = useSelector(state => state.cart.productStatus); // 獲取產品狀態
 
     const plantsArray = [
         {
@@ -259,6 +260,9 @@ function ProductList() {
             [product.name]: true,
         }));
     }
+    const isProductInCart = (productName) => {
+        return !!productStatus[productName];
+    };
     const totalItems = numCartItem.reduce((total, item) => total + item.quantity, 0);
     return (
         <div>
@@ -297,13 +301,14 @@ function ProductList() {
                 <div className="product-grid">
                     {plantsArray.map((category, index) => (
                         <div key={index}>
-                            <h1><div>{category.category}</div></h1>
+                            <h1><div className="categoryName">{category.category}</div></h1>
                             <div className="product-list">
                                 {category.plants.map((plant, plantIndex) => (
                                     <div className="product-card" key={plantIndex}>
                                         <img className="product-image" src={plant.image} alt={plant.name} />
                                         <div className="product-title">{plant.name}</div>
-                                        <button className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                        <button className={`product-button ${isProductInCart(plant.name) ? `disabled` : ''}`} onClick={() => handleAddToCart(plant)}
+                                        disabled={isProductInCart(plant.name)}>Add to Cart</button>
                                     </div>
                                 ))}
                             </div>
