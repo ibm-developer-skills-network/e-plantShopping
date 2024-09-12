@@ -19,33 +19,37 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg');
-  background-size: 100% 100%;
-  background-position: center;
-  filter: brightness(0.8);
+  background-image: url("../public/plants.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .content {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   width: 100vw;
- top: 100px;
+  top: 100px;
   backdrop-filter: blur(4px);
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   gap: 20px;
 }
 
 .landing_content {
- margin-top: 430px;
-  margin-left: 100px;
-  transform: translate(-50%, -50%);
+  /* margin-top: 430px; */
+  position: relative;
+  left: 0%;
+  top: -2%;
   z-index: 1;
   text-align: center;
-  /* background-color: red; */
-  width: 400px;
-  height: 400px;
+  width: 25%;
+  height: fit-content;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -69,7 +73,7 @@
 .divider {
   width: 50px;
   height: 2px;
-  background-color: #4caf50;
+  background-color: #615efc;
   margin: 10px 0;
 }
 
@@ -78,7 +82,7 @@
   font-size: 23px;
   border: none;
   border-radius: 5px;
-  background-color: #4caf50;
+  background-color: #615efc;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -86,7 +90,7 @@
 }
 
 .get-started-button:hover {
-  background-color: #45a049;
+  background-color: #615efc;
 }
 
 /* ProductList.css */
@@ -130,7 +134,7 @@
   }
 
   .aboutus_container {
-    margin-top: 20px; /* Adjust as needed */
+    position: relative;
     width: 80%; /* Adjust as needed */
   }
 }
