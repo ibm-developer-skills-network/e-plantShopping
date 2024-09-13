@@ -8,20 +8,20 @@ const CartItem = ({ onContinueShopping }) => {
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
-  const calculateTotalAmount = (total, item) => {
-    return cart.reduce((total, item) => total + (item.quantity * parseFloat(item.cost.slice(1))), 0);
+  const calculateTotalAmount = () => {
+    return cart.reduce((total, item) => total + (item.quantity * parseFloat(item.cost.slice(1))), 0).toFixed(2);
   };
 
   const handleContinueShopping = (e) => {
-    setShowCart(false); // Oculta el carrito
-    setShowPlants(true); // Muestra la lista de plantas (si es necesario
+    e.preventDefault();
+    if (onContinueShopping) {
+      onContinueShopping(); // Call the function passed as a prop
+    }
   };
 
   const handleCheckoutShopping = (e) => {
-  alert('Functionality to be added for future reference');
-};
-
-
+    alert('Functionality to be added for future reference');
+  };
 
   const handleIncrement = (item) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
@@ -29,14 +29,14 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleDecrement = (item) => {
     if (item.quantity > 1) {
-        dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
-      } else {
-        dispatch(removeItem({ name: item.name }));
-      }
+      dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+    } else {
+      dispatch(removeItem(item.name)); // Remove item by name directly
+    }
   };
 
   const handleRemove = (item) => {
-    dispatch(removeItem({ name: item.name }));
+    dispatch(removeItem(item.name)); // Remove item by name directly
   };
 
   // Calculate total cost based on quantity for an item
@@ -67,14 +67,12 @@ const CartItem = ({ onContinueShopping }) => {
       </div>
       <div style={{ marginTop: '20px', color: 'black' }} className='total_cart_amount'></div>
       <div className="continue_shopping_btn">
-        <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
+        <button className="get-started-button" onClick={handleContinueShopping}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={handleCheckoutShopping}>Checkout</button>
       </div>
     </div>
   );
 };
 
 export default CartItem;
-
-
