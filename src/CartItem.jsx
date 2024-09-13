@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, updateQuantity } from './CartSlice';
+import { addItem, removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
@@ -8,28 +8,40 @@ const CartItem = ({ onContinueShopping }) => {
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
-  const calculateTotalAmount = () => {
- 
+  const calculateTotalAmount = (total, item) => {
+    return cart.reduce((total, item) => total + (item.quantity * parseFloat(item.cost.slice(1))), 0);
   };
 
   const handleContinueShopping = (e) => {
-   
+    setShowCart(false); // Oculta el carrito
+    setShowPlants(true); // Muestra la lista de plantas (si es necesario
   };
+
+  const handleCheckoutShopping = (e) => {
+  alert('Functionality to be added for future reference');
+};
 
 
 
   const handleIncrement = (item) => {
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
   const handleDecrement = (item) => {
-   
+    if (item.quantity > 1) {
+        dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+      } else {
+        dispatch(removeItem({ name: item.name }));
+      }
   };
 
   const handleRemove = (item) => {
+    dispatch(removeItem({ name: item.name }));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    return (item.quantity * parseFloat(item.cost.slice(1))).toFixed(2);
   };
 
   return (
