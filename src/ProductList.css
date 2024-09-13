@@ -163,7 +163,9 @@ body {
 .cart{
     color: white;
     display: flex;
+    position: relative;
 }
+
 .cart_quantity_count{
     margin-top: 16px;
     /* background-color: red; */
