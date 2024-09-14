@@ -16,6 +16,8 @@ function ProductList() {
     return cartItem ? cartItem.quantity : 0;
   };
 
+  console.log(getQuantity(item)); 
+  
   const plantsArray = [
         {
             category: "Air Purifying Plants",
