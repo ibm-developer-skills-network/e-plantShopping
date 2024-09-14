@@ -9,12 +9,12 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- return items.reduce((total, item) => total + item.quantity * item.cost, 0).toFixed(2);
+    return cart.reduce((total, item) => total + item.quantity * parseFloat(item.cost.replace('$', '')), 0).toFixed(2);
   };
 
   const handleContinueShopping = (e) => {
-   e.preventDefault();
-    setShowCart(false);
+    e.preventDefault();
+    onContinueShopping();  // Assuming this function is passed from the parent to continue shopping
   };
 
 
