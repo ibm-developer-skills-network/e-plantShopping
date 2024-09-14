@@ -241,6 +241,7 @@ function ProductList() {
       textDecoration: 'none',
     };
   
+    
     const handleAddToCart = (plant) => {
       dispatch(addItem(plant));
   
@@ -262,7 +263,6 @@ function ProductList() {
     };
   
     const handleContinueShopping = (e) => {
-      e.preventDefault();
       setShowCart(false);
     };
   
