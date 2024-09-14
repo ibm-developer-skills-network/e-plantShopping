@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './ProductList.css';
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
@@ -9,15 +9,7 @@ function ProductList() {
   const [ setShowPlants] = useState(false);
   const [addedToCart, setAddedToCart] = useState({});
   const dispatch = useDispatch(); 
-  const cartItems = useSelector(state => state.cart.items);
 
-  const getQuantity = (product) => {
-    const cartItem = cartItems.find(item => item.name === product.name);
-    return cartItem ? cartItem.quantity : 0;
-  };
-
-  console.log(getQuantity(item)); 
-  
   const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -250,11 +242,7 @@ function ProductList() {
     };
   
     const handleAddToCart = (plant) => {
-      dispatch(addItem({
-      name: product.name,
-      cost: product.cost,
-      image: product.image
-    }));
+      dispatch(addItem(plant));
   
       setAddedToCart((prevState) => ({
         ...prevState,
