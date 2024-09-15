@@ -15,7 +15,6 @@ export const CartSlice = createSlice({
       state.items = state.items.filter(item => item.name !== id);
     },
     updateQuantity: (state, action) => {
-      console.log(action.payload)
       const { id, quantity } = action.payload;
       const item = state.items.find(item => item.name === id);
       if (item) {
@@ -23,7 +22,6 @@ export const CartSlice = createSlice({
       }
     },
     incrementQuantity: (state, action) => {
-      console.log(action.payload)
       const { id } = action.payload;
       const item = state.items.find(item => item.name === id);
       if (item) {
@@ -31,7 +29,6 @@ export const CartSlice = createSlice({
       }
     },
     decrementQuantity: (state, action) => {
-      console.log(action.payload)
       const { id } = action.payload;
       const item = state.items.find(item => item.name === id);
       if (item && item.quantity > 1) {
