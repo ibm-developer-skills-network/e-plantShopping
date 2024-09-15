@@ -1,0 +1,80 @@
+.app__service-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 25rem;
+    border: .5px solid rgb(207, 200, 200);
+    background-color: #ffff;
+    margin: 1rem;
+    padding: .25rem;
+}
+.product-card--container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.app__service-card:hover {
+    cursor: pointer;
+    transform: scale(1.012);
+    box-shadow: 2px 1px 2px rgba(117, 113, 113, 0.36),
+        -2px 1px 2px rgba(184, 181, 181, 0.36),
+        2px -1px 2px rgba(167, 161, 161, 0.36);
+        transition: all .2s ease;
+}
+
+.app__service-card img {
+    width: 100%;
+    max-height: 10rem;
+}
+
+.app__service-card--detail p {
+    margin-bottom: 0;
+    text-align: center;
+
+}
+
+.app__service-card--detail {
+    flex: 2;
+    padding: 1rem;
+}
+
+.app__service-card--actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.app__service-card--add,
+.app__service-card--quantity,
+.app__service-card--remove {
+    font-size: 2rem;
+    border-radius: 5px;
+    min-width: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.app__service-card--add {
+    background-color: rgb(57, 183, 214);
+}
+
+.app__service-card--actions span:hover {
+    cursor: pointer;
+    background-color: rgb(58, 55, 51);
+    color: #ffff;
+
+}
+
+.app__service-card--remove {
+    background-color: rgb(70, 152, 219);
+}
+.app__service-cost{
+    text-align: center;
+    border-radius: 5px;
+    margin: 3rem auto;
+    padding: 1rem;
+    background-color: #ffff;
+    min-width: 20rem;
+}
