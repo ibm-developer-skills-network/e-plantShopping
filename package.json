@@ -1,5 +1,5 @@
 {
-  "name": "shoppingcart",
+  "name": "e-plantshopping",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,8 +9,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview --host",
-    "predeploy": "npm run build"
+    "preview": "vite preview --host"
   
   },
 
