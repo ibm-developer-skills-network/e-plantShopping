@@ -36,6 +36,28 @@
   gap: 20px;
 }
 
+.cart-icon {
+    position: absolute; /* o fixed, dependiendo de dónde lo quieras */
+    top: 20px; /* ajusta según sea necesario */
+    right: 20px; /* ajusta según sea necesario */
+    display: flex;
+    align-items: center;
+}
+
+.cart-count {
+    background-color: red; /* color de fondo para el conteo */
+    color: white; /* color del texto */
+    border-radius: 50%; /* forma circular */
+    padding: 5px 10px; /* espacio alrededor del número */
+    margin-right: 5px; /* espacio entre el conteo y el icono */
+}
+
+.cart-icon img {
+    width: 40px; /* ajusta el tamaño de la imagen */
+    height: auto; /* mantener proporciones */
+}
+
+
 .landing_content {
  margin-top: 430px;
   margin-left: 100px;
