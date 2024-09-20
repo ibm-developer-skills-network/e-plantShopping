@@ -10,6 +10,13 @@
   gap: 30px;
 }
 
+.cart-items{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
 .cart-item-image {
   width: 200px;
   height: 200px;

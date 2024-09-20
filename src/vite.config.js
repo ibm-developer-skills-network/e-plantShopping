@@ -3,6 +3,15 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/shoppingreact",
+  base: "/e-plantShopping",
   plugins: [react()],
-})
+  build: {
+    outDir: 'dist' // Ensure this points to the correct directory
+  },
+  server: {
+    port: 3000,
+  }
+
+});
+
+
