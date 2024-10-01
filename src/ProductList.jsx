@@ -393,8 +393,9 @@ function ProductList() {
                     <button
                       className="product-button"
                       onClick={() => handleAddToCart(plant)}
+                      disabled={addedToCart[plant.name]}
                     >
-                      Add to Cart
+                      Add To Cart
                     </button>
                   </div>
                 ))}
