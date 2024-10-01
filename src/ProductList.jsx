@@ -9,6 +9,7 @@ function ProductList() {
   const [showCart, setShowCart] = useState(false);
   const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
   const [addedToCart, setAddedToCart] = useState({});
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const plantsArray = [
     {
@@ -344,6 +345,7 @@ function ProductList() {
                     id='mainIconPathAttribute'
                   ></path>
                 </svg>
+                <div className='cart_quantity_count'>{totalQuantity}</div>
               </h1>
             </a>
           </div>
