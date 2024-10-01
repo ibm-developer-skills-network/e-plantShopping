@@ -12,7 +12,7 @@ const CartItem = ({ onContinueShopping }) => {
     cart.reduce((accum, curr) => accum + curr.quantity * curr.cost, 0);
 
   const handleContinueShopping = (e) => {
-    onContinueShopping();
+    onContinueShopping(e);
   };
 
   const handleCheckoutShopping = (e) => {
