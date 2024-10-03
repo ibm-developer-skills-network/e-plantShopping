@@ -122,6 +122,11 @@ body {
     padding: 5px 10px;
     border-radius: 0 0 0 5px;
 }
+.product-button:disabled {
+    background-color: grey; /* Color when disabled */
+    cursor: not-allowed; /* Change cursor to indicate that the button is disabled */
+    opacity: 0.6; /* Optional: make it a bit transparent */
+}
 .tag_home_link{
     display: flex;
     /* background-color: red; */
@@ -163,6 +168,7 @@ body {
 .cart{
     color: white;
     display: flex;
+    position: relative;
 }
 .cart_quantity_count{
     margin-top: 16px;
@@ -170,8 +176,17 @@ body {
     margin-left: 27px;
     position: absolute;
     font-size: 29px;
-
 }
+.cart-count {
+    position: absolute; /* Position the count absolutely within the cart icon */
+    top: 30%; /* Adjust as necessary for vertical alignment */
+    right: 40%; /* Adjust as necessary for horizontal alignment */
+    background-color:transparent; /* Background color for visibility */
+    color: white; /* Text color */
+    border-radius: 50%; /* Make it circular */
+    
+    font-size: 20px; /* Font size */
+  }
 .plantname_heading{
    display: flex;
    align-items: center;
