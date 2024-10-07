@@ -56,6 +56,7 @@
   color: white;
   text-align: center;
   margin: 0;
+  align-content:center;
 }
 
 /* About Us Container */
@@ -69,11 +70,11 @@
 
 /* Divider */
 .divider {
-  width: 100%;
-  max-width: 100%;
+  width: 50px;
   height: 2px;
   background-color: #4caf50;
-  margin: 10px 0;
+  margin: 10px auto; /* Center horizontally */
+  display: block; /* Ensure it's a block-level element */
 }
 
 /* Paragraph Spacing */
@@ -117,8 +118,6 @@
   top: 0;
 }
 
-/* Media Queries for Responsiveness */
-
 /* Tablet and Small Screens */
 @media (max-width: 768px) {
   .content {
@@ -147,10 +146,11 @@
   }
 
   .divider {
+    width: 50px; /* Keep the width consistent */
     height: 2px; /* Keep the height consistent */
-    margin: 10px 0; /* Maintain margin around the divider */
+    margin: 10px auto; /* Use auto margin to center on small screens */
     background-color: #4caf50; /* Ensure the divider color is visible */
-    display: block; /* Ensure the divider is visible on small screens */
+    display: block; /* Ensure the divider is visible */
   }
 }
 
@@ -179,9 +179,10 @@
   }
 
   .divider {
+    width: 50px; /* Keep the width consistent */
     height: 2px; /* Keep the height consistent */
-    margin: 8px 0; /* Maintain margin around the divider */
+    margin: 8px auto; /* Use auto margin to center on very small screens */
     background-color: #4caf50; /* Ensure the divider color is visible */
-    display: block; /* Ensure the divider is visible on very small screens */
+    display: block; /* Ensure the divider is visible */
   }
 }
