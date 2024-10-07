@@ -390,7 +390,7 @@ function ProductList() {
                           }
                           onClick={() => handleAddToCart(plant)}
                         >
-                          Add to Cart
+                            {isAddedToCart ? "Added to Cart" : "Add to Cart"}
                         </button>
                       </li>
                     );
