@@ -62,6 +62,8 @@ ul, ol {
     width: 100%; /* Changed from 100vw to 100% */
     align-items: center;
     justify-content: center;
+    text-align: center; /* Center the title */
+
 }
 
 .product-list {
@@ -77,12 +79,74 @@ ul, ol {
     justify-content: center;
 }
 
+.product-title {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    /* background-color: pink; */
+   
+    align-items: center;
+    justify-content: center;
+}
+
+h2  {
+    position: relative;
+    display: inline-block; /* The h2 only takes the width of its content */
+    text-align: center; /* Center text inside the h2 */
+    font-size: 2rem;
+    padding: 10px 0;
+    margin: 40px auto; /* Centers the h2 on the page */
+    font-weight: bold;
+}
+
+.product-title {
+    text-align: center; /* Centers content horizontally */
+}
+
+.product-list-title, h2 {
+    position: relative;
+    display: inline-block; /* The title only takes the width of its content */
+    text-align: center; /* Center text inside the title */
+    font-size: 2rem;
+    padding: 10px 0;
+    margin: 40px auto; /* Centers the title on the page */
+    font-weight: bold;
+    border-top: 2px solid #4caf50; /* Line above */
+    border-bottom: 2px solid #4caf50; /* Line below */
+}
+
 
 /* added to bring title in */
 .product-list-title {
     margin-left:  160px;  
 
 }
+h2 {
+    position: relative;
+    display: inline-block; /* The h2 only takes the width of its content */
+    text-align: center; /* Center text inside the h2 */
+    font-size: 2rem;
+    padding: 10px 0;
+    margin: 40px auto; /* Centers the h2 on the page */
+    font-weight: bold;
+}
+
+
+/* Adding lines above and below the h2 */
+.product-list-title {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+   
+   
+    align-items: center;
+       
+        margin: auto;
+        width: 25%;
+        padding: 10px;
+
+
+}
+
 
 /* Product Card */
 .product-card {
@@ -111,7 +175,7 @@ ul, ol {
 }
 
 .product-price {
-    color: #e42d18;
+    color: #180604;
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
@@ -211,6 +275,34 @@ ul, ol {
 
     
 }
+/* Add Media Query for responsiveness */
+@media (max-width: 768px) {
+    /* Center the product list title and reduce font size */
+    .product-list-title {
+        font-size: 1.5rem; /* Smaller font size */
+        text-align: center; /* Center the title */
+        width: 80%; /* Adjust width to fit the screen */
+        margin: 20px auto; /* Center the element with margin auto */
+        padding: 5px; /* Reduce padding for small screens */
+    }
+
+    /* Adjust the h2 styling within small screens */
+    h2 {
+        font-size: 1.5rem; /* Reduce the h2 size for smaller screens */
+        margin: 20px auto; /* Center with reduced margin */
+    }
+
+    /* Adjust product cards to take up more space */
+    .product-card {
+        flex: 1 1 calc(100% - 20px); /* Single column layout on small screens */
+        max-width: 100%; /* Full width for product cards */
+    }
+
+    .navbar {
+        flex-direction: column; /* Stack navbar items vertically */
+        align-items: center;
+    }
+}
 
 /* ProductList.css */
 
@@ -260,7 +352,7 @@ ul, ol {
       .ul {
         display: flex; /* Set display to flex */
         flex-direction: column; /* Change flex direction to stack items vertically */
-       
+        gap: 10px; /* Add gap between items */
       }
     
       .ul div {
