@@ -1,5 +1,3 @@
-Product list
-
 import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
