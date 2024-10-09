@@ -2,11 +2,13 @@ import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
+import { useDispatch } from 'react-redux';
 
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
-    const [addedToCart, setAddedToCart] = useState({});
     const [showPlants, setShowPlants] = useState(false);
+    const [addedToCart, setAddedToCart] = useState({});
+    const dispatch = useDispatch();
 
     const plantsArray = [
         {
@@ -246,6 +248,7 @@ const handlePlantsClick = (e) => {
 };
 
 const handleAddToCart = (product) => {
+    console.log('Adding to cart '+JSON.stringify(product));
     dispatch(addItem(product));
     setAddedToCart((prevState) => ({
        ...prevState,
@@ -254,7 +257,9 @@ const handleAddToCart = (product) => {
   };
 
    const handleContinueShopping = (e) => {
-    e.preventDefault();
+    console.log('Before in Product list '+JSON.stringify(e));
+    //e.preventDefault();
+    //why the typeerror suddenly
     setShowCart(false);
   };
     return (
@@ -265,7 +270,7 @@ const handleAddToCart = (product) => {
                <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
                <a href="/" style={{textDecoration:'none'}}>
                         <div>
-                    <h3 style={{color:'white'}}>Paradise Nursery</h3>
+                    <h3 style={{color:'white'}}>Paradiso Nursery</h3>
                     <i style={{color:'white'}}>Where Green Meets Serenity</i>
                     </div>
                     </a>
