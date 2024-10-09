@@ -26,6 +26,7 @@ export const CartSlice = createSlice({
 
         if (itemToUpdate){
             itemToUpdate.quantity = quantity;    
+        }
     },
   },
 });
