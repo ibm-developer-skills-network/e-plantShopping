@@ -4,14 +4,17 @@ import { addItem, removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
-  const cart = useSelector(state => state.cart.items); // items is an object, not an array
+  const cartItems = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
-    return Object.values(cart) // Convert cart object to array to use reduce()
-      .reduce((total, item) => total + item.cost * item.quantity, 0)
-      .toFixed(2);
+    return Object.values(cartItems).reduce((total, item) => {
+      // Ensure cost and quantity are valid numbers before performing multiplication
+      const itemCost = parseFloat(item.cost.replace('$', '')) || 0; // Remove '$' for calculation
+      const itemQuantity = item.quantity || 0; // Fallback to 0 if quantity is not set
+      return total + itemCost * itemQuantity;
+    }, 0).toFixed(2);
   };
 
   const handleContinueShopping = (e) => {
@@ -30,19 +33,20 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleRemove = (item) => {
-    dispatch(removeItem(item.name)); // Use item.name to identify the item to remove
+    dispatch(removeItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-    return (item.cost * item.quantity).toFixed(2);
+    const itemCost = parseFloat(item.cost.replace('$', '')) || 0; // Remove '$' for calculation
+    return (itemCost * item.quantity).toFixed(2);
   };
 
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
       <div>
-        {Object.values(cart).map(item => ( // Convert cart object to array for mapping
+        {Object.values(cartItems).map(item => (
           <div className="cart-item" key={item.name}>
             <img className="cart-item-image" src={item.image} alt={item.name} />
             <div className="cart-item-details">
@@ -61,7 +65,7 @@ const CartItem = ({ onContinueShopping }) => {
       </div>
       <div style={{ marginTop: '20px', color: 'black' }} className='total_cart_amount'></div>
       <div className="continue_shopping_btn">
-        <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
+        <button className="get-started-button" onClick={handleContinueShopping}>Continue Shopping</button>
         <br />
         <button className="get-started-button1">Checkout</button>
       </div>

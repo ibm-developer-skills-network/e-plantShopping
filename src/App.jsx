@@ -11,6 +11,18 @@ function App() {
     setShowProductList(true);
   };
 
+  addItem: (state, action) => {
+    const { name, price, image } = action.payload;
+    const existingItem = state.items[name];
+  
+    if (existingItem) {
+      existingItem.quantity += 1; // Increment quantity if item exists
+    } else {
+      state.items[name] = { name, price, image, quantity: 1 }; // Initialize quantity to 1
+    }
+  }
+  
+
   // Get cart items from the Redux store
   const items = useSelector((state) => state.cart.items);
   // Calculate total quantity of items in the cart
