@@ -4,12 +4,14 @@ import { addItem, removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
-  const cart = useSelector(state => state.cart.items);
+  const cart = useSelector(state => state.cart.items); // items is an object, not an array
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
-    return cart.reduce((total, item) => total + item.cost * item.quantity, 0).toFixed(2);
+    return Object.values(cart) // Convert cart object to array to use reduce()
+      .reduce((total, item) => total + item.cost * item.quantity, 0)
+      .toFixed(2);
   };
 
   const handleContinueShopping = (e) => {
@@ -18,17 +20,17 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleIncrement = (item) => {
-    dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }));
+    dispatch(updateQuantity({ itemName: item.name, quantity: item.quantity + 1 }));
   };
 
   const handleDecrement = (item) => {
     if (item.quantity > 1) {
-      dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }));
+      dispatch(updateQuantity({ itemName: item.name, quantity: item.quantity - 1 }));
     }
   };
 
   const handleRemove = (item) => {
-    dispatch(removeItem(item.id));
+    dispatch(removeItem(item.name)); // Use item.name to identify the item to remove
   };
 
   // Calculate total cost based on quantity for an item
@@ -40,7 +42,7 @@ const CartItem = ({ onContinueShopping }) => {
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
       <div>
-        {cart.map(item => (
+        {Object.values(cart).map(item => ( // Convert cart object to array for mapping
           <div className="cart-item" key={item.name}>
             <img className="cart-item-image" src={item.image} alt={item.name} />
             <div className="cart-item-details">
