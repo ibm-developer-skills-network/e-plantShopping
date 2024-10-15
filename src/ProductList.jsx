@@ -268,13 +268,13 @@ const handlePlantsClick = (e) => {
   };
     return (
         <div>
-             <div className="navbar" style={styleObj}>
+             <div className="naupvbar" style={styleObj}>
             <div className="tag">
                <div style={{cursor:"pointer"}} onClick={props.toLanding} className="luxury">
                <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
                <a   style={{textDecoration:'none'}}>
                         <div>
-                    <h3 style={{color:'white'}}>Ziad's Plants</h3>
+                    <h3 style={{color:'white'}}>Amelia's Plants</h3>
                     <i style={{color:'white'}}>Where Green Meets Serenity</i>
                     </div>
                     </a>
