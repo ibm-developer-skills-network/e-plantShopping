@@ -5,7 +5,6 @@ body, h1, ul {
     overflow-x: hidden; /* Prevent horizontal overflow */
     }
     
-
 /* Set a background color */
 body {
     font-family: Arial, sans-serif;
@@ -59,11 +58,10 @@ ul, ol {
 .product-grid {
     display: flex;
     flex-direction: column;
-    width: 100%; /* Changed from 100vw to 100% */
+    width: 100vw;
     align-items: center;
     justify-content: center;
-    text-align: center; /* Center the title */
-
+    text-align: center; /* Center the title - important */
 }
 
 .product-list {
@@ -89,18 +87,34 @@ ul, ol {
     justify-content: center;
 }
 
-h2  {
+/* Only apply the border to the Product List Titles */
+.product-grid .product-list-title,
+.product-grid h2 {
     position: relative;
-    display: inline-block; /* The h2 only takes the width of its content */
-    text-align: center; /* Center text inside the h2 */
+    display: inline-block; /* The title only takes the width of its content */
+    text-align: center; /* Center text inside the title */
     font-size: 2rem;
     padding: 10px 0;
-    margin: 40px auto; /* Centers the h2 on the page */
+    margin: 40px auto; /* Centers the title on the page */
     font-weight: bold;
+    border-top: 2px solid #080808; /* Line above */
+    border-bottom: 2px solid #080808; /* Line below */
 }
 
-.product-title {
-    text-align: center; /* Centers content horizontally */
+/* For smaller screens */
+@media (max-width: 768px) {
+    .product-grid .product-list-title {
+        font-size: 1.5rem; /* Smaller font size */
+        text-align: center; /* Center the title */
+        width: 80%; /* Adjust width to fit the screen */
+        margin: 20px auto; /* Center the element with margin auto */
+    }
+
+    /* Adjust the h2 styling within small screens */
+    .product-grid h2 {
+        font-size: 1.0rem; /* Reduce the h2 size for smaller screens */
+        margin: 20px auto; /* Center with reduced margin */
+    }
 }
 
 .product-list-title, h2 {
@@ -111,16 +125,16 @@ h2  {
     padding: 10px 0;
     margin: 40px auto; /* Centers the title on the page */
     font-weight: bold;
-    border-top: 2px solid #4caf50; /* Line above */
-    border-bottom: 2px solid #4caf50; /* Line below */
+    border-top: 2px solid #080808; /* Line above */
+    border-bottom: 2px solid #080808; /* Line below */
+ /* Line below */
 }
-
 
 /* added to bring title in */
 .product-list-title {
     margin-left:  160px;  
-
 }
+
 h2 {
     position: relative;
     display: inline-block; /* The h2 only takes the width of its content */
@@ -136,15 +150,11 @@ h2 {
 .product-list-title {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
-   
-   
+    font-size: 1.5rem;
     align-items: center;
-       
-        margin: auto;
-        width: 25%;
-        padding: 10px;
-
-
+    margin: auto;
+    width: 30%;
+    padding: 10px;
 }
 
 
@@ -175,10 +185,11 @@ h2 {
 }
 
 .product-price {
-    color: #180604;
+    color: #f02b15;
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
+
 .product-image {
     max-width: 100%;
     height: 200px; /* Adjust height for better consistency */
@@ -209,6 +220,7 @@ h2 {
     padding: 5px 10px;
     border-radius: 0 0 0 5px;
 }
+
 .tag_home_link{
     display: flex;
     /* background-color: red; */
@@ -220,12 +232,15 @@ h2 {
     text-decoration: none;
     font-size: 20px;
 }
+
 .tag_home_link h3{
     font-size: 30px;
 }
+
 .tag a{
     text-decoration: none;
 }
+
 .tag {
     width: 400px;
     display: flex;
@@ -237,7 +252,6 @@ h2 {
     height: 70px;
     width: 70px;
     border-radius: 70%;
-    
 }
 
 .luxury {
@@ -247,10 +261,12 @@ h2 {
     width: 650px;
     font-size: 19px;
 }
+
 .cart{
     color: white;
     display: flex;
 }
+
 .cart_quantity_count{
     margin-top: 16px;
     /* background-color: red; */
@@ -272,9 +288,8 @@ h2 {
     border: 1px solid rgb(5, 4, 4);
     border-left: none;
     border-right: none;
-
-    
 }
+
 /* Add Media Query for responsiveness */
 @media (max-width: 768px) {
     /* Center the product list title and reduce font size */
@@ -283,12 +298,11 @@ h2 {
         text-align: center; /* Center the title */
         width: 80%; /* Adjust width to fit the screen */
         margin: 20px auto; /* Center the element with margin auto */
-        padding: 5px; /* Reduce padding for small screens */
     }
 
     /* Adjust the h2 styling within small screens */
     h2 {
-        font-size: 1.5rem; /* Reduce the h2 size for smaller screens */
+        font-size: 1.0rem; /* Reduce the h2 size for smaller screens */
         margin: 20px auto; /* Center with reduced margin */
     }
 
@@ -305,7 +319,6 @@ h2 {
 }
 
 /* ProductList.css */
-
 .product-button {
     background-color: #4CAF50; /* Green */
     border: none;
@@ -327,6 +340,7 @@ h2 {
   .product-button.added-to-cart {
     background-color: grey; /* Grey when product is added */
   }
+  
   @media (max-width: 1200px) {
     .product-card {
       flex: 1 1 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap on medium screens */
