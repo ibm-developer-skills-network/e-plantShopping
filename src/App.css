@@ -1,14 +1,9 @@
-/* Global Reset and Box-Sizing */
+/* LandingPage.css */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-/* App Container */
-.app-container {
-  width: 100%;
-  overflow-x: hidden;
+  overflow:hidden;
 }
 
 /* Landing Page */
@@ -27,7 +22,7 @@
   width: 100%;
   height: 100%;
   background-image: url('https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg');
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
   filter: brightness(0.8);
   z-index: 1;
@@ -39,7 +34,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
@@ -52,11 +48,23 @@
 .landing_content {
   flex: 0 0 33.33%; /* Set flex-basis to 33.33% for one-third width */
   max-width: 33.33%; /* Set maximum width to 33.33% */
+  z-index: 1;
   padding: 20px;
   color: white;
   text-align: center;
   margin: 0;
   align-content:center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.content h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.content p {
+  font-size: 25px;
 }
 
 /* About Us Container */
@@ -103,14 +111,19 @@
 /* Product List Container */
 .product-list-container {
   position: absolute;
+  overflow-x: hidden;
   top: 100vh;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.9);
+  /* Adjust background opacity as needed */
   transition: top 0.5s ease;
+  /* Smooth transition for top property */
   overflow-y: auto;
+  /* Enable vertical scrolling */
   z-index: 2;
+  /* Ensure it's above landing page content */
   backdrop-filter: blur(5px);
 }
 
@@ -118,12 +131,29 @@
   top: 0;
 }
 
+/* Larger width screens */
+@media (max-width: 1024px) {
+
+  .landing_content h1,
+  .aboutus_container h2 {
+    font-size: 1rem; /* Adjust font size for better readability */
+    margin-top: 20px; /* Lower the title by adding margin on top */
+  }
+
+  .landing_content p,
+  .aboutus_container p {
+    font-size: 0.9rem; /* Adjust text size */
+    margin-bottom: 10px; /* Ensure spacing remains in smaller screens */
+  }
+}
+
 /* Tablet and Small Screens */
 @media (max-width: 768px) {
   .content {
     flex-direction: column; /* Stack items vertically on small screens */
     align-items: center; /* Center items in the column */
-    gap: 20px; /* Add space between items */
+    width: 100vw;
+    height: 100vh;
   }
 
   .landing_content,
@@ -131,11 +161,12 @@
     max-width: 100%; /* Allow full width usage on small screens */
     padding: 15px; /* Reduce padding to fit smaller screens */
     margin-bottom: 15px; /* Adjust space between sections */
+    gap: 10px;
   }
 
   .landing_content h1,
   .aboutus_container h2 {
-    font-size: 1.5rem; /* Adjust font size for better readability */
+    font-size: 1.125rem; /* Adjust font size for better readability */
     margin-top: 20px; /* Lower the title by adding margin on top */
   }
 
@@ -168,7 +199,7 @@
 
   .landing_content h1,
   .aboutus_container h2 {
-    font-size: 1.2rem; /* Further reduce font size */
+    font-size: 1rem; /* Further reduce font size */
     margin-top: 30px; /* Lower the title even further for very small screens */
   }
 
@@ -177,7 +208,7 @@
     font-size: 0.9rem; /* Further adjust text size */
     margin-bottom: 8px; /* Ensure spacing remains in smaller screens */
   }
-
+  
   .divider {
     width: 50px; /* Keep the width consistent */
     height: 2px; /* Keep the height consistent */
@@ -186,3 +217,4 @@
     display: block; /* Ensure the divider is visible */
   }
 }
+
