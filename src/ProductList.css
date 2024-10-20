@@ -19,11 +19,26 @@ body {
   color: #fff !important;
   padding: 15px;
   display: flex;
-  justify-content: center; /* Center all navbar elements */
+  justify-content: space-between; /* Ensure other items are spaced out */
   align-items: center;
   font-size: 20px;
   margin-bottom: 50px;
+  position: relative; /* Add relative positioning */
 }
+
+.plantname_heading {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.plant_heading {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+}
+
 
 .navbar .ul {
   display: flex;
@@ -53,18 +68,6 @@ ul,
 ol {
   list-style-type: none;
 }
-
-.plantname_heading {
-  flex-grow: 1; /* Take up available space */
-  text-align: center; /* Center the text inside the heading */
-}
-
-.plant_heading {
-  width: auto; /* Adjust width to auto to avoid fixed width */
-  margin: 0; /* Remove margin to avoid unnecessary spacing */
-  border: none; /* Remove borders for a clean look */
-}
-
 
 /* Product Grid */
 .product-grid {
