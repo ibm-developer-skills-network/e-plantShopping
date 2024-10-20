@@ -8,7 +8,6 @@ function ProductList() {
   const dispatch = useDispatch();
   const [showCart, setShowCart] = useState(false);
   const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-  const [addedToCart, setAddedToCart] = useState({});
   const cartItems = useSelector((state) => state.cart.items);
   const cart = useSelector((state) => state.cart.items);
   useEffect(() => {}, []);
@@ -19,10 +18,6 @@ function ProductList() {
 
   const handleAddToCart = (product) => {
     dispatch(addItem(product));
-    setAddedToCart((prevState) => ({
-      ...prevState,
-      [product.name]: true,
-    }));
     console.log("Item added to cart: " + product.name);
   };
 
@@ -232,190 +227,108 @@ function ProductList() {
         {
           name: "Pothos",
           image:
-            "https://cdn.pixabay.com/photo/2018/11/15/10/32/plants-3816945_1280.jpg",
-          description: "Tolerates neglect and can grow in various conditions.",
-          cost: "$10",
+            "https://cdn.pixabay.com/photo/2021/04/09/06/16/pothos-6164897_1280.jpg",
+          description: "Low light tolerant and drought-resistant.",
+          cost: "$18",
+        },
+        {
+          name: "Philodendron",
+          image:
+            "https://cdn.pixabay.com/photo/2022/09/19/07/51/philodendron-7465655_1280.jpg",
+          description: "Thrives in low light and is easy to grow.",
+          cost: "$20",
+        },
+        {
+          name: "Spider Plant",
+          image:
+            "https://cdn.pixabay.com/photo/2018/07/11/06/47/chlorophytum-3530413_1280.jpg",
+          description: "Filters formaldehyde and xylene from the air.",
+          cost: "$12",
         },
         {
           name: "Snake Plant",
           image:
             "https://cdn.pixabay.com/photo/2021/01/22/06/04/snake-plant-5939187_1280.jpg",
-          description:
-            "Needs infrequent watering and is resilient to most pests.",
+          description: "Produces oxygen at night, improving air quality.",
           cost: "$15",
         },
         {
-          name: "Cast Iron Plant",
+          name: "Peace Lily",
           image:
-            "https://cdn.pixabay.com/photo/2017/02/16/18/04/cast-iron-plant-2072008_1280.jpg",
-          description: "Hardy plant that tolerates low light and neglect.",
-          cost: "$20",
-        },
-        {
-          name: "Succulents",
-          image:
-            "https://cdn.pixabay.com/photo/2016/11/21/16/05/cacti-1846147_1280.jpg",
-          description: "Drought-tolerant plants with unique shapes and colors.",
+            "https://cdn.pixabay.com/photo/2019/06/12/14/14/peace-lilies-4269365_1280.jpg",
+          description: "Removes mold spores and purifies the air.",
           cost: "$18",
-        },
-        {
-          name: "Aglaonema",
-          image:
-            "https://cdn.pixabay.com/photo/2014/10/10/04/27/aglaonema-482915_1280.jpg",
-          description: "Requires minimal care and adds color to indoor spaces.",
-          cost: "$22",
         },
       ],
     },
   ];
 
-  const styleObj = {
-    backgroundColor: "#4CAF50",
-    color: "#fff!important",
-    padding: "15px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignIems: "center",
-    fontSize: "20px",
-  };
-  const styleObjUl = {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    // width: "1100px",
-    flexGrow: 1,
-  };
+  const toggleCart = () => setShowCart((prevShowCart) => !prevShowCart);
 
-  const styleA = {
-    color: "white",
-    fontSize: "30px",
-    textDecoration: "none",
-    position: "relative",
-  };
-
-  const handleCartClick = (e) => {
-    e.preventDefault();
-    setShowCart(true); // Set showCart to true when cart icon is clicked
-  };
-
-  const handlePlantsClick = (e) => {
-    e.preventDefault();
-    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
-    setShowCart(false); // Hide the cart when navigating to About Us
-  };
-
-  const handleContinueShopping = (e) => {
-    e.preventDefault();
-    setShowCart(false);
-  };
-
-  const calculateTotalItems = (items) => {
-    let totalItems = 0;
-    items.forEach((item) => {
-      totalItems += item.quantity;
-    });
-    return totalItems;
+  const handleCategoryClick = () => {
+    setShowPlants(!showPlants); // Toggle the visibility of the About Us page
   };
 
   return (
-    <div>
-      <div className="navbar" style={styleObj}>
-        <div className="tag">
-          <div className="luxury">
-            <img
-              src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png"
-              alt=""
-            />
-            <a href="/" style={{ textDecoration: "none" }}>
-              <div>
-                <h3 style={{ color: "white" }}>Paradise Nursery</h3>
-                <i style={{ color: "white" }}>Where Green Meets Serenity</i>
-              </div>
-            </a>
-          </div>
+    <div className="product-list">
+      <h2 className="product-list-title">Plant Categories</h2>
+      {plantsArray.map((product, categoryIndex) => (
+        <div key={categoryIndex}>
+          <h3>{product.category}</h3>
+          <button onClick={handleCategoryClick}>
+            {showPlants ? "Hide Plants" : "Show Plants"}
+          </button>
+          {showPlants && (
+            <ul>
+              {product.plants.map((plant, index) => {
+                const isAddedToCart = inCart(plant.name);
+                return (
+                  <li key={index} className="product-card">
+                    <h3 className="product-title">{plant.name}</h3>
+                    <div className="product-price">{plant.cost}</div>
+                    <img
+                      src={plant.image}
+                      alt={plant.name}
+                      className="product-image"
+                    />
+                    <p>{plant.description}</p>
+                    <button
+                      type="button"
+                      disabled={isAddedToCart}
+                      className={
+                        isAddedToCart
+                          ? "product-button added-to-cart"
+                          : "product-button"
+                      }
+                      onClick={() => handleAddToCart(plant)}
+                    >
+                      {isAddedToCart ? "Added to Cart" : "Add to Cart"}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
-        <div style={styleObjUl}>
-          <div>
-            {" "}
-            <a href="#" onClick={(e) => handlePlantsClick(e)} style={styleA}>
-              Plants
-            </a>
-          </div>
-          <div>
-            <span className="cart_quantity_count">
-              {calculateTotalItems(cart)}
-            </span>
-            <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
-              <h1 className="cart">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 256 256"
-                  id="IconChangeColor"
-                  height="68"
-                  width="68"
-                >
-                  <rect width="156" height="156" fill="none"></rect>
-                  <circle cx="80" cy="216" r="12"></circle>
-                  <circle cx="184" cy="216" r="12"></circle>
-                  <path
-                    d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8"
-                    fill="none"
-                    stroke="#faf9f9"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    id="mainIconPathAttribute"
-                  ></path>
-                </svg>
-              </h1>
-            </a>
-          </div>
+      ))}
+
+      <button onClick={toggleCart}>
+        {showCart ? "Hide Cart" : "Show Cart"}
+      </button>
+
+      {showCart && (
+        <div className="cart">
+          <h2>Cart</h2>
+          {cart.length === 0 ? (
+            <p>No items in cart.</p>
+          ) : (
+            <ul>
+              {cart.map((item, index) => (
+                <CartItem key={index} item={item} />
+              ))}
+            </ul>
+          )}
         </div>
-      </div>
-      {!showCart ? (
-        <div className="product-grid">
-          {plantsArray.map((product) => {
-            return (
-              <div key={product.category} className="product-grid-item">
-                <h2 className="product-list-title">{product.category}</h2>
-                <ul className="product-list">
-                  {product.plants.map((plant, index) => {
-                    const isAddedToCart = addedToCart?.[plant.name];
-                    return (
-                      <li key={index} className="product-card">
-                        <h3 className="product-title">{plant.name}</h3>
-                        <div className="product-price">{plant.cost}</div>
-                        <img
-                          src={plant.image}
-                          alt={plant.name}
-                          className="product-image"
-                        />
-                        <p>{plant.description}</p>
-                        <button
-                          type="button"
-                          disabled={isAddedToCart}
-                          className={
-                            isAddedToCart
-                              ? "product-button added-to-cart"
-                              : "product-button"
-                          }
-                          onClick={() => handleAddToCart(plant)}
-                        >
-                          {isAddedToCart ? "Added to Cart" : "Add to Cart"}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <CartItem
-          onContinueShopping={handleContinueShopping}
-          setAddedToCart={setAddedToCart}
-        />
       )}
     </div>
   );
