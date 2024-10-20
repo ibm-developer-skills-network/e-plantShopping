@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"; // Import PropTypes
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, updateQuantity } from "./CartSlice";
 import "./CartItem.css";
@@ -34,6 +35,8 @@ const CartItem = ({ onContinueShopping, setAddedToCart }) => {
       dispatch(updateQuantity({ ...item, quantity: item.quantity - 1 }));
     } else if (item.quantity === 1) {
       dispatch(removeItem(item.name));
+      //added to reset the tiems in productList
+      handleRemove(item);
     }
   };
 
@@ -112,6 +115,12 @@ const CartItem = ({ onContinueShopping, setAddedToCart }) => {
       </div>
     </div>
   );
+};
+
+// Define prop types
+CartItem.propTypes = {
+  onContinueShopping: PropTypes.func.isRequired,
+  setAddedToCart: PropTypes.func.isRequired,
 };
 
 export default CartItem;
