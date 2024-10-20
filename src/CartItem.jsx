@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types"; // Import PropTypes
-import { useSelector, useDispatch } from "react-redux";
-import { removeItem, updateQuantity } from "./CartSlice";
-import "./CartItem.css";
+import React from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes
+import { useSelector, useDispatch } from 'react-redux';
+import { removeItem, updateQuantity } from './CartSlice';
+import './CartItem.css';
 
 const CartItem = ({ onContinueShopping, setAddedToCart }) => {
   const cart = useSelector((state) => state.cart.items);
