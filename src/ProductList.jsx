@@ -1,16 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./ProductList.css";
-import CartItem from './CartItem';
+import CartItem from "./CartItem";
 import { addItem } from "./CartSlice";
 
 function ProductList() {
-  const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
   const [showCart, setShowCart] = useState(false);
   const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
   const [addedToCart, setAddedToCart] = useState({});
-   
+  const cartItems = useSelector((state) => state.cart.items);
+  const cart = useSelector((state) => state.cart.items);
+  useEffect(() => {}, []);
+
+  const inCart = (itemName) => {
+    return cartItems.some((item) => item.name === itemName);
+  };
+
+  const handleAddToCart = (product) => {
+    dispatch(addItem(product));
+    setAddedToCart((prevState) => ({
+      ...prevState,
+      [product.name]: true,
+    }));
+    console.log("Item added to cart: " + product.name);
+  };
 
   const plantsArray = [
     {
@@ -66,14 +80,14 @@ function ProductList() {
         {
           name: "Lavender",
           image:
-            "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://i.ibb.co/4t0PGGz/photo-1611909023032-2d6b3134ecba-La.jpg",
           description: "Calming scent, used in aromatherapy.",
           cost: "$20",
         },
         {
           name: "Jasmine",
           image:
-            "https://images.unsplash.com/photo-1592729645009-b96d1e63d14b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://i.ibb.co/8rFHVVB/photo-1592729645009-b96d1e63d14b-ja.jpg",
           description: "Sweet fragrance, promotes relaxation.",
           cost: "$18",
         },
@@ -211,7 +225,7 @@ function ProductList() {
         {
           name: "ZZ Plant",
           image:
-            "https://images.unsplash.com/photo-1632207691143-643e2a9a9361?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://i.ibb.co/hYKp5SK/photo-1632207691143-643e2a9a9361-zz.jpg",
           description: "Thrives in low light and requires minimal watering.",
           cost: "$25",
         },
@@ -254,6 +268,7 @@ function ProductList() {
       ],
     },
   ];
+
   const styleObj = {
     backgroundColor: "#4CAF50",
     color: "#fff!important",
@@ -270,16 +285,19 @@ function ProductList() {
     // width: "1100px",
     flexGrow: 1,
   };
+
   const styleA = {
     color: "white",
     fontSize: "30px",
     textDecoration: "none",
     position: "relative",
   };
+
   const handleCartClick = (e) => {
     e.preventDefault();
     setShowCart(true); // Set showCart to true when cart icon is clicked
   };
+
   const handlePlantsClick = (e) => {
     e.preventDefault();
     setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
@@ -291,14 +309,6 @@ function ProductList() {
     setShowCart(false);
   };
 
-  const handleAddToCart = (product) => {
-    dispatch(addItem(product));
-    setAddedToCart((prevState) => ({
-      ...prevState,
-      [product.name]: true,
-    }));
-  };
-
   const calculateTotalItems = (items) => {
     let totalItems = 0;
     items.forEach((item) => {
@@ -306,6 +316,7 @@ function ProductList() {
     });
     return totalItems;
   };
+
   return (
     <div>
       <div className="navbar" style={styleObj}>
@@ -390,7 +401,7 @@ function ProductList() {
                           }
                           onClick={() => handleAddToCart(plant)}
                         >
-                            {isAddedToCart ? "Added to Cart" : "Add to Cart"}
+                          {isAddedToCart ? "Added to Cart" : "Add to Cart"}
                         </button>
                       </li>
                     );
