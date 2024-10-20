@@ -262,7 +262,53 @@ function ProductList() {
       ],
     },
   ];
+  const styleObj = {
+    backgroundColor: "#4CAF50",
+    color: "#fff!important",
+    padding: "15px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignIems: "center",
+    fontSize: "20px",
+  };
+  const styleObjUl = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    // width: "1100px",
+    flexGrow: 1,
+  };
 
+  const styleA = {
+    color: "white",
+    fontSize: "30px",
+    textDecoration: "none",
+    position: "relative",
+  };
+
+  const handleCartClick = (e) => {
+    e.preventDefault();
+    setShowCart(true); // Set showCart to true when cart icon is clicked
+  };
+
+  const handlePlantsClick = (e) => {
+    e.preventDefault();
+    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
+    setShowCart(false); // Hide the cart when navigating to About Us
+  };
+
+  const handleContinueShopping = (e) => {
+    e.preventDefault();
+    setShowCart(false);
+  };
+
+  const calculateTotalItems = (items) => {
+    let totalItems = 0;
+    items.forEach((item) => {
+      totalItems += item.quantity;
+    });
+    return totalItems;
+  };
   const toggleCart = () => setShowCart((prevShowCart) => !prevShowCart);
 
   const handleCategoryClick = () => {
@@ -311,6 +357,28 @@ function ProductList() {
           )}
         </div>
       ))}
+
+      <button onClick={toggleCart}>
+        {showCart ? "Hide Cart" : "Show Cart"}
+      </button>
+
+      {showCart && (
+        <div className="cart">
+          <h2>Cart</h2>
+          {cart.length === 0 ? (
+            <p>No items in cart.</p>
+          ) : (
+            <ul>
+              {cart.map((item, index) => (
+                <CartItem key={index} item={item} />
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
       <button onClick={toggleCart}>
         {showCart ? "Hide Cart" : "Show Cart"}
