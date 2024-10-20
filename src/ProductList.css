@@ -19,26 +19,11 @@ body {
   color: #fff !important;
   padding: 15px;
   display: flex;
-  justify-content: space-between; /* Ensure other items are spaced out */
+  justify-content: space-between;
   align-items: center;
   font-size: 20px;
-  margin-bottom: 50px;
-  position: relative; /* Add relative positioning */
+  margin-bottom: 50px; /* added for space below navbar*/
 }
-
-.plantname_heading {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-
-.plant_heading {
-  font-size: 30px;
-  font-weight: bold;
-  margin: 0;
-}
-
 
 .navbar .ul {
   display: flex;
@@ -57,7 +42,7 @@ body {
 .navbar li {
   margin-right: 30px;
 }
- 
+
 .navbar .ul div a {
   color: white;
   font-size: 30px;
@@ -359,6 +344,8 @@ h2 {
 .product-button.added-to-cart {
   background-color: grey; /* Grey when product is added */
 }
+
+
 
 @media (max-width: 1200px) {
   .product-card {
