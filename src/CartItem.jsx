@@ -8,13 +8,14 @@ const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 // Calculate total number of items contained in cart
-  const numItems = () => {cart.reduce((total,item) => total + item.quantity,0);
+  const numItems =  cart.reduce((total,item) => total + item.quantity,0);
 
 }
 
   // Calculate total amount for all products in the cart
-  const calculateTotalAmount = () => {cart.reduce((total, item) => total + item.cost * item.quantity, 0);
-  };
+  const calculateTotalAmount = cart.reduce((total, item) => total + (parseInt("(item.cost)") * item.quantity, 0));
+  
+
 
   const handleContinueShopping = (e) => {
   
@@ -24,15 +25,15 @@ setShowCart(false);
   };
 
   const handleCheckoutShopping = (e) => {
-    alert ('this function will be deployed at some later time!')
+    alert ('this function will be deployed at some later time!' )
     
   };
 
 
 
   const handleIncrement = (item) => {
-   
-    item.quantity++;
+   alert('plus button WORKS!')
+    item.quantity += 1;
     dispatch(updateQuantity(item));
     
     
@@ -40,7 +41,8 @@ setShowCart(false);
 
   const handleDecrement = (item) => {
    
-    if (item.quantity >0) {item.quantity = item.quantity-1};
+    if (item.quantity >0) {
+        item.quantity -= 1};
     dispatch(updateQuantity(item));
    
   };
@@ -52,13 +54,12 @@ setShowCart(false);
   };
 
   // Calculate total cost based on quantity for an item
-  const calculateTotalCost = (item) => { 
-    item.quantity
-  };
+  const calculateTotalCost = item.quantity * parseInt("(item.cost,0)");
+  
 
   return (
     <div className="cart-container">
-      <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount(cart)}</h2>
+      <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount}</h2>
       <div>
         {cart.map(item => (
           <div className="cart-item" key={item.name}>
@@ -85,8 +86,6 @@ setShowCart(false);
       </div>
     </div>
   );
-};
+
 
 export default CartItem;
-
-
