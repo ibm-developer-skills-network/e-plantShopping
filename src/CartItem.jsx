@@ -35,10 +35,12 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    return Number(item.cost.substring(1)) * item.quantity;
   };
 
   return (
     <div className="cart-container">
+      <h2 style={{ color: 'black' }}>Total Plants : {cart.length}</h2>
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
       <div>
         {cart.map(item => (

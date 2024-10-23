@@ -6,6 +6,20 @@ function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({}); //for state management using the useState hook to track which products are added to the cart
+    const [cart, setCart] = useState([]); // State to store the items added to the cart
+    const dispatch = useDispatch();
+    const cartItems=useSelector(state => state.cart.items);
+    console.log(cartItems);
+    // setCart(cartItems);
+    useEffect(() => {
+        
+    }, []);
+    const alreadyInCart = (itemName) => {
+        return cartItems.some((item) => item.name === itemName);
+    }
+    const totalItems = () => {
+        return cartItems.reduce((total, item) => total + item.quantity, 0);
+    }
 
 
     const plantsArray = [
