@@ -22,12 +22,12 @@ function App() {
           <div className="divider"></div>
           <p>Where Green Meets Serenity</p>
          
-          <button className="get-started-button" onClick={handleGetStartedClick}>
-            Get Started
-          </button>
          </div>
           <div className="aboutus_container">
           <AboutUs/>
+          <button className="get-started-button" onClick={handleGetStartedClick}>
+            Get Started
+          </button>
           </div>
           </div>
 
@@ -40,6 +40,3 @@ function App() {
 }
 
 export default App;
-
-
-
