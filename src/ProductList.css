@@ -210,6 +210,15 @@ body {
     transition-duration: 0.4s;
     cursor: pointer;
   }
+
+  .product-button:disabled {
+    background-color: #cccccc; /* Grey background */
+    color: #666666; /* Darker grey text */
+    cursor: not-allowed; /* Show "not allowed" cursor */
+  }
+  .product-button:disabled:hover {
+    background-color: #cccccc; /* Cancel hover effect */
+  }
   
   .product-button:hover {
     background-color: #45a049;
