@@ -21,6 +21,14 @@ body {
     font-size: 20px;
 }
 
+.categoryName {
+    font-family: 'Times New Roman';
+    font-weight: bold;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    text-align: center;
+}
+
 .navbar .ul {
     display: flex;
     justify-content: space-between;
@@ -209,6 +217,11 @@ body {
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
+  }
+
+.product-button.disabled {
+      background-color: gray;
+      cursor: not-allowed;
   }
   
   .product-button:hover {
