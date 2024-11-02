@@ -38,7 +38,7 @@ const CartItem = ({ onContinueShopping }) => {
     return Number(item.cost.substring(1)) * item.quantity;
   };
 
-  return (
+
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Plants : {cart.length}</h2>
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
@@ -67,8 +67,8 @@ const CartItem = ({ onContinueShopping }) => {
         <button className="get-started-button1">Checkout</button>
       </div>
     </div>
-  );
-};
+;
+
 
 export default CartItem;
 
