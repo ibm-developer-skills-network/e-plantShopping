@@ -42,10 +42,28 @@ body {
 /* Product Grid */
 .product-grid {
     display:flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     width: 100vw;
+    gap: 25px;
+    margin-top: 20px;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+
+}
+.category{
+    padding: 10px; 
+    cursor: pointer;
+    
+    
+}
+.selected-category{
+    background-color: #4CAF50;
+    color:  white;
+}
+.category:hover{
+    background-color: #4CAF50;
+    color: white;
 }
 .product-list {
     display: flex;
