@@ -1,9 +1,10 @@
-import React, { useState,useEffect } from 'react';
+import { useState } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { useDispatch } from 'react-redux';
 import { addItem } from './CartSlice';
 function ProductList() {
+
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
@@ -222,7 +223,7 @@ function ProductList() {
             {...prevState, [plant.name]: true}
         ))
     }
-    console.log(addedToCart);
+    // console.log(addedToCart);
     
     const styleObj={
     backgroundColor: '#4CAF50',
