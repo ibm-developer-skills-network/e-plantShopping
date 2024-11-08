@@ -3,47 +3,47 @@ import { createSlice } from '@reduxjs/toolkit';
 export const CartSlice = createSlice({
   name: 'cart',
   initialState: {
-    items: [] // Initialize items as an empty array
+    items: [] // Initialize items as an empty array to store cart items
   },
   reducers: {
-    // Adds a new item to the cart or updates the quantity if it already exists
+    // Reducer to add a new item or increase the quantity if it already exists
     addItem: (state, action) => {
-      const item = action.payload;
-      const existingItem = state.items.find((cartItem) => cartItem.name === item.name);
+      const { name, image, cost } = action.payload;
+      const existingItem = state.items.find(item => item.name === name);
 
       if (existingItem) {
-        // If item already exists, increase its quantity
+        // If the item already exists in the cart, increase its quantity
         existingItem.quantity += 1;
       } else {
-        // If item doesn't exist, add it to the cart with quantity 1
-        state.items.push({ ...item, quantity: 1 });
+        // If the item is new to the cart, add it with a quantity of 1
+        state.items.push({ name, image, cost, quantity: 1 });
       }
     },
 
-    // Removes an item from the cart
+    // Reducer to remove an item from the cart based on its name
     removeItem: (state, action) => {
       const itemName = action.payload;
-      state.items = state.items.filter((cartItem) => cartItem.name !== itemName);
+      // Remove the item with the specified name
+      state.items = state.items.filter(item => item.name !== itemName);
     },
 
-    // Updates the quantity of an existing item in the cart
+    // Reducer to update the quantity of an existing item in the cart
     updateQuantity: (state, action) => {
       const { name, quantity } = action.payload;
-      const existingItem = state.items.find((cartItem) => cartItem.name === name);
+      
+      // Find the item with the specified name
+      const existingItem = state.items.find(item => item.name === name);
 
-      if (existingItem && quantity > 0) {
-        // Update the item's quantity if it exists and the quantity is greater than 0
+      if (existingItem) {
+        // Update the item's quantity to the new quantity
         existingItem.quantity = quantity;
-      } else if (existingItem && quantity === 0) {
-        // Remove the item if quantity is set to 0
-        state.items = state.items.filter((cartItem) => cartItem.name !== name);
       }
     }
   }
 });
 
-// Exporting the actions
+// Exporting the action creators for use in components
 export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
 
-// Exporting the reducer
+// Exporting the reducer as the default export for the store
 export default CartSlice.reducer;
