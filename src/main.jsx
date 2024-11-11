@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
    // <Provider store={store}>
    // <App />
    // </Provider>
-    <BrowserRouter basename={"/e-plantShopping/"}>
+    <BrowserRouter basename={"/e-plantShopping/shoppingreact"}>
       <App />
     </BrowserRouter>
   </React.StrictMode>,
