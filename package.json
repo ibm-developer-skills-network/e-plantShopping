@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://Isma1Huz.github.io/e-plantShopping",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
