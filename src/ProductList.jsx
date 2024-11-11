@@ -95,7 +95,7 @@ function ProductList() {
             ]
         },
         {
-            category: "Insect Repellent Plant",
+            category: "Insect Repellent Plants",
             plants: [
                 {
                     name: "oregano",
