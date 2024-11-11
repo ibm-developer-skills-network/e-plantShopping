@@ -6,7 +6,7 @@
   "homepage": "https://Isma1Huz.github.io/e-plantShopping",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
