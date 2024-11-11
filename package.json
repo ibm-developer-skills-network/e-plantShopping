@@ -1,6 +1,7 @@
 {
   "name": "shoppingcart",
   "private": false,
+  "homepage":"./",  //add this line
   "version": "0.0.0",
   "type": "module",
   "scripts": {
