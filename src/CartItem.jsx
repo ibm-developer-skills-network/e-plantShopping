@@ -1,50 +1,62 @@
-import React from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, updateQuantity } from './CartSlice';
+import {removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
-  // Calculate total amount for all products in the cart
-  const calculateTotalAmount = () => {
- 
+  // 1-Cost of all items in cart
+   const calculateTotalAmount = () => {
+    return cart.reduce((total, item) => total + Number(item.cost.substring(1)) * item.quantity, 0);
   };
 
-  const handleContinueShopping = (e) => {
-   
+  // 2-Continue shopping
+   const handleContinueShopping = (e) => {
+    onContinueShopping(e);
   };
 
+  // 3-Checkout
+  const handleCheckoutShopping = (e) => {
+    alert("Functionality to be added for future reference");
+  };
 
-
+  // 4a-Increment
   const handleIncrement = (item) => {
+     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
+  // 4b-Decrement
   const handleDecrement = (item) => {
-   
+    const updatedQuantity = item.quantity > 1 ? item.quantity - 1 : 1;
+    dispatch(updateQuantity({ name: item.name, quantity: updatedQuantity }));
   };
 
+  // 5-Remove plant from the cart
   const handleRemove = (item) => {
+     dispatch(removeItem(item));
   };
 
-  // Calculate total cost based on quantity for an item
-  const calculateTotalCost = (item) => {
+  // 6-Item subtotal
+   const calculateTotalCost = (item) => {
+    return Number(item.cost.substring(1)) * item.quantity;
   };
 
-  return (
+   return (
     <div className="cart-container">
+      <h2 style={{ color: 'black' }}>Total Plants : {cart.length}</h2>
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
       <div>
         {cart.map(item => (
           <div className="cart-item" key={item.name}>
             <img className="cart-item-image" src={item.image} alt={item.name} />
             <div className="cart-item-details">
-              <div className="cart-item-name">{item.name}</div>
               <div className="cart-item-cost">{item.cost}</div>
-              <div className="cart-item-quantity">
-                <button className="cart-item-button cart-item-button-dec" onClick={() => handleDecrement(item)}>-</button>
-                <span className="cart-item-quantity-value">{item.quantity}</span>
+              <div className="cart-item-name">{item.name}</div>
+                <div className="cart-item-quantity">
+                  <button className="cart-item-button cart-item-button-dec" onClick={() => handleDecrement(item)}>-</button>
+                  <span className="cart-item-quantity-value">{item.quantity}</span>
                 <button className="cart-item-button cart-item-button-inc" onClick={() => handleIncrement(item)}>+</button>
               </div>
               <div className="cart-item-total">Total: ${calculateTotalCost(item)}</div>
@@ -62,7 +74,4 @@ const CartItem = ({ onContinueShopping }) => {
     </div>
   );
 };
-
 export default CartItem;
-
-

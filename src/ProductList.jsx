@@ -1,12 +1,16 @@
 import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+import { addItem } from './CartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     
-    
     const [addedToCart, setAddedToCart] = useState({});
+    const dispatch = useDispatch();
+    const cartItemsCount = useSelector(state => state.cart.items.reduce((total, item) => total + item.quantity, 0));
     const handleAddToCart = (plant) => {
         dispatch(addItem(plant));
         setAddedToCart((prevState) => ({
@@ -14,6 +18,11 @@ function ProductList() {
             [plant.name]: true
         }));
     };
+
+    const handleCheckoutShopping = (plant) => {
+        alert('Functionality to be added for future reference');
+      };
+
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -283,14 +292,16 @@ const handlePlantsClick = (e) => {
                 <div className="product-list">
                     {category.plants.map((plant, plantIndex) => (
                     <div className="product-card" key={plantIndex}>
-                    <img className="product-image" src={plant.image} alt={plant.name} />
                     <div className="product-title">{plant.name}</div>
+                    <img className="product-image" src={plant.image} alt={plant.name} />
+                    <div className="product-price">{plant.cost}</div>
+                    <div className="product-description">{plant.description}</div>
                     {/*Similarly like the above plant.name show other details like description and cost*/}
                     <button
                         className={`product-button ${addedToCart[plant.name] ? 'added-to-cart' : ''}`}
                         onClick={() => handleAddToCart(plant)}
                         disabled={addedToCart[plant.name]}
-                        >
+                    >
                         {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
                     </button>
             </div>
