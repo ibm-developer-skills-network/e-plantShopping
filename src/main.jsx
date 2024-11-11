@@ -11,3 +11,23 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
   </React.StrictMode>,
 )
+
+const router = createBrowserRouter([
+    {
+        path: '/vehicle-app', // Append the app name from GitHub page to root location (/)
+        element: <Root />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                errorElement: <ErrorPage />,
+                children: [
+                    {
+                        path: '/vehicle-app/', // Append the app name from GitHub page
+                        element: <MakeListPage />,
+                    },
+                    // ... other routes
+                ],
+            },
+        ],
+    },
+]);
