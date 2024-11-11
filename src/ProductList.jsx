@@ -4,6 +4,7 @@ import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from './CartSlice';
 // test
+
 function ProductList() {
 
     const [showCart, setShowCart] = useState(false); 
@@ -94,7 +95,7 @@ function ProductList() {
             ]
         },
         {
-            category: "Insect Repellent Plants",
+            category: "Insect Repellent Plant",
             plants: [
                 {
                     name: "oregano",
