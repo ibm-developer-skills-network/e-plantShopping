@@ -35,7 +35,7 @@ const CartItem = ({ onContinueShopping }) => {
 
   // 5-Remove plant from the cart
   const handleRemove = (item) => {
-     dispatch(removeItem(item));
+  dispatch(removeItem(item));
   };
 
   // 6-Item subtotal
@@ -60,7 +60,7 @@ const CartItem = ({ onContinueShopping }) => {
                 <button className="cart-item-button cart-item-button-inc" onClick={() => handleIncrement(item)}>+</button>
               </div>
               <div className="cart-item-total">Total: ${calculateTotalCost(item)}</div>
-              <button className="cart-item-delete" onClick={() => handleRemove(item)}>Delete</button>
+              <button className="cart-item-delete" onClick={() => handleRemove(item.name)}>Delete</button>
             </div>
           </div>
         ))}
