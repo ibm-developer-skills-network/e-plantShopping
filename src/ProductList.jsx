@@ -313,6 +313,8 @@ function ProductList() {
                                     <div className='product-card' key={plantIndex}>
                                         <img className='product-image' src={plant.image} alt={plant.name} />
                                         <div className="product-title">{plant.name}</div>
+                                        <div style={{ color: 'red' }}>${plant.cost}</div>
+                                        <div className="">{plant.description}</div>
                                         <button className='product-button' onClick={() => handleAddToCart(plant)}>Add To Cart</button>
                                     </div>
                                 ))}
