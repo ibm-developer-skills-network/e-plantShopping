@@ -30,3 +30,4 @@ export const CreatSlice = createSlice({
 
 export const { addItem, removeItem, updateQuantity } = CreatSlice.actions;
 export default CreatSlice.reducer;
+
