@@ -250,11 +250,11 @@ const [addedToCart, setAddedToCart] = useState({});
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '100px',
+    width: '200px',
    }
    const styleA={
     color: 'white',
-    fontSize: '30px',
+    fontSize: '20px',
     textDecoration: 'none',
    }
    const handleCartClick = (e) => {
@@ -292,7 +292,7 @@ const handlePlantsClick = (e) => {
 
 
                 </h1></a></div>
-                
+
             </div>
         </div>
         {!showCart? (
