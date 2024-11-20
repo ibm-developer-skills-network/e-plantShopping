@@ -3,13 +3,23 @@ import React, { useState } from 'react';
 import ProductList from './ProductList';
 import './App.css';
 import AboutUs from './AboutUs';
+import { useDispatch } from 'react-redux';
+import { addItem } from './cartSlice'; // Importa l'azione di Redux
 
 function App() {
-  
-  const [showProductList, setShowProductList] = useState(false);
 
+  const [showProductList, setShowProductList] = useState(false);
+  const [addedToCart, setAddedToCart] = useState({});
+  const dispatch = useDispatch();
   const handleGetStartedClick = () => {
     setShowProductList(true);
+  };
+  const handleAddToCart = (product) => {
+    dispatch(addItem(product)); // Aggiunge il prodotto al carrello tramite Redux
+    setAddedToCart((prevState) => ({
+      ...prevState,
+      [product.name]: true, // Imposta lo stato locale per tracciare l'aggiunta
+    }));
   };
 
   return (
@@ -33,7 +43,7 @@ function App() {
 
       </div>
       <div className={`product-list-container ${showProductList ? 'visible' : ''}`}>
-        <ProductList />
+        <ProductList onAddToCart={handleAddToCart} addedToCart={addedToCart} />
       </div>
     </div>
   );
