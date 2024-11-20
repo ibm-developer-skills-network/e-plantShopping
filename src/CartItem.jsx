@@ -15,9 +15,7 @@ const CartItem = ({ onContinueShopping }) => {
   const handleContinueShopping = (e) => {
     onContinueShopping(); // Call the parent-provided function to navigate back
   };
-  const handleCheckoutShopping = (e) => {
-    alert('Functionality to be added for future reference');
-};
+  
   const handleIncrement = (item) => {
         dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
