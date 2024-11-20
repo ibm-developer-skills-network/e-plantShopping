@@ -1,4 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+
+const [addedToCart, setAddedToCart] = useState({});
+const dispatch = useDispatch();
+
 const handleAddToCart = (product) => {
   dispatch(addItem(product));
   setAddedToCart((prevState) => ({
@@ -6,6 +12,7 @@ const handleAddToCart = (product) => {
      [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
    }));
 };
+
 export const CartSlice = createSlice({
   name: 'cart',
   initialState: {
