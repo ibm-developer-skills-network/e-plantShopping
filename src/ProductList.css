@@ -163,6 +163,7 @@ body {
 .cart{
     color: white;
     display: flex;
+    position: relative;
 }
 .cart_quantity_count{
     margin-top: 16px;
@@ -250,3 +251,14 @@ body {
         text-align: center; /* Align text to the center */
       }
   }
+
+
+.cart-number-product {
+    position: absolute;
+    font-size: 24px;
+    right: 25%;
+    top: 29%;
+    left: 25%;
+    text-align: center;
+  
+}
