@@ -2,35 +2,55 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
+import ProductList from './ProductList';
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
-  const calculateTotalAmount = () => {
- 
+  const calculateTotalAmount = (section) => {
+    let totalCost = 0;
+    if(section === "cart") {
+      CartItem.array.forEach(element => {
+        totalCost += item.cost * item.quantity;
+        
+      });  
+    } else if (section === "plantsItems") {
+totalCost += item.cost * item.quantity;
+    }
+ return totalCost;
   };
 
   const handleContinueShopping = (e) => {
-   
+    onContinueShopping(); 
   };
 
-
-
-  const handleIncrement = (item) => {
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
   };
 
-  const handleDecrement = (item) => {
-   
+  const handleIncrement = (item) => {  
+    dispatch(updateQuantity(item.id, item.quantity + 1));  
   };
 
-  const handleRemove = (item) => {
-  };
+  const handleDecrement = (item) => {  
+    if (item.quantity > 1) {  
+      // Solo actualiza la cantidad si es mayor que 1  
+      dispatch(updateQuantity(item.id, item.quantity - 1));  
+    } else {  
+      // Si la cantidad es 1, eliminar el artículo  
+      dispatch(removeItem(item.id));  
+    }  
+  }; 
 
-  // Calculate total cost based on quantity for an item
-  const calculateTotalCost = (item) => {
+  const handleRemove = (item) => {  
+    dispatch(removeItem(item.id));  
   };
+ // Calculate total cost based on quantity for an item  
+ const calculateTotalCost = (item) => {  
+    return item.cost * item.quantity;  
+  }; 
 
   return (
     <div className="cart-container">
@@ -64,5 +84,3 @@ const CartItem = ({ onContinueShopping }) => {
 };
 
 export default CartItem;
-
-
