@@ -6,13 +6,14 @@ import './CartItem.css';
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
+  const [totalQuantity, setTotalQuantity] = useState(0);
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     let totalAmount = 0;
     cart.forEach((item) => {
         console.log();
-        totalAmount += item.cost * item.quantity;
+        totalAmount += Number(item.cost.slice(1)) * item.quantity;
     });
     return totalAmount;
   };
@@ -28,6 +29,7 @@ const CartItem = ({ onContinueShopping }) => {
   const handleIncrement = (item) => {
     dispatch(updateQuantity({ ...item, quantity: item.quantity + 1 }));
     setTotalQuantity(prevTotal => prevTotal + 1);
+    updateCartDetails();
   };
 
   const handleDecrement = (item) => {
@@ -38,6 +40,7 @@ const CartItem = ({ onContinueShopping }) => {
         dispatch(updateQuantity({ ...item, quantity: item.quantity - 1 }));
         setTotalQuantity(prevTotal => prevTotal - 1);
     }
+    updateCartDetails();
   };
 
   const handleRemove = (item) => {
@@ -46,8 +49,14 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-    return item.quantity * item.cost;
+    return item.quantity * Number(item.cost.slice(1));
   };
+
+  const CartIcon = ({ totalQuantity }) => (
+    <div className="cart-icon">
+      <span>Cart ({totalQuantity})</span>
+    </div>
+  );
 
 
   return (
