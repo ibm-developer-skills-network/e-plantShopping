@@ -10,6 +10,24 @@
   gap: 30px;
 }
 
+.cart-total-items {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 3px 6px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
 .cart-item-image {
   width: 200px;
   height: 200px;
@@ -211,6 +229,7 @@
     justify-content: center;
     gap: 20px;
     margin-top: 20px;
+    position: relative;
    }
    .total_cart_amount{
     font-size: 20px;
