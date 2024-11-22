@@ -1,15 +1,15 @@
-
 import { createSlice } from '@reduxjs/toolkit';
-import ProductList from './ProductList';
-import CartItem from './CartItem';
-import { configureStore } from '@reduxjs/toolkit';
-import cartReducer from './CartSlice';
-const store = configureStore({
-    reducer: {
-        cart: cartReducer,
-    },
+import {addItem} from './ProductList';
 
-});
+const handleAddToCart = (product) => {
+  dispatch(addItem(product));
+  setAddedToCart((prevState) => ({
+     ...prevState,
+     [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
+   }));
+};
+
+
 export const CartSlice = createSlice({
   name: 'cart',
   initialState: {
@@ -44,6 +44,9 @@ export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
 
 export default CartSlice.reducer;
 
-export const selectTotalItems = (state) => {  
-    return state.cart.items.reduce((total, item) => total + item.quantity, 0);  
-  };
+
+
+
+
+
+
