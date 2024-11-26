@@ -25,17 +25,17 @@ body {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 1100px;
+        width: 200px;
     }
 
+        .navbar .ul div a {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+        }
+    
     .navbar li {
         margin-right: 30px;
-    }
-
-    .navbar .ul div a {
-        color: white;
-        font-size: 30px;
-        text-decoration: none;
     }
 
 /* Product Grid */

@@ -4,7 +4,7 @@ import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
-    const cart = useSelector(state => state.cart.items);
+    const cart = useSelector(({ cart }) => cart.items);
     const dispatch = useDispatch();
 
     const handleIncrement = (item) => {
@@ -16,11 +16,11 @@ const CartItem = ({ onContinueShopping }) => {
             dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
         } else {
             dispatch(removeItem({ name: item.name }));
-        };
-    }
+        }
+    };
 
     const handleRemove = (item) => {
-        dispatch(removeItem({ name: item.name }));
+        dispatch(removeItem(item.name));
     };
 
     const handleContinueShopping = (e) => {
@@ -29,22 +29,25 @@ const CartItem = ({ onContinueShopping }) => {
     };
 
     const handleCheckoutShopping = (e) => {
+        e.preventDefault();
         alert('Functionality to be added for future reference');
     };
 
-    // Calculate total amount for all products in the cart
+    // Calculate total amount for all items in the cart
     const calculateTotalAmount = () => {
-        return cart.reduce((total, item) => total + item.cost * item.quantity, 0).toFixed(2);
+        return cart.reduce((total, item) => {
+            return total + parseFloat(item.cost.replace('$', '')) * item.quantity;
+        }, 0).toFixed(2);
     };
 
     // Calculate total cost based on quantity for an item
     const calculateTotalCost = (item) => {
-        return (item.cost * item.quantity).toFixed(2);
+        return (parseFloat(item.cost.replace('$', '')) * item.quantity).toFixed(2);
     };
 
     return (
         <div className="cart-container">
-            <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
+            <h2 className="total-cart-amount">Total Cart Amount: ${calculateTotalAmount()}</h2>
             <div>
                 {cart.map(item => (
                     <div className="cart-item" key={item.name}>
@@ -63,7 +66,6 @@ const CartItem = ({ onContinueShopping }) => {
                     </div>
                 ))}
             </div>
-            <div style={{ marginTop: '20px', color: 'black' }} className='total_cart_amount'></div>
             <div className="continue_shopping_btn">
                 <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
                 <br />
