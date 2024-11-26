@@ -8,41 +8,41 @@
     font-size: 20px;
 }
 
+    .navbar .tag .luxury {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+        .navbar .tag .luxury img {
+            padding-left: 0px;
+        }
+
+        .navbar .tag .luxury .luxury-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 25px;
+            color: white;
+        }
+
     .navbar .ul {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 200px;
     }
 
-        .navbar .ul div a {
+        .navbar .ul .plants-link {
+            align-items: center;
+            justify-content: center;
+            padding-left: 0px;
+            font-size: 48px;
             color: white;
-            font-size: 20px;
-            text-decoration: none;
         }
 
-    .navbar li {
-        margin-right: 30px;
-    }
-
-.luxury {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 650px;
-}
-
-    .luxury img {
-        padding-left: 0;
-    }
-
-.luxury-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 25px;
-    color: white;
-}
+        .navbar .ul .cart-link {
+            font-size: 64px;
+        }
 
 @media (max-width: 768px) {
     .navbar {
