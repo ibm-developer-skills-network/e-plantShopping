@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import CartItem from './CartItem';
 import Navbar from './Navbar';
-import { addItem, removeItem, selectTotalQuantity } from './CartSlice';
+import { addItem, selectTotalQuantity } from './CartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import './ProductList.css';
 
@@ -227,11 +227,10 @@ function PlantList() {
         }));
     };
 
-    const handleRemoveFromCart = (plant) => {
-        dispatch(removeItem(plant));
+    const handleRemoveFromCart = (plantName) => {
         setAddedToCart((prevState) => ({
             ...prevState,
-            [plant.name]: false,
+            [plantName]: false,
         }));
     };
 

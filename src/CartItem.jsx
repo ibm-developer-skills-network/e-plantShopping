@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
-const CartItem = ({ onContinueShopping }) => {
+const CartItem = ({ onContinueShopping, onRemoveFromCart }) => {
     const cart = useSelector(({ cart }) => cart.items);
     const dispatch = useDispatch();
 
@@ -16,11 +16,13 @@ const CartItem = ({ onContinueShopping }) => {
             dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
         } else {
             dispatch(removeItem({ name: item.name }));
+            onRemoveFromCart(item.name); // Enable 'Add to Cart' button when item is removed
         }
     };
 
     const handleRemove = (item) => {
         dispatch(removeItem(item.name));
+        onRemoveFromCart(item.name); // Enable 'Add to Cart' button when item is removed
     };
 
     const handleContinueShopping = (e) => {
