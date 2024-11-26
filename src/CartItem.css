@@ -215,10 +215,6 @@
     font-weight: 900;
 }
 
-.continue_shopping_btn {
-    margin-top: -50px;
-}
-
 @media (max-width: 768px) {
     .cart-container {
         padding: 10px; /* Reduce padding */
@@ -230,6 +226,30 @@
 }
 
 .get-started-button {
+    padding: 15px 75px;
+    font-size: 23px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 40px;
+}
+
+.continue-shopping-button {
+    padding: 15px 50px;
+    font-size: 23px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 40px;
+}
+
+.checkout-button {
     padding: 15px 75px;
     font-size: 23px;
     border: none;
