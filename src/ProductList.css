@@ -85,10 +85,15 @@ body {
     margin-bottom: 10px;
 }
 
-.product-price {
+.product-description {
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.product-cost {
     color: #e74c3c;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
 }
 
 .product-image {
