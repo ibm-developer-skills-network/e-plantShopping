@@ -10,34 +10,6 @@ body {
     background-color: #f0f0f0;
 }
 
-/* Navbar */
-.navbar {
-    background-color: #4CAF50;
-    color: #fff !important;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 20px;
-}
-
-    .navbar .ul {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 200px;
-    }
-
-        .navbar .ul div a {
-            color: white;
-            font-size: 20px;
-            text-decoration: none;
-        }
-    
-    .navbar li {
-        margin-right: 30px;
-    }
-
 /* Product Grid */
 .product-grid {
     display: flex;
@@ -46,6 +18,13 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+    .product-grid h1 {
+        padding-top: 10px 0;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        padding: 10px 0;
+    }
 
 .product-list {
     display: flex;
@@ -115,6 +94,11 @@ body {
         background-color: #c0392b;
     }
 
+    .product-button:disabled {
+        background-color: #d3d3d3; /* Light gray color */
+        cursor: not-allowed;
+    }
+
 /* Pseudo-elements - Sale badge */
 .product-card::before {
     content: "SALE";
@@ -159,14 +143,6 @@ body {
         width: 70px;
         border-radius: 70%;
     }
-
-.luxury {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 650px;
-    font-size: 19px;
-}
 
 .cart {
     color: white;
@@ -238,11 +214,6 @@ body {
     .product-card {
         flex: 1 1 calc(50% - 20px); /* Adjust width for 2 cards per row with 20px gap on small screens */
         max-width: calc(50% - 20px); /* Adjust max-width for 2 cards per row with 20px gap on small screens */
-    }
-
-    .navbar {
-        flex-direction: column; /* Change flex direction to stack items vertically */
-        align-items: center; /* Align items to the center of the container */
     }
 
     .tag {
