@@ -1,17 +1,26 @@
-import React, { useState,useEffect } from 'react';
-import './ProductList.css'
-import CartItem from './CartItem';
+import React, { useState } from 'react';  
+import { useDispatch, useSelector } from 'react-redux';  
+import { addItem } from './CartSlice'; // Importa la acción addItem desde tu slice  
+import './ProductList.css';  
+import CartItem from './CartItem'; 
 function ProductList() {
+    const dispatch = useDispatch(); 
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
-    const handleAddToCart = (product) => {
-        dispatch(addItem(product));
-        setAddedToCart((prevState) => ({
-           ...prevState,
-           [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-         }));
-      };
+
+     // Obtener el estado del carrito desde Redux  
+     const cartItems = useSelector(state => state.cart.items);  
+     const totalCartItems = cartItems.reduce((total, item) => total + item.quantity, 0); // Calcular la cantidad total de artículos en el carrito  
+ 
+     const handleAddToCart = (product) => {  
+         dispatch(addItem(product)); // Despachar la acción para agregar el artículo al carrito  
+         setAddedToCart((prevState) => ({  
+             ...prevState,  
+             [product.name]: true, // Marcar el producto como agregado  
+         }));  
+     };  
+ 
     const plantsArray = [
         {
             category: "Air Purifying Plants",
