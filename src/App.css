@@ -38,7 +38,7 @@
 
 .landing_content {
  margin-top: 430px;
-  margin-left: 100px;
+  margin-left: 200px;
   transform: translate(-50%, -50%);
   z-index: 1;
   text-align: center;
@@ -83,6 +83,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 40px;
+  margin-left: 20px;
 }
 
 .get-started-button:hover {
