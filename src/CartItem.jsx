@@ -1,40 +1,47 @@
 import React from 'react';  
 import { useSelector, useDispatch } from 'react-redux';  
-import { removeItem, updateQuantity } from './CartSlice';  
+import { removeItem, updateQuantity, addItem } from './CartSlice';  
 import './CartItem.css';  
 
 const CartItem = ({ onContinueShopping }) => {  
   const cart = useSelector(state => state.cart.items);  
   const dispatch = useDispatch();  
 
-  // Calculate total amount for all products in the cart  
+  // Calcular el total de todos los productos en el carrito  
   const calculateTotalAmount = () => {  
     return cart.reduce((total, item) => total + calculateTotalCost(item), 0);  
   };  
 
+  // Manejador para continuar comprando  
   const handleContinueShopping = () => {  
-    // Call the function passed from parent to continue shopping  
     onContinueShopping();  
   };  
 
+  // Manejador para incrementar cantidad del artículo  
   const handleIncrement = (item) => {  
     dispatch(updateQuantity(item.id, item.quantity + 1));  
   };  
 
+  // Manejador para decrementar cantidad del artículo  
   const handleDecrement = (item) => {  
     if (item.quantity > 1) {  
       dispatch(updateQuantity(item.id, item.quantity - 1));  
     } else {  
-      // If quantity is 1, remove item from the cart  
       dispatch(removeItem(item.id));  
     }  
   };  
 
+  // Manejador para eliminar un artículo  
   const handleRemove = (item) => {  
     dispatch(removeItem(item.id));  
   };  
 
-  // Calculate total cost based on quantity for an item  
+  // Manejador para agregar un artículo desde el carrito  
+  const handleAddFromCart = (item) => {  
+    dispatch(addItem(item));  
+  };  
+
+  // Calcular el costo total de un artículo basado en la cantidad  
   const calculateTotalCost = (item) => {  
     return item.cost * item.quantity;  
   };  
@@ -69,6 +76,12 @@ const CartItem = ({ onContinueShopping }) => {
                 </button>  
               </div>  
               <div className="cart-item-total">Subtotal: ${calculateTotalCost(item).toFixed(2)}</div>  
+              <button   
+                className="cart-item-add"   
+                onClick={() => handleAddFromCart(item)} // Agregar el artículo desde el carrito  
+              >  
+                Add Again  
+              </button>  
               <button   
                 className="cart-item-delete"   
                 onClick={() => handleRemove(item)}  
