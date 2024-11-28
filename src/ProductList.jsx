@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import './ProductList.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from './CartSlice';
+import { addItem, removeItem } from './CartSlice';
 import CartItem from './CartItem';
 
 function ProductList() {
   const [showCart, setShowCart] = useState(false);
+  const [addedToCart, setAddedToCart] = useState({});
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart.items);
-    const [addedToCart, setAddedToCart] = useState({});
+    
 
     const plantsArray = [
         {
@@ -247,12 +248,20 @@ const handlePlantsClick = (e) => {
     setShowCart(false); // Hide the cart when navigating to About Us
 };
 
-const handleAddToCart = (product) => {
-    dispatch(addItem(product));
+const handleAddToCart = (plant) => {
+    dispatch(addItem(plant));
     setAddedToCart((prevState) => ({
        ...prevState,
-       [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
+       [plant.name]: true, // Set the product name as key and value as true to indicate it's added to cart
      }));
+  };
+
+  const handleRemoveFromCart = (plantName) => {
+    dispatch(removeItem(plantName)); // Remove do estado global
+    setAddedToCart((prevState) => ({
+      ...prevState,
+      [plantName]: false, // Reativa o botão
+    }));
   };
 
    const handleContinueShopping = (e) => {
@@ -292,11 +301,17 @@ const handleAddToCart = (product) => {
                             <p className="product-description">{plant.description}</p>
                             <p className="product-cost"><strong>Cost:</strong> {plant.cost}</p>
                             <button
-                                className="product-button"
-                                onClick={() => handleAddToCart(plant)}
-                            >
-                                Add to Cart
-                            </button>
+                      className="product-button"
+                      onClick={() => handleAddToCart(plant)}
+                      disabled={addedToCart[plant.name]}
+                      style={{
+                        backgroundColor: addedToCart[plant.name] ? "#d3d3d3" : "#4CAF50",
+                        color: "white",
+                        cursor: addedToCart[plant.name] ? "not-allowed" : "pointer",
+                      }}
+                    >
+                      {addedToCart[plant.name] ? "Added" : "Add to Cart"}
+                    </button>
                         </div>
                     ))}
                 </div>
@@ -304,7 +319,10 @@ const handleAddToCart = (product) => {
         ))}
     </div>
  ) :  (
-    <CartItem onContinueShopping={handleContinueShopping}/>
+    <CartItem
+          onContinueShopping={handleContinueShopping}
+          onRemoveItem={handleRemoveFromCart} 
+        />
 )}
     </div>
     );
