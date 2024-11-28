@@ -1,0 +1,13 @@
+button {
+    padding: 1rem;
+    margin: 2rem;
+    cursor: pointer;
+
+}
+
+h2 {
+    border-top: .5px solid gray;
+    border-bottom: .5px solid gray;
+    padding: .25ren;
+    margin: 2rem;
+}
