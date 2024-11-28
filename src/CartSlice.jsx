@@ -24,6 +24,10 @@ export const CartSlice = createSlice({
       if (itemToUpdate) {
         itemToUpdate.quantity = quantity;
       }
+      // Remove item if quantity is 0
+      if (quantity === 0) {
+        state.items = state.items.filter(item => item.name !== name);
+      }
     },
   },
 });
