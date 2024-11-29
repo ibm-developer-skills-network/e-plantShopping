@@ -245,11 +245,16 @@ const handleCartClick = (e) => {
     e.preventDefault();
     setShowCart(true); // Set showCart to true when cart icon is clicked
 };
+
 const handlePlantsClick = (e) => {
     e.preventDefault();
-    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
-    setShowCart(false); // Hide the cart when navigating to About Us
+    const plantsSection = document.getElementById("plants-section");
+    if (plantsSection) {
+      plantsSection.scrollIntoView({ behavior: "smooth" });
+    }
+    setShowCart(false); 
 };
+
 
 const handleAddToCart = (plant) => {
     dispatch(addItem(plant));
@@ -310,7 +315,7 @@ const handleAddToCart = (plant) => {
             </div>
         </div>
         {!showCart? (
-        <div className="product-grid">
+        <div id="plants-section" className="product-grid">
         {plantsArray.map((category, index) => (
             <div key={index}>
                 <h1 className="category-title">{category.category}</h1>
