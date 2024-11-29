@@ -1,7 +1,9 @@
 import React from 'react';  
 import { useSelector, useDispatch } from 'react-redux';  
-import { removeItem, updateQuantity } from './CartSlice';  
-import './CartItem.css';  
+import { removeItem, updateQuantity } from './CartSlice';
+import './CartItem.css'; 
+
+
 
 const CartItem = ({ onContinueShopping }) => {  
   const cart = useSelector(state => state.cart.items);  
@@ -24,10 +26,16 @@ const CartItem = ({ onContinueShopping }) => {
   
   const handleRemove = (item) => {  
     dispatch(removeItem(item.id));  
-  };  
+  }; 
+  
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
+  };
   
   const calculateTotalCost = (item) => (item.cost * item.quantity).toFixed(2);  // Calcular total del artículo  
   
+  
+
   return (  
     <div className="cart-container">  
       <h2>Total Amount: ${calculateTotalAmount().toFixed(2)}</h2>  

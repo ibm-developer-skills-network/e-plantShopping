@@ -11,8 +11,8 @@
 }
 
 .cart-item-image {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   /* object-fit: contain; */
   margin-right: 20px;
 }
@@ -240,4 +240,18 @@
     transition: background-color 0.3s ease;
     margin-top: 40px;
   }
-  
+  .cart-icon {  
+    position: relative;  
+    display: inline-block;  
+}  
+
+.cart-count {  
+    position: absolute;  
+    top: -5px;  
+    right: -10px;  
+    background: red;  
+    color: white;  
+    border-radius: 50%;  
+    padding: 2px 5px;  
+    font-size: 12px;  
+}
