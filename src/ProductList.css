@@ -36,7 +36,6 @@ body {
     color: white;
     font-size: 30px;
     text-decoration: none;
-   
 }
 
 /* Product Grid */
@@ -70,9 +69,15 @@ body {
     border-radius: 5px;
     text-align: center;
     position: relative;
-    
     gap: 20px;
 }
+
+.category-title {
+    text-align: center; 
+    font-size: 30px; 
+    margin: 20px 0;
+    font-weight: bold;
+  }
 
 /* Pseudo-classes - Hover effect on product button */
 .product-card:hover {
