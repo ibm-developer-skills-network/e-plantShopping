@@ -47,6 +47,31 @@ body {
     align-items: center;
     justify-content: center;
 }
+.highlight{
+    position:relative;
+    display:inline-block;
+    padding: 0 5px;
+}
+.highlight::before,.highlight::after
+{
+    content:'';
+    position:absolute;
+    left:0;
+    right: 0;
+    height: 2px;
+    background-color: black;
+}
+.highlight::before{
+    top:0px;
+}
+.highlight::after{
+    bottom:0px;
+}
+.textCategory{
+    display:flex;
+    justify-content:center;
+    padding: 85px;
+}
 .product-list {
     display: flex;
     flex-wrap: wrap;
