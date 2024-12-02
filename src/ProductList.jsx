@@ -278,10 +278,10 @@ const handlePlantsClick = (e) => {
                         {cat.plants.map((item,index2)=>(
                                 <div key={index2} className="product-card">
                                     <div className="immagineBox">
-                                        <img src={item.image} className="product-image"/>
-                                    
+                                                
                                         <div>
-                                            <h1 className="product-title">{item.name}</h1>
+                                            <h3 className="product-title">{item.name}</h3>
+                                            <img src={item.image} className="product-image"/>
                                             <p>{item.description}</p>
                                             <h2 className="product-price">{item.cost}</h2>
                                         </div>
