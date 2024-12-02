@@ -90,6 +90,15 @@
   background-color: #38753b;
 }
 
+.aboutus_container {
+    display: flex;
+    margin-top: 20px; /* Adjust as needed */
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 90%; /* Adjust as needed */
+    
+  }
+
 /* ProductList.css */
 
 .product-list-container {
@@ -114,14 +123,7 @@
 .product-list-container.visible {
   top: 0;
 }
-.aboutus_container {
-    display: flex;
-    margin-top: 20px; /* Adjust as needed */
-    margin-left: 3%;
-    margin-right: 3%;
-    width: 90%; /* Adjust as needed */
-    
-  }
+
 
   
 
