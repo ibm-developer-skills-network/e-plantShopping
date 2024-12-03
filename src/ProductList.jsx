@@ -1,10 +1,13 @@
 import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+//imported funtion useDispatch and useSelector by Puccetti Nicola
+import {useDispatch,useSelector} from 'react-redux';
+import {addItem} from './CartSlice'
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-
+    const dispatch=useDispatch();
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -212,6 +215,19 @@ function ProductList() {
             ]
         }
     ];
+
+    //implemented 03.12.24 variable addedToCart for manage article already added to cart
+    //implemented function handleAddToCart
+    //by Puccetti Nicola
+    const [addedToCart,setAddedToCart]=useState({});
+    const handleAddToCart= (product)=>{
+        dispatch(addItem(product));
+        setAddedToCart((prevState)=>({
+            ...prevState,[product.name]:true,
+        }))
+    }
+
+
    const styleObj={
     backgroundColor: '#4CAF50',
     color: '#fff!important',
@@ -286,6 +302,9 @@ const handlePlantsClick = (e) => {
                                             <h2 className="product-price">{item.cost}</h2>
                                         </div>
                                     </div>
+                                    <button className="product-button-green" onClick={()=>handleAddToCart(item)}>
+                                        Add to Cart
+                                    </button>
                                 </div>
                         ))}
                     </div>
