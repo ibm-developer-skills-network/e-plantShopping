@@ -7,14 +7,19 @@ export const CartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-  const { name, image, cost } = action.payload;
-  const existingItem = state.items.find(item => item.name === name);
-  if (existingItem) {
-    existingItem.quantity++;
-  } else {
-    state.items.push({ name, image, cost, quantity: 1 });
-  }
-},
+        console.log('Action received in reducer:', action); // Debug action
+        const { name, image, description, cost } = action.payload || {}; // Extract payload
+        if (!name || !image || !description ||!cost) {
+          console.error('Invalid payload in reducer');
+          return;
+        }
+        const existingItem = state.items.find(item => item.name === name);
+        if (existingItem) {
+          existingItem.quantity++;
+        } else {
+          state.items.push({ name, image, description,cost, quantity: 1 });
+        }
+      },
     removeItem: (state, action) => {
         state.items = state.items.filter(item => item.name !== action.payload);
     },
