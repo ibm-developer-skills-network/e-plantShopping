@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
-import { ProductList } from './ProductList';
+import ProductList from './ProductList';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
@@ -10,7 +10,7 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
-    const totalAmount = 0;
+    let totalAmount = 0;
     cart.map((item) =>
         totalAmount += (item.quantity * item.cost)
     );
