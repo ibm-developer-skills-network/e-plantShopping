@@ -248,7 +248,6 @@ const handlePlantsClick = (e) => {
 };
 
    const handleContinueShopping = (e) => {
-    e.preventDefault();
     setShowCart(false);
   };
   const handleAddToCart = (product) => {
