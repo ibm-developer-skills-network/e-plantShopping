@@ -22,7 +22,7 @@ const CartItem = ({ onContinueShopping }) => {
         totalItem+=product.quantity;
     })
     return totalItem;
-  }  
+  };
   const handleContinueShopping = (e) => {
     onContinueShopping();
     
