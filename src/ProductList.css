@@ -52,7 +52,7 @@ body {
     display:inline-block;
     padding: 0 5px;
 }
-.highlight::before.highlight::after
+.highlight::before,.highlight::after
 {
     content:'';
     position:absolute;
