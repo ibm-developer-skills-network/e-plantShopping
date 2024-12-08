@@ -45,6 +45,12 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   // Calculate total cost based on quantity for an item
+ /*Puccetti Nicola implemented function 
+  *and added control for debugging by console.log
+  *applied filter for remove spacial character 
+  *this allow the conversion from string by number
+  *with objects cost provided like string $price
+  */
   const calculateTotalCost = (item) => {
     console.log(typeof item.quantity + "initial value: "+item.quantity);
     console.log(typeof item.cost+ "initial value: "+item.cost);
