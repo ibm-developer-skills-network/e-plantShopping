@@ -20,19 +20,72 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
 
-
+//Puccetti nicola implemented body of handleIncremente function
   const handleIncrement = (item) => {
+    const newItem={...item};
+    newItem.quantity++;
+    dispatch(updateQuantity(newItem));
   };
 
+//Puccetti nicola implemented body of handleIncremente function
   const handleDecrement = (item) => {
    
+    if(item.quantity>1){
+        const newItem={...item};
+        newItem.quantity--;
+        dispatch(updateQuantity(newItem));
+   }
+   else{
+        dispatch(removeItem(item));
+   }
   };
 
   const handleRemove = (item) => {
+    dispatch(removeItem(item));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    console.log(typeof item.quantity + "initial value: "+item.quantity);
+    console.log(typeof item.cost+ "initial value: "+item.cost);
+    let uquantity;
+    let ucost;
+    
+    if(typeof item.quantity === 'string'){
+        uquantity = parseFloat(item.quantity);
+    }
+    else if(typeof item.quantity === 'number'){
+        uquantity = Number(item.quantity);
+        console.log("typeof uquantity: "+typeof uquantity);
+    }
+    else{
+        console.log("the value item.quantity isn't numbers and is not possible convert it");
+    }
+    if(typeof item.cost === 'string'){
+        const tempValue=item.cost.replace('$','');
+        ucost = parseFloat(tempValue);
+        console.log("typeof ucost: "+typeof ucost)
+    }
+    else if(typeof item.cost === 'number'){
+        ucost = Number(item.cost)
+    }
+    else{
+        console.log("the value item.cost isn't numbers and is not possible convert it");
+    }
+    if((typeof ucost === 'number') && (typeof uquantity === 'number')){
+        console.log("final if typeof ucost: "+typeof ucost+" value: "+ucost);
+        console.log("final if typeof uquantity: "+typeof uquantity+" value: "+uquantity);
+        const total = Number(uquantity*ucost);
+    return total;
+    }
+    else{
+        console.log("the process of check and conver of item.quantity and item.cost is failed !!!")
+        console.log("final else typeof ucost: "+typeof ucost);
+        console.log("final else typeof uquantity: "+typeof uquantity);
+        const total = NaN;
+        return total;
+    }
+    
   };
 
   const handleCheckOutShopping = (e)=>{

@@ -7,8 +7,7 @@ const initialState={
 export const CartSlice = createSlice({
   name: 'cart',
   initialState,
-//Puccetti Nicola ...for this isn't used state directly
-  //but is a first test 
+//Puccetti Nicola implemented increment and decrement with two way  
   reducers: {
     addItem: (state, action) => {
         const existingItem = state.items.find(item => item.name === action.payload.name);
@@ -33,8 +32,9 @@ export const CartSlice = createSlice({
     updateQuantity: (state, action) => {
         const {name,quantity} = action.payload;
         const itemToUpdate = state.items.find((item)=>item.name === name);
+        //const newQuantity = 1 + quantity;// a secnd way to increment value
         if(itemToUpdate){
-            itemToUpdate.quantity = quantity;
+            itemToUpdate.quantity= quantity //= newQuantity;
         }
     
     },
