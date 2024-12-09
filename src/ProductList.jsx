@@ -9,6 +9,7 @@ function ProductList() {
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
     const dispatch = useDispatch();
+   
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -229,7 +230,7 @@ function ProductList() {
     padding: '15px',
     display: 'flex',
     justifyContent: 'space-between',
-    alignIems: 'center',
+    alignItems: 'center',
     fontSize: '20px',
    }
    const styleObjUl={
@@ -293,8 +294,11 @@ const handlePlantsClick = (e) => {
           <div className="product-cost">Cost: {plant.cost}</div>
           <button
             className="product-button"
+              onClick={() => handleAddToCart(plant)}
+>
+  {addedToCart[plant.name] ? "✔ Added to Cart" : "Add to Cart"}
             onClick={() => handleAddToCart(plant)}
-          >
+          
             Add to Cart
           </button>
         </div>

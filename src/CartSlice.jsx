@@ -1,4 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import cartReducer from './CartSlice';
+
+const store = configureStore({
+    reducer: {
+        cart: cartReducer,
+    },
+});
 
 export const CartSlice = createSlice({
   name: 'cart',
