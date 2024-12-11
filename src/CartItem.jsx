@@ -20,13 +20,13 @@ const handleCheckoutShopping = (e) => {
   alert('Functionality to be added for future reference');
 };
 
-  const handleIncrement = (item) => {
-    dispatch(updateQuantity(item));
+  const handleIncrement = (item) => {   
+    dispatch(updateQuantity({item, plus:true}));
   };
 
   const handleDecrement = (item) => {
-   if(item.quantity > 0)
-        dispatch(updateQuantity(item));
+      if(item.quantity > 1) 
+        dispatch(updateQuantity({item, plus:false}));
     else
         dispatch(removeItem(item));
   };
@@ -37,7 +37,7 @@ const handleCheckoutShopping = (e) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-    cart.map(item => item.quantity * item.cost);
+    return item.quantity * item.cost;
   };
 
   return (
