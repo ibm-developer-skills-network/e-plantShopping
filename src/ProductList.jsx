@@ -255,7 +255,7 @@ function ProductList() {
    const handleContinueShopping = (e) => {
     e.preventDefault();
     setShowCart(false);
-  };
+    };
 
     const handleAddToCart = (product) => {
         dispatch(addItem(product));
