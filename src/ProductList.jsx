@@ -249,11 +249,11 @@ const handlePlantsClick = (e) => {
     setShowCart(false);
   };
 
-  const handleAddToCart = (plant) => {
-    dispatchEvent(addItem(plant));
-    setAddedToCart((prevState) => ({
+  const handleAddToCart = (product) => {
+    dispatchEvent(addItem(product));
+    setAddedToCart((product) => ({
         ...prevState,
-        [plant.name]: true,
+        [product.name]: true,
     }));
   };
     return (
