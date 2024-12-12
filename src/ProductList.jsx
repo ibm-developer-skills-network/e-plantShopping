@@ -252,9 +252,9 @@ function ProductList() {
         setShowCart(false); // Hide the cart when navigating to About Us
     };
 
-   const handleContinueShopping = (e) => {
-    e.preventDefault();
-    setShowCart(false);
+    const handleContinueShopping = (e) => {
+        e.preventDefault();
+        setShowCart(false);
     };
 
     const handleAddToCart = (product) => {
@@ -299,10 +299,11 @@ function ProductList() {
                                 <p><strong>{plant.cost}</strong></p>
                                 
                                 <button  
-                                    className="product-button" 
+                                    className={`product-button ${addedToCart[plant.name] ? "added-to-cart" : ""}`} 
                                     onClick={() => handleAddToCart(plant)}
+                                    disabled={addedToCart[plant.name]}
                                 >
-                                    Add to Cart
+                                    {addedToCart[plant.name] ? "Added to Cart" : "Add to Cart"}
                                 </button>
                             </div>
                             ))}
