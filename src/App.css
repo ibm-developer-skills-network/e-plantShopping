@@ -33,23 +33,24 @@
  top: 100px;
   backdrop-filter: blur(4px);
   background-color: rgba(0,0,0,0.5);
-  gap: 20px;
+  gap: 10px;
 }
 
 .landing_content {
  margin-top: 430px;
-  margin-left: 100px;
+  margin-left: 15%;
   transform: translate(-50%, -50%);
   z-index: 1;
   text-align: center;
   /* background-color: red; */
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   gap: 10px;
+  
 }
 
 .content p,
@@ -58,19 +59,19 @@
 }
 
 .content h1 {
-  font-size: 48px;
+  font-size: 38px;
   margin-bottom: 10px;
 }
 
 .content p {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .divider {
-  width: 50px;
+  width: 30px;
   height: 2px;
   background-color: #4caf50;
-  margin: 10px 0;
+  margin: 5px 0;
 }
 
 .get-started-button {
@@ -86,8 +87,17 @@
 }
 
 .get-started-button:hover {
-  background-color: #45a049;
+  background-color: #38753b;
 }
+
+.aboutus_container {
+    display: flex;
+    margin-top: 20px; /* Adjust as needed */
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 90%; /* Adjust as needed */
+    
+  }
 
 /* ProductList.css */
 
@@ -113,6 +123,10 @@
 .product-list-container.visible {
   top: 0;
 }
+
+
+  
+
 /* LandingPage.css */
 @media screen and (max-width: 768px) {
   .content {
@@ -134,6 +148,7 @@
     width: 80%; /* Adjust as needed */
   }
 }
+
 
 @media screen and (max-width: 480px) {
   .landing_content {

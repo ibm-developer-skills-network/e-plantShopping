@@ -47,6 +47,31 @@ body {
     align-items: center;
     justify-content: center;
 }
+.highlight{
+    position:relative;
+    display:inline-block;
+    padding: 0 5px;
+}
+.highlight::before,.highlight::after
+{
+    content:'';
+    position:absolute;
+    left:0;
+    right: 0;
+    height: 2px;
+    background-color: black;
+}
+.highlight::before{
+    top:0px;
+}
+.highlight::after{
+    bottom:0px;
+}
+.textCategory{
+    display:flex;
+    justify-content:center;
+    padding: 85px;
+}
 .product-list {
     display: flex;
     flex-wrap: wrap;
@@ -76,7 +101,7 @@ body {
 
 /* Pseudo-classes - Hover effect on product button */
 .product-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.15);
     transition: transform 0.3s ease-in-out;
     z-index: 1;
 }
@@ -108,7 +133,7 @@ body {
 }
 
 .product-button:hover {
-    background-color: #c0392b;
+    background-color: #993429;
 }
 
 /* Pseudo-elements - Sale badge */
@@ -120,7 +145,7 @@ body {
     top: 0;
     right: 0;
     padding: 5px 10px;
-    border-radius: 0 0 0 5px;
+    border-radius: 0 0 0 8px;
 }
 .tag_home_link{
     display: flex;
@@ -197,7 +222,7 @@ body {
 }
 /* ProductList.css */
 
-.product-button {
+.product-button-green {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
@@ -211,11 +236,15 @@ body {
     cursor: pointer;
   }
   
-  .product-button:hover {
+  .product-button-green:hover {
     background-color: #45a049;
   }
   
   .product-button.added-to-cart {
+    background-color: grey; /* Grey when product is added */
+  }
+  /*created class for manage clicked button in two modes*/
+  .product-button-green.added-to-cart {
     background-color: grey; /* Grey when product is added */
   }
   @media (max-width: 1200px) {
