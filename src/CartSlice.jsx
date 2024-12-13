@@ -32,7 +32,7 @@ export const CartSlice = createSlice({
     updateQuantity: (state, action) => {
         const {name,quantity} = action.payload;
         const itemToUpdate = state.items.find((item)=>item.name === name);
-        //const newQuantity = 1 + quantity;// a secnd way to increment value
+        //const newQuantity = 1 + quantity;// a second way to increment value
         if(itemToUpdate){
             itemToUpdate.quantity= quantity //= newQuantity;
         }

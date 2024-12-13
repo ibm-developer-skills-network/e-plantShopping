@@ -9,8 +9,12 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   //Puccetti nicola implemented body of function calculateTotalAmount
+  /*Puccetti Nicola 13.12.2024 added filter to remove special character $ by cost propreties of plants 
+  * added return for totalOutput for implementing renderig 
+  */
   const calculateTotalAmount = () => {
-    cart.reduce((total,item)=> total+ item.cost*item.quantity,0)
+    const totalOutput = cart.reduce((total,item)=> total+ item.cost.replace('$','')*item.quantity,0);
+    return totalOutput;
   };
 
   //Puccetti Nicola through handleContinueShopping called onContinueShopping to passing it the event
