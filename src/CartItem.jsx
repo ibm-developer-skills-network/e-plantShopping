@@ -8,29 +8,53 @@ const CartItem = ({ onContinueShopping }) => {
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
-  const calculateTotalAmount = () => {
- 
-  };
+const calculateTotalAmount = () => {
+  return cart.reduce((total, item) => {
+    // Convert the item cost to a numeric value by removing "$" and parsing it
+    const unitCost = parseFloat(item.cost.replace('$', ''));
+    // Add the total cost for the current item (unitCost * quantity) to the running total
+    return total + unitCost * item.quantity;
+  }, 0).toFixed(2); // Return the final result rounded to 2 decimal places
+};
 
-  const handleContinueShopping = (e) => {
-   
+
+
+  const handleCheckoutShopping = (e) => {
+    console.log(" inside handle checkout");
+    alert('Functionality to be added for future reference');
   };
 
 
 
   const handleIncrement = (item) => {
+    const newQuantity = item.quantity + 1;
+    dispatch(updateQuantity({ name: item.name, quantity: newQuantity }));
   };
 
+  // Handle Decrement
   const handleDecrement = (item) => {
-   
+    if (item.quantity > 1) {
+      const newQuantity = item.quantity - 1;
+      dispatch(updateQuantity({ name: item.name, quantity: newQuantity }));
+    } else {
+      // If quantity is 1, remove the item
+      dispatch(removeItem({ name: item.name }));
+    }
   };
 
   const handleRemove = (item) => {
+    console.log(" insdie remove item");
+    dispatch(removeItem({ name: item.name }));
   };
-
   // Calculate total cost based on quantity for an item
-  const calculateTotalCost = (item) => {
+// Calculate total cost based on quantity for an item
+const calculateTotalCost = (item) => {
+    console.log(item);
+    // Parse the cost to remove the "$" symbol and convert to a number
+    const unitCost = parseFloat(item.cost.replace('$', ''));
+    return (unitCost * item.quantity).toFixed(2); // Multiply by quantity and fix to 2 decimal places
   };
+  
 
   return (
     <div className="cart-container">
@@ -55,9 +79,9 @@ const CartItem = ({ onContinueShopping }) => {
       </div>
       <div style={{ marginTop: '20px', color: 'black' }} className='total_cart_amount'></div>
       <div className="continue_shopping_btn">
-        <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
+        <button className="get-started-button" onClick={onContinueShopping}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={handleCheckoutShopping}>Checkout</button>
       </div>
     </div>
   );
