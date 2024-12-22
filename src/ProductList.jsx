@@ -3,6 +3,7 @@ import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem,removeItem,updateQuantity } from './CartSlice';
 import { useDispatch } from 'react-redux';
+
 function ProductList() {
     const dispatch = useDispatch(); // Initialize dispatch
     const [showCart, setShowCart] = useState(false); 
@@ -10,7 +11,7 @@ function ProductList() {
     const [addedToCart, setAddedToCart] = useState({});
 
 
-    
+
     const plantsArray = [
         {
             category: "Air Purifying Plants",
