@@ -250,3 +250,30 @@ body {
         text-align: center; /* Align text to the center */
       }
   }
+
+
+/* Add a hover effect and make the heading more prominent */
+.category-heading {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: transparent; /* Initially not visible */
+    background: linear-gradient(to right, #f0f0f0, #4CAF50, #f0f0f0); /* Gradient effect */
+    -webkit-background-clip: text; /* Makes text visible through the gradient */
+    -webkit-text-fill-color: transparent; /* For Webkit-based browsers */
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #000; /* Add a dark border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adds a slight shadow */
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.category-heading:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+    background: linear-gradient(to right, #4CAF50, #8BC34A); /* Change gradient on hover */
+    color: white; /* Visible text color on hover */
+    -webkit-background-clip: unset; /* Ensure solid color applies */
+    -webkit-text-fill-color: unset; /* Ensure solid color applies */
+    border-color: #333; /* Darker border on hover */
+}
+
