@@ -15,7 +15,6 @@ const CartItem = ({ onContinueShopping }) => {
   
 
   const handleContinueShopping = (e) => {
-    e.preventDefault();
     setShowCart(false);
   };
 
@@ -36,9 +35,12 @@ const CartItem = ({ onContinueShopping }) => {
     dispatch(removeItem(item));
   };
 
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
+  };
+
   // Calculate total cost based on quantity for an item
-  const calculateTotalCost = (item) => {
-      const calculateSubtotal = (category) => {
+  const calculateTotalCost = (category) => {
         return category.plants.reduce((subtotal, plant) => {
           const cartItem = cart.find(item => item.name === plant.name);
           if (cartItem) {
@@ -51,12 +53,12 @@ const CartItem = ({ onContinueShopping }) => {
       
       const categorySubtotals = plantsArray.map(category => ({
         category: category.category,
-        subtotal: calculateSubtotal(category),
+        subtotal: calculateTotalCost(category),
       }));
       
       console.log(categorySubtotals);
       
-  };
+  
 
   return (
     <div className="cart-container">
@@ -73,7 +75,7 @@ const CartItem = ({ onContinueShopping }) => {
                 <span className="cart-item-quantity-value">{item.quantity}</span>
                 <button className="cart-item-button cart-item-button-inc" onClick={() => handleIncrement(item)}>+</button>
               </div>
-              <div className="cart-item-total">Total: ${calculateTotalCost(item)}</div>
+              <div className="cart-item-total">Total: ${calculateTotalCost(category)}</div>
               <button className="cart-item-delete" onClick={() => handleRemove(item)}>Delete</button>
             </div>
           </div>
