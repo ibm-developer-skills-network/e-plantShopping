@@ -29,8 +29,8 @@ const CartItem = ({ onContinueShopping }) => {
     alert('Functionality to be added for future reference');
   };
 
-  const handleContinueShopping = () => {
-    onContinueShopping();
+  const handleContinueShopping = (e) => {
+    onContinueShopping(e);
   };
 
   const handleIncrement = (item) => {
