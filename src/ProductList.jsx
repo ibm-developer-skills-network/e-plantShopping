@@ -261,6 +261,10 @@ const handleAddToCart = (product) => {
      }));
 };
 
+useEffect(() => {
+    // Any side effects can be handled here
+  }, [showCart, showPlants, addedToCart]);
+
     return (
         <div>
              <div className="navbar" style={styleObj}>
