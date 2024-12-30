@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ProductList.css';
 import CartItem from './CartItem';
-import { addItem } from './CartSlice';
+import { addItem, removeItem } from './CartSlice';
 
 function ProductList() {
     const dispatch = useDispatch();
@@ -226,6 +226,7 @@ function ProductList() {
     justifyContent: 'space-between',
     alignIems: 'center',
     fontSize: '20px',
+    // fontWeight: 'bold',
    }
    const styleObjUl={
     display: 'flex',
@@ -238,14 +239,20 @@ function ProductList() {
     fontSize: '30px',
     textDecoration: 'none',
    }
+   const styleB={
+    color: 'white',
+    fontSize: '30px',
+    textDecoration: 'none',
+    fontWeight: 'bold',
+   }
    const handleCartClick = (e) => {
     e.preventDefault();
     setShowCart(true); // Set showCart to true when cart icon is clicked
 };
 const handlePlantsClick = (e) => {
     e.preventDefault();
-    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
-    setShowCart(false); // Hide the cart when navigating to About Us
+    setShowPlants(true); // Set showPlants to true when "Plants" link is clicked
+    setShowCart(false); // Hide the cart when navigating to Plants
 };
 
 const handleContinueShopping = (e) => {
@@ -254,11 +261,27 @@ const handleContinueShopping = (e) => {
 };
   
 const handleAddToCart = (product) => {
-    dispatch(addItem(product));
+    const isAdded = addedToCart[product.name] || false;
+
+    if (isAdded) {
+        dispatch(removeItem(product));
+    } else {
+        dispatch(addItem(product));
+    }
+    
     setAddedToCart((prevState) => ({
-       ...prevState,
-       [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-     }));
+        ...prevState,
+        [product.name]: !isAdded, // Toggle the added state
+    }));
+};
+
+// Calculate total number of items in the cart
+const calculateTotalItems = () => {
+  let totalItems = 0;
+  cartItems.forEach(item => {
+    totalItems += item.quantity;
+  });
+  return totalItems;
 };
 
 useEffect(() => {
@@ -267,36 +290,41 @@ useEffect(() => {
 
     return (
         <div>
-             <div className="navbar" style={styleObj}>
+            <div className="navbar" style={styleObj}>
             <div className="tag">
-               <div className="luxury">
-               <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
-               <a href="/" style={{textDecoration:'none'}}>
+                <div className="luxury">
+                    <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
+                    <a href="/" style={{textDecoration:'none'}}>
                         <div>
-                    <h3 style={{color:'white'}}>Paradise Nursery</h3>
-                    <i style={{color:'white'}}>Where Green Meets Serenity</i>
-                    </div>
+                            <h3 style={{color:'white'}}>Paradise Nursery</h3>
+                            <i style={{color:'white'}}>Where Green Meets Serenity</i>
+                        </div>
                     </a>
                 </div>
-              
             </div>
             <div style={styleObjUl}>
-                <div> <a href="#" onClick={(e)=>handlePlantsClick(e)} style={styleA}>Plants</a></div>
-                <div> <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}><h1 className='cart'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68"><rect width="156" height="156" fill="none"></rect><circle cx="80" cy="216" r="12"></circle><circle cx="184" cy="216" r="12"></circle><path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path></svg></h1></a></div>
+                <div> <a href="#" onClick={(e)=>handlePlantsClick(e)} style={styleB} className="plants-link">Plants</a></div>
+                <div> <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}><h1 className='cart'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68"><rect width="256" height="256" fill="none"></rect><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="56px" font-weight="bold">{calculateTotalItems()}</text><circle cx="80" cy="216" r="12"></circle><circle cx="184" cy="216" r="12"></circle><path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path></svg></h1></a></div>
             </div>
         </div>
         {!showCart? (
         <div className="product-grid">
             {plantsArray.map((category, index) => (
             <div key={index}>
-            <h1><div>{category.category}</div></h1>
+            <h1 className="category-title"><div>{category.category}</div></h1>
             <div className="product-list">
                 {category.plants.map((plant, plantIndex) => (
                 <div className="product-card" key={plantIndex}>
                     <img className="product-image" src={plant.image} alt={plant.name} />
                     <div className="product-title">{plant.name}</div>
-                    {/*Similarly like the above plant.name show other details like description and cost*/}
-                    <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                    <div className="product-description">{plant.description}</div>
+                    <div className="product-cost">{plant.cost}</div>
+                    <button 
+                    className={`product-button ${addedToCart[plant.name] ? 'added-to-cart' : ''}`} 
+                    onClick={() => handleAddToCart(plant)}
+                  >
+                    {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
+                  </button>
                 </div>
                 ))}
             </div>
@@ -305,7 +333,7 @@ useEffect(() => {
 
         </div>
  ) :  (
-    <CartItem onContinueShopping={handleContinueShopping}/>
+    <CartItem onContinueShopping={handleContinueShopping} handleAddToCart={handleAddToCart}/>
 )}
     </div>
     );
