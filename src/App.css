@@ -1,0 +1,147 @@
+/* LandingPage.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.landing-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f8f8f8;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg');
+  background-size: 100% 100%;
+  background-position: center;
+  filter: brightness(0.8);
+}
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+ top: 100px;
+  backdrop-filter: blur(4px);
+  background-color: rgba(0,0,0,0.5);
+  gap: 20px;
+}
+
+.landing_content {
+ margin-top: 430px;
+  margin-left: 100px;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+  /* background-color: red; */
+  width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.content p,
+.content h1 {
+  color: white;
+}
+
+.content h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.content p {
+  font-size: 25px;
+}
+
+.divider {
+  width: 50px;
+  height: 2px;
+  background-color: #4caf50;
+  margin: 10px 0;
+}
+
+.get-started-button {
+  padding: 15px 25px;
+  font-size: 23px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 40px;
+}
+
+.get-started-button:hover {
+  background-color: #45a049;
+}
+
+/* ProductList.css */
+
+.product-list-container {
+  position: absolute;
+  overflow-x: hidden;
+  top: 100vh;
+  /* Initially off-screen */
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  /* Adjust background opacity as needed */
+  transition: top 0.5s ease;
+  /* Smooth transition for top property */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
+  z-index: 2;
+  /* Ensure it's above landing page content */
+  backdrop-filter: blur(5px);
+}
+
+.product-list-container.visible {
+  top: 0;
+}
+/* LandingPage.css */
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .landing_content {
+    margin-top: 100px; /* Adjust as needed */
+    margin-left: 0;
+    width: 80%; /* Adjust as needed */
+    text-align: center;
+  }
+
+  .aboutus_container {
+    margin-top: 20px; /* Adjust as needed */
+    width: 80%; /* Adjust as needed */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .landing_content {
+    margin-top: 50px; /* Adjust as needed */
+    width: 90%; /* Adjust as needed */
+  }
+
+  .aboutus_container {
+    width: 90%; /* Adjust as needed */
+  }
+}
