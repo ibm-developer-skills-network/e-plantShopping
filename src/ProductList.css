@@ -41,6 +41,7 @@ body {
 
 /* Product Grid */
 .product-grid {
+    text-align: center;
     display:flex;
     flex-direction: column;
     width: 100vw;
@@ -172,6 +173,26 @@ body {
     font-size: 29px;
 
 }
+
+.cart-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .cart-container svg {
+    display: block; /* Mantém o ícone como bloco */
+  }
+  
+  .cart-count {
+    position: absolute;
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para o centro exato */
+    color: white; /* Texto branco */
+    font-size: 20px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito para destacar */
+    pointer-events: none; /* Evita interação com o número */
+  }
 .plantname_heading{
    display: flex;
    align-items: center;
