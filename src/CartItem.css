@@ -205,7 +205,7 @@
 
   .cart-container{
     /* text-align: center; */
-    display: flex;
+    display: inline-block;
     align-items: center;
     flex-direction: column;
     justify-content: center;
