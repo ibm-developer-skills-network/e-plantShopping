@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Provider } from 'react-redux';
-import store from './store'; // Adjust the import path as needed
+import store from './store';
 import ProductList from './ProductList';
 import CartItem from './CartItem';
 import './App.css';
@@ -59,6 +59,7 @@ function App() {
 }
 
 export default App;
+
 
 
 
