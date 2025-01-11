@@ -34,6 +34,8 @@ export const CartSlice = createSlice({
       const item = state.items.find(item => item.name === action.payload.name);
       if (item && item.quantity > 1) {
         item.quantity -= 1;
+      } else if (item && item.quantity === 1) {
+        state.items = state.items.filter(i => i.name !== action.payload.name);
       }
     },
     calculateTotalAmount: (state) => {
@@ -44,6 +46,7 @@ export const CartSlice = createSlice({
 
 export const { addItem, removeItem, updateQuantity, increment, decrement, calculateTotalAmount } = CartSlice.actions;
 export default CartSlice.reducer;
+
 
 
 
