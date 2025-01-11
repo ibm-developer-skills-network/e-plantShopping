@@ -8,6 +8,7 @@ function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState([]); // State to track added plants
+    const dispatch = useDispatch(); // Ensure dispatch is used
 
     const plantsArray = [
         {
