@@ -321,9 +321,9 @@ const handlePlantsClick = (e) => {
 ))}
 </div>
 ) :  (
-<CartItem onContinueShopping={handleContinueShopping}/>
+  <CartItem onContinueShopping={handleContinueShopping}/>
 )}
 </div>
 );
-
+}
 export default ProductList;
