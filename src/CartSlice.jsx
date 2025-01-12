@@ -1,67 +1,41 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, updateQuantity } from './CartSlice';
-import './CartItem.css';
+import { createSlice } from '@reduxjs/toolkit';
 
-const CartItem = ({ onContinueShopping }) => {
-  const cart = useSelector(state => state.cart.items);
-  const totalQuantity = useSelector(state => state.cart.totalQuantity);
-  const dispatch = useDispatch();
-
-  const handleIncrement = (item) => {
-    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
-  };
-
-  const handleDecrement = (item) => {
-    if (item.quantity > 1) {
-      dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
-    } else {
-      dispatch(removeItem(item.name));
+export const CartSlice = createSlice({
+  name: 'cart',
+  initialState: {
+    items: [],
+    totalQuantity: 0
+  },
+  reducers: {
+    addItem: (state, action) => {
+      const existingItem = state.items.find(item => item.name === action.payload.name);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        state.items.push({ ...action.payload, quantity: 1 });
+      }
+      state.totalQuantity += 1;
+    },
+    removeItem: (state, action) => {
+      const item = state.items.find(item => item.name === action.payload);
+      if (item) {
+        state.totalQuantity -= item.quantity;
+        state.items = state.items.filter(item => item.name !== action.payload);
+      }
+    },
+    updateQuantity: (state, action) => {
+      const { name, quantity } = action.payload;
+      const itemToUpdate = state.items.find(item => item.name === name);
+      if (itemToUpdate) {
+        const quantityDifference = quantity - itemToUpdate.quantity;
+        state.totalQuantity += quantityDifference;
+        itemToUpdate.quantity = quantity;
+      }
     }
-  };
+  }
+});
 
-  const handleRemove = (item) => {
-    dispatch(removeItem(item.name));
-  };
-
-  const calculateTotalAmount = () => {
-    return cart.reduce((total, item) => total + (item.quantity * item.cost), 0);
-  };
-
-  const calculateTotalCost = (item) => {
-    return (item.quantity * item.cost).toFixed(2);
-  };
-
-  return (
-    <div className="cart-container">
-      <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount().toFixed(2)}</h2>
-      <h3>Total Items: {totalQuantity}</h3>
-      <div>
-        {cart.map(item => (
-          <div className="cart-item" key={item.name}>
-            <img className="cart-item-image" src={item.image} alt={item.name} />
-            <div className="cart-item-details">
-              <div className="cart-item-name">{item.name}</div>
-              <div className="cart-item-cost">${item.cost}</div>
-              <div className="cart-item-quantity">
-                <button className="cart-item-button cart-item-button-dec" onClick={() => handleDecrement(item)}>-</button>
-                <span className="cart-item-quantity-value">{item.quantity}</span>
-                <button className="cart-item-button cart-item-button-inc" onClick={() => handleIncrement(item)}>+</button>
-              </div>
-              <div className="cart-item-total">Total: ${calculateTotalCost(item)}</div>
-              <button className="cart-item-delete" onClick={() => handleRemove(item)}>Delete</button>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div style={{ marginTop: '20px', color: 'black' }} className='total_cart_amount'></div>
-      <div className="continue_shopping_btn">
-        <button className="get-started-button" onClick={onContinueShopping}>Continue Shopping</button>
-        <br />
-        <button className="get-started-button1">Checkout</button>
-      </div>
-    </div>
-  );
-};
-
-export default CartItem;
+export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
+export const selectTotalQuantity = state => state.cart.totalQuantity;
+export const selectCartItems = state => state.cart.items; // Selector to get cart items
+export default CartSlice.reducer;
