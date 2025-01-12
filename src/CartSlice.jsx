@@ -14,12 +14,12 @@ export const CartSlice = createSlice({
       } else {
         state.items.push({ ...action.payload, quantity: 1 });
       }
-      state.totalQuantity += 1; // Update total quantity
+      state.totalQuantity += 1;
     },
     removeItem: (state, action) => {
       const item = state.items.find(item => item.name === action.payload);
       if (item) {
-        state.totalQuantity -= item.quantity; // Update total quantity
+        state.totalQuantity -= item.quantity;
         state.items = state.items.filter(item => item.name !== action.payload);
       }
     },
@@ -28,19 +28,16 @@ export const CartSlice = createSlice({
       const itemToUpdate = state.items.find(item => item.name === name);
       if (itemToUpdate) {
         const quantityDifference = quantity - itemToUpdate.quantity;
-        state.totalQuantity += quantityDifference; // Update total quantity
+        state.totalQuantity += quantityDifference;
         itemToUpdate.quantity = quantity;
       }
     }
   }
 });
 
-// Selector to get the total quantity of items in the cart
-export const selectTotalQuantity = state =>
-  state.cart.items.reduce((total, item) => total + item.quantity, 0);
-
 export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
 export default CartSlice.reducer;
+
 
 
 
