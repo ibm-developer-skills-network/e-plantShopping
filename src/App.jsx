@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
+import Navbar from './Navbar'; // Import Navbar
 import ProductList from './ProductList';
 import CartItem from './CartItem';
 import './App.css';
@@ -28,6 +29,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="app-container">
+        <Navbar /> {/* Include Navbar */}
         <div className={`landing-page ${showProductList || showCart ? 'fade-out' : ''}`}>
           <div className="background-image"></div>
           <div className="content">
@@ -59,6 +61,9 @@ function App() {
 }
 
 export default App;
+
+
+
 
 
 
