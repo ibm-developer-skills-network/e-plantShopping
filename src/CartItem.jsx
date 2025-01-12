@@ -1,31 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, updateQuantity, addItem } from './CartSlice';
+import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
-const handleAddToCart = (product) => {
-  dispatch(addItem(product));
-
-  setAddedToCart((prevState) => ({
-    ...prevState,
-    [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-  }));
-};
-
 const CartItem = ({ onContinueShopping }) => {
-  const [addedToCart, setAddedToCart] = useState({});
   const cart = useSelector(state => state.cart.items);
+  const totalQuantity = useSelector(state => state.cart.totalQuantity); // Use the selector to get total quantity
   const dispatch = useDispatch();
 
   const calculateTotalAmount = () => {
     return cart.reduce((total, item) => total + (item.quantity * item.cost), 0);
   };
 
-  const handleContinueShopping = (e) => {
-    onContinueShopping(e);
+  const handleContinueShopping = (e) => { 
+    e.preventDefault(); 
+    onContinueShopping();
   };
 
   const handleCheckoutShopping = (e) => {
+    e.preventDefault();
     alert('Functionality to be added for future reference');
   };
 
@@ -45,15 +38,6 @@ const CartItem = ({ onContinueShopping }) => {
     dispatch(removeItem(item.name));
   };
 
-  const handleAddToCart = (product) => {
-    dispatch(addItem(product));
-
-    setAddedToCart((prevState) => ({
-      ...prevState,
-      [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-    }));
-  };
-
   const calculateTotalCost = (item) => {
     return (item.quantity * item.cost).toFixed(2);
   };
@@ -61,6 +45,7 @@ const CartItem = ({ onContinueShopping }) => {
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount().toFixed(2)}</h2>
+      <h3>Total Items: {totalQuantity}</h3> {/* Display total quantity */}
       <div>
         {cart.map(item => (
           <div className="cart-item" key={item.name}>
@@ -90,6 +75,7 @@ const CartItem = ({ onContinueShopping }) => {
 };
 
 export default CartItem;
+
 
 
 
