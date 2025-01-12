@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, updateQuantity } from './CartSlice';
+import { removeItem, updateQuantity, addItem } from './CartSlice';
 import './CartItem.css';
 
+const handleAddToCart = (product) => {
+  dispatch(addItem(product));
+
+  setAddedToCart((prevState) => ({
+    ...prevState,
+    [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
+  }));
+};
+
 const CartItem = ({ onContinueShopping }) => {
+  const [addedToCart, setAddedToCart] = useState({});
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
-  // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     return cart.reduce((total, item) => total + (item.quantity * item.cost), 0);
   };
@@ -36,7 +45,15 @@ const CartItem = ({ onContinueShopping }) => {
     dispatch(removeItem(item.name));
   };
 
-  // Calculate total cost based on quantity for an item
+  const handleAddToCart = (product) => {
+    dispatch(addItem(product));
+
+    setAddedToCart((prevState) => ({
+      ...prevState,
+      [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
+    }));
+  };
+
   const calculateTotalCost = (item) => {
     return (item.quantity * item.cost).toFixed(2);
   };
@@ -73,6 +90,7 @@ const CartItem = ({ onContinueShopping }) => {
 };
 
 export default CartItem;
+
 
 
 
