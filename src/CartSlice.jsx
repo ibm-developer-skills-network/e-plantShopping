@@ -7,13 +7,17 @@ export const CartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-    
+      state.items.push(action.payload); // Add the item to the items array
     },
     removeItem: (state, action) => {
+      state.items = state.items.filter(item => item.id !== action.payload.id); // Remove item by id
     },
     updateQuantity: (state, action) => {
-
-    
+      const { id, quantity } = action.payload;
+      const item = state.items.find(item => item.id === id);
+      if (item) {
+        item.quantity = quantity; // Update the item's quantity
+      }
     },
   },
 });
