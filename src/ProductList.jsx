@@ -260,7 +260,7 @@ function ProductList() {
     setShowPlants(true);
 };
 
-   const handleAddToCart = (plant) => {
+   const handleAddToCart = (product) => {
     dispatch(addItem(product));
     setAddedToCart((prev) => ({ 
         ...prev, 
@@ -305,7 +305,7 @@ function ProductList() {
                                              onClick={() => handleAddToCart(plant)} 
                                              disabled={addedToCart[plant.name]} // Disable button if plant is added 
                                          > 
-                                            {addedToCart[plant.name] ? "Added" : "Add to Cart"} // Change button text if plant is added 
+                                            {addedToCart[plant.name] ? "Added" : "Add to Cart"} {/* Change button text if plant is added */} 
                                         </button> 
                                     </div> 
                                  ))} 

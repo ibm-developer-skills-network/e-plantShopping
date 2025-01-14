@@ -9,37 +9,45 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    updateQuantity: (state, action) => {
-      const { name, quantity } = action.payload;
-      const item = state.items.find(item => item.name === name);
-      if (item) {
-        state.totalQuantity += quantity - item.quantity; // Update totalQuantity
-        item.quantity = quantity;
+    // Add a new plant item to the items array
+    addItem: (state, action) => {
+      const { name, image, cost } = action.payload;
+      const existingItem = state.items.find(item => item.name === name);
+      if (existingItem) {
+        existingItem.quantity++; // Increment quantity if item already exists
+      } else {
+        state.items.push({ name, image, cost, quantity: 1 }); // Add new item with quantity 1
       }
+      state.totalQuantity++; // Update totalQuantity
     },
+    // Remove a plant item from the items array
     removeItem: (state, action) => {
       const name = action.payload;
       const itemIndex = state.items.findIndex(item => item.name === name);
       if (itemIndex > -1) {
         state.totalQuantity -= state.items[itemIndex].quantity; // Update totalQuantity
-        state.items.splice(itemIndex, 1);
+        state.items = state.items.filter(item => item.name !== name); // Remove item from array
       }
     },
-    addItem: (state, action) => {
-      const newItem = action.payload;
-      const existingItem = state.items.find(item => item.name === newItem.name);
-      if (existingItem) {
-        existingItem.quantity += 1;
-        state.totalQuantity += 1;
-      } else {
-        state.items.push({ ...newItem, quantity: 1 });
-        state.totalQuantity += 1;
+    // Update the quantity of a plant item in the items array
+    updateQuantity: (state, action) => {
+      const { name, quantity } = action.payload;
+      const itemToUpdate = state.items.find(item => item.name === name);
+      if (itemToUpdate) {
+        state.totalQuantity += quantity - itemToUpdate.quantity; // Update totalQuantity
+        itemToUpdate.quantity = quantity; // Update item quantity
       }
     }
   }
 });
 
-export const { updateQuantity, removeItem, addItem } = cartSlice.actions;
+// Export the action creators to use in ProductList.jsx and CartItem.jsx
+export const { addItem, removeItem, updateQuantity } = cartSlice.actions;
+
+// Export the reducer as the default export to use in store.js
 export default cartSlice.reducer;
+
+
+
 
 
