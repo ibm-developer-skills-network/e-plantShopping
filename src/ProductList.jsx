@@ -9,7 +9,8 @@ function ProductList() {
     const [showPlants, setShowPlants] = useState(true); // Set initial state to true to display plants by default
     const [addedToCart, setAddedToCart] = useState({}); // State to track added products
     const dispatch = useDispatch(); // Use dispatch to send actions to the redux store
-
+    const totalQuantity = useSelector(state => state.cart.totalQuantity); // Get totalQuantity from state
+    
     // Example useEffect 
     useEffect(() => { 
         console.log("ProductList component has been mounted."); // You can replace the console.log with any side effect like fetching data 
