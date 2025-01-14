@@ -8,7 +8,6 @@ const CartItem = ({ onContinueShopping }) => {
   const totalQuantity = useSelector(state => state.cart.totalQuantity); // Get totalQuantity from state
   const dispatch = useDispatch();
 
-  // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     return cart.reduce((total, item) => total + item.cost * item.quantity, 0).toFixed(2);
   };
@@ -73,3 +72,4 @@ const CartItem = ({ onContinueShopping }) => {
 };
 
 export default CartItem;
+
