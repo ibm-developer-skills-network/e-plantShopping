@@ -1,7 +1,34 @@
 import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+import { useDispatch } from 'react-redux'; //added
 import { addItem } from './CartSlice';
+import { useSelector } from 'react-redux';
+import { updateQuantity } from './CartSlice';
+import { removeItem } from './CartSlice';
+
+const handleRemove = () => {
+  dispatch(removeItem(item.name));
+};
+const CartItem = ({ item }) => {
+  const dispatch = useDispatch();
+
+  const handleUpdateQuantity = (newQuantity) => {
+    dispatch(updateQuantity({ name: item.name, quantity: newQuantity }));
+  };
+
+  return (
+    <div>
+      <span>{item.name}</span>
+      <button onClick={() => handleUpdateQuantity(item.quantity + 1)}>+</button>
+      <button onClick={() => handleUpdateQuantity(item.quantity - 1)}>-</button>
+    </div>
+  );
+};
+
+const totalQuantity = useSelector((state) =>
+  state.cart.items.reduce((sum, item) => sum + item.quantity, 0)
+);
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
