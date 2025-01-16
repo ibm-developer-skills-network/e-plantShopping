@@ -256,6 +256,13 @@ const handlePlantsClick = (e) => {
      [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
    }));
 };
+    const addToCart = (plant) => {
+    setAddedToCart((prev) => ({
+        ...prev,
+        [plant.name]: (prev[plant.name] || 0) + 1
+    }));
+    setTotalItems((prev) => prev + 1); // Increment total items count
+};
     return (
         <div>
              <div className="navbar" style={styleObj}>
