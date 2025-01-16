@@ -6,13 +6,6 @@ import { selectTotalAmount } from './CartSlice';
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const totalAmount = useSelector(selectTotalAmount); // Use totalAmount here
-  /**
-   * Selector to calculate the total number of items in the cart.
-   * 
-   * @param {Object} state - The current state of the Redux store.
-   * @returns {number} The total quantity of items in the cart.
-   */
-  const totalItems = useSelector(state => state.cart.items.reduce((total, item) => total + item.quantity, 0)); // Calculate total items
   const dispatch = useDispatch();
 
   const handleContinueShopping = (e) => {
