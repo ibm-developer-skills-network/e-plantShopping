@@ -11,9 +11,9 @@ export const CartSlice = createSlice({
         quantity: 1
       },
       {
-        name: "Lavender",
-        image: "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        cost: 20,
+        name: "Spider Plant",
+        image: "https://cdn.pixabay.com/photo/2018/07/11/06/47/chlorophytum-3530413_1280.jpg",
+        cost: 12,
         quantity: 2
       }
     ], // Initialize items with default items

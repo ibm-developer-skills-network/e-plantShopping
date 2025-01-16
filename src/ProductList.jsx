@@ -1,5 +1,6 @@
-import React, { useState,useEffect } from 'react';
-import './ProductList.css'
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import './ProductList.css';
 import CartItem from './CartItem';
 import { addItem } from './CartSlice'; // Import addItem reducer
 
@@ -7,6 +8,7 @@ function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
+    const dispatch = useDispatch(); // Initialize useDispatch
 
     const plantsArray = [
         {
@@ -250,18 +252,8 @@ const handlePlantsClick = (e) => {
     setShowCart(false);
   };
   const handleAddToCart = (plant) => {
-  dispatch(addItem(plant));
-  ((prevState) =>setAddedToCart ({
-     ...prevState,
-     [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-   }));
-};
-    const addToCart = (plant) => {
-    setAddedToCart((prev) => ({
-        ...prev,
-        [plant.name]: (prev[plant.name] || 0) + 1
-    }));
-    setTotalItems((prev) => prev + 1); // Increment total items count
+    dispatch(addItem({ name: plant.name, image: plant.image, cost: parseFloat(plant.cost.replace('$', '')) }));
+    setAddedToCart({ ...addedToCart, [plant.name]: true });
 };
     return (
         <div>
