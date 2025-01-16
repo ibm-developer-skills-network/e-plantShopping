@@ -7,6 +7,15 @@ const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
+  const CartItems = ({ cart, setCart }) => {
+    const [cartIconQuantity, setCartIconQuantity] = useState(0);
+    const [totalCost, setTotalCost] = useState(0);
+  
+  // Calculate total cost based on quantity for an item
+  const calculateTotalCost = (item) => {
+    return item.quantity * item.cost;
+  };
+
   // Calculate total amount for all products in the cart
 const calculateTotalAmount = () => {
   return cart.reduce((total, item) => {
@@ -14,16 +23,27 @@ const calculateTotalAmount = () => {
   }, 0);
 };
 
+const updateCartDisplay = () => {
+    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+    setCartIconQuantity(totalQuantity);
+
+    cart.forEach(item => {
+      item.subtotal = calculateTotalCost(item);
+    });
+
+    const totalCost = calculateTotalAmount();
+    setTotalCost(totalCost);
+  };
+
 const handleContinueShopping = (e) => {
   if (onContinueShopping) {
     onContinueShopping();
   }
 };
 
-
-
 const handleIncrement = (item) => {
   dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
+  updateCartDisplay();
 };
 
 const handleDecrement = (item) => {
@@ -32,19 +52,34 @@ const handleDecrement = (item) => {
   } else {
     dispatch(removeItem(item.name)); // Assuming removeItem takes the item's name as an argument
   }
+  updateCartDisplay();
 };
 
-  const handleRemove = (item) => {
-  };
+const handleRemove = (item) => {
+  dispatch(removeItem(item.name)); // Assuming removeItem takes the item's name as an argument
+  updateCartDisplay();
+};
 
-  // Calculate total cost based on quantity for an item
-  const calculateTotalCost = (item) => {
-  };
+
 
   const handleCheckoutShopping = (e) => {
   alert('Functionality to be added for future reference');
 };
 
+useEffect(() => {
+    updateCartDisplay();
+  }, [cart]);
+  return (
+    <div>
+      <div className="navbar">
+        <div className="cart-icon">
+          Cart ({cartIconQuantity})
+        </div>
+      </div>
+
+    </div>
+  );
+};
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
