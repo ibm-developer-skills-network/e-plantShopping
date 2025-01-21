@@ -1,33 +1,53 @@
 .about-us-container {
-    width: 1000px;
-    /* margin: 0 auto; */
-    /* padding: 20px; */
-    /* background-color: red; */
-    text-align: justify;
-  }
-  
-  .about-us-heading {
-    font-size: 32px;
-    font-weight: bold;
+    max-width: 800px;
+    margin: auto;
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+    /* Aligne les éléments verticalement */
+    justify-content: center;
+    /* Centre les éléments verticalement */
+    align-items: center;
+    /* Centre les éléments horizontalement */
+    font-family: Arial, sans-serif;
+    line-height: 1;
+    /* Réduit l'espacement entre les lignes */
     color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .about-us-description {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  
-  .about-us-content {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  .plant_logo_right{
-    text-align: right;
-  }
-
-  .plant_logo_left{
     text-align: left;
-  }
+    /* Assure que l'alignement du texte ne pose pas de conflit */
+}
+
+
+
+.about-us-description {
+    font-size: 1px;
+    font-weight: bold;
+    color: #4CAF50;
+    text-align: center;
+    /* Centre le texte dans la description */
+    margin-bottom: 20px;
+    /* Ajoute un petit espace sous le titre */
+    flex: 1;
+    /* Permet une prise d'espace proportionnelle */
+}
+
+
+.about-us-content {
+    margin-left: auto;
+    flex: 1;
+    /* Permet une prise d'espace proportionnelle */
+    text-align: center;
+    /* Aligne le texte au centre */
+    overflow: hidden;
+}
+
+@media screen and (max-width: 800px) {
+    .landing_content {
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: auto;
+        text-align: center;
+    }
+}
