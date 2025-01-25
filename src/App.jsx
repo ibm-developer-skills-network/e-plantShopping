@@ -11,6 +11,9 @@ function App() {
   const handleGetStartedClick = () => {
     setShowProductList(true);
   };
+  const handleReturnClick = () => {
+    setShowProductList(false);
+  }
 
   return (
     <div className="app-container">
@@ -18,9 +21,9 @@ function App() {
         <div className="background-image"></div>
         <div className="content">
          <div className="landing_content">
-         <h1>Welcome To Paradise Nursery</h1>
+         <h1>Welcome To Plants World</h1>
           <div className="divider"></div>
-          <p>Where Green Meets Serenity</p>
+          <p>Where life begins</p>
          
           <button className="get-started-button" onClick={handleGetStartedClick}>
             Get Started
@@ -33,13 +36,10 @@ function App() {
 
       </div>
       <div className={`product-list-container ${showProductList ? 'visible' : ''}`}>
-        <ProductList />
+        <ProductList toLanding={handleReturnClick} />
       </div>
     </div>
   );
 }
 
 export default App;
-
-
-
