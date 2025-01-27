@@ -179,9 +179,16 @@ body {
     /* background-color: yellow; */
 }
 .plant_heading{
+    display: flex;
     width: 400px;
     text-align: center;
-    margin: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    /*margin: 20px;*/
     border: 1px solid rgb(5, 4, 4);
     border-left: none;
     border-right: none;
