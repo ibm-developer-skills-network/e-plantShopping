@@ -23,13 +23,13 @@ export const CartSlice = createSlice({
         state.items = state.items.filter (item => item.name !== action.payload);
     },
     updateQuantity: (state, action) => {
-        const {name, cost} = action.payload;
-        const existingItems = state.items.find(item => item.name === name);
-        if (existingItems)
-        {
-            itemToUpdate.quantity = quantity;
+        const { name, quantity } = action.payload;  // Fix: Get quantity from payload
+        const itemToUpdate = state.items.find(item => item.name === name);
+        if (itemToUpdate) {
+            itemToUpdate.quantity = quantity;  // Fix: Correct reference
         }
     },
+    
   },
 });
 
