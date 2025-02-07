@@ -1,13 +1,15 @@
 import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+import { useSelector, useDispatch } from "react-redux"
 import { addItem } from "./CartSlice";
 
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
-
+    const cartItems = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -257,6 +259,20 @@ const handlePlantsClick = (e) => {
      [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
    }));
 };
+
+const totalSelectedProduct = () => {  
+
+    let totalSelected = 0;
+    cartItems.items.forEach((item) => {
+       totalSelected += item.quantity;
+    });
+
+    return totalSelected
+};
+
+
+
+const totalSelected = totalSelectedProduct();
 
     return (
         <div>
