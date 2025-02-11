@@ -3,30 +3,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
-const CartItem = ({ onContinueShopping, onUpdateTotalQuantity }) => {
+const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
-
-  // Calculate total quantity of items in the cart
-  const calculateTotalQuantity = () => {
-    return cart.reduce((total, item) => total + item.quantity, 0);
-  };
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     return cart.reduce((total, item) => {
-        const cost = parseFloat(item.cost.replace('$', '').trim());
+        const cost = parseFloat(item.cost.replace('$', '').trim()); // Make sure cost is a valid number
         if (isNaN(cost)) return total; // If it's not a valid number, skip this item
         return total + item.quantity * cost;
     }, 0).toFixed(2);
-  };
+};
 
-  const calculateTotalCost = (item) => {
-    const cost = parseFloat(item.cost.replace('$', '').trim());
+const calculateTotalCost = (item) => {
+    const cost = parseFloat(item.cost.replace('$', '').trim()); // Make sure cost is a valid number
     if (isNaN(cost)) return '0.00'; // If it's not a valid number, return 0.00
     return (item.quantity * cost).toFixed(2);
-  };
-
+};
   const handleContinueShopping = (e) => {
     e.preventDefault();
     if (onContinueShopping) {
@@ -48,10 +42,7 @@ const CartItem = ({ onContinueShopping, onUpdateTotalQuantity }) => {
     dispatch(removeItem(item.name));
   };
 
-  // Update total quantity whenever the cart changes
-  React.useEffect(() => {
-    onUpdateTotalQuantity(calculateTotalQuantity());
-  }, [cart, onUpdateTotalQuantity]);
+  
 
   return (
     <div className="cart-container">
