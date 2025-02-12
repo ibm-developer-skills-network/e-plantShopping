@@ -7,20 +7,24 @@ const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
-  // Calculate total amount for all products in the cart
+  // Laske tuotteiden kokonaismäärä ostoskorissa
+  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+
+  // Laske kokonaishinta
   const calculateTotalAmount = () => {
     return cart.reduce((total, item) => {
-        const cost = parseFloat(item.cost.replace('$', '').trim()); // Make sure cost is a valid number
-        if (isNaN(cost)) return total; // If it's not a valid number, skip this item
+        const cost = parseFloat(item.cost.replace('$', '').trim()); 
+        if (isNaN(cost)) return total;
         return total + item.quantity * cost;
     }, 0).toFixed(2);
-};
+  };
 
-const calculateTotalCost = (item) => {
-    const cost = parseFloat(item.cost.replace('$', '').trim()); // Make sure cost is a valid number
-    if (isNaN(cost)) return '0.00'; // If it's not a valid number, return 0.00
+  const calculateTotalCost = (item) => {
+    const cost = parseFloat(item.cost.replace('$', '').trim());
+    if (isNaN(cost)) return '0.00';
     return (item.quantity * cost).toFixed(2);
-};
+  };
+
   const handleContinueShopping = (e) => {
     e.preventDefault();
     if (onContinueShopping) {
@@ -42,11 +46,10 @@ const calculateTotalCost = (item) => {
     dispatch(removeItem(item.name));
   };
 
-  
-
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
+      <h3 style={{ color: 'black' }}>Total Items in Cart: {totalQuantity}</h3> 
       <div>
         {cart.map(item => (
           <div className="cart-item" key={item.name}>
@@ -65,7 +68,6 @@ const calculateTotalCost = (item) => {
           </div>
         ))}
       </div>
-      <div style={{ marginTop: '20px', color: 'black' }} className='total_cart_amount'></div>
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
