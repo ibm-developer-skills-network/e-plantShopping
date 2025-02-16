@@ -47,6 +47,14 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.product-category {
+    display: flex;
+    font-size: 35px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: overline underline;
+}
 .product-list {
     display: flex;
     flex-wrap: wrap;
