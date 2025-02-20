@@ -1,43 +1,31 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem, updateQuantity } from "../redux/CartSlice"; // Import Redux actions
+import { removeItem, updateQuantity } from "../redux/CartSlice";
 
 const CartItems = ({ onContinueShopping }) => {
-  const cartItems = useSelector((state) => state.cart.items); // Get cart items from Redux store
+  const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
-  // Function to calculate subtotal for an item
-  const calculateSubtotal = (item) => {
-    return parseFloat(item.cost.substring(1)) * item.quantity;
-  };
+  const calculateSubtotal = (item) => parseFloat(item.cost.substring(1)) * item.quantity;
 
-  // Function to calculate the total amount of the cart
   const calculateTotalAmount = () => {
     return cartItems.reduce((total, item) => total + calculateSubtotal(item), 0);
   };
 
-  // Handle increasing the quantity of an item
   const handleIncrement = (name, quantity) => {
     dispatch(updateQuantity({ name, quantity: quantity + 1 }));
   };
 
-  // Handle decreasing the quantity of an item
   const handleDecrement = (name, quantity) => {
     if (quantity > 1) {
       dispatch(updateQuantity({ name, quantity: quantity - 1 }));
     } else {
-      dispatch(removeItem({ name })); // Remove item if quantity is 0
+      dispatch(removeItem({ name }));
     }
   };
 
-  // Handle removing an item completely
   const handleRemove = (name) => {
     dispatch(removeItem({ name }));
-  };
-
-  // Handle checkout (not implemented yet)
-  const handleCheckoutShopping = () => {
-    alert("Functionality to be added for future reference");
   };
 
   return (
@@ -55,7 +43,6 @@ const CartItems = ({ onContinueShopping }) => {
               <p>Price: {item.cost}</p>
               <p>Subtotal: ${calculateSubtotal(item).toFixed(2)}</p>
 
-              {/* Quantity Controls */}
               <div className="quantity-controls">
                 <button onClick={() => handleDecrement(item.name, item.quantity)}>-</button>
                 <span>{item.quantity}</span>
@@ -66,14 +53,9 @@ const CartItems = ({ onContinueShopping }) => {
             </div>
           ))}
 
-          {/* Total Price Display */}
           <h3>Total: ${calculateTotalAmount().toFixed(2)}</h3>
 
-          {/* Continue Shopping Button */}
           <button onClick={onContinueShopping}>Continue Shopping</button>
-
-          {/* Checkout Button */}
-          <button onClick={handleCheckoutShopping}>Proceed to Checkout</button>
         </div>
       )}
     </div>
