@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addItem } from "../redux/CartSlice"; // Import addItem action
+import { addItem } from "../redux/CartSlice"; // Import addItem action from Redux
 
+// Sample array containing plant objects
 const plantsArray = [
   {
     id: 1,
@@ -17,15 +18,23 @@ const plantsArray = [
     description: "A hardy plant that improves air quality.",
     cost: "$15",
   },
+  {
+    id: 3,
+    name: "Peace Lily",
+    image: "/images/peace-lily.jpg",
+    description: "A beautiful indoor plant with white flowers.",
+    cost: "$12",
+  },
 ];
 
 const ProductList = () => {
-  const dispatch = useDispatch();
-  const [addedToCart, setAddedToCart] = useState({});
+  const dispatch = useDispatch(); // To send actions to Redux store
+  const [addedToCart, setAddedToCart] = useState({}); // Track which items are added
 
+  // Function to handle adding a plant to the cart
   const handleAddToCart = (plant) => {
-    dispatch(addItem(plant)); // Dispatch plant data to Redux store
-    setAddedToCart((prevState) => ({ ...prevState, [plant.name]: true })); // Update state
+    dispatch(addItem(plant)); // Send plant details to Redux store
+    setAddedToCart((prevState) => ({ ...prevState, [plant.name]: true })); // Update local state
   };
 
   return (
