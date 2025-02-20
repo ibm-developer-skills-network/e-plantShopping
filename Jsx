@@ -1,0 +1,3 @@
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/CartSlice"; // Import the action from Redux

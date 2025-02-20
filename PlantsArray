@@ -1,0 +1,34 @@
+const plantsArray = [
+  {
+    id: 1,
+    name: "Aloe Vera",
+    image: "/images/aloe-vera.jpg",
+    description: "A succulent plant with healing properties.",
+    cost: "$10",
+  },
+  {
+    id: 2,
+    name: "Snake Plant",
+    image: "/images/snake-plant.jpg",
+    description: "A hardy plant that improves air quality.",
+    cost: "$15",
+  },
+];
+return (
+  <div className="product-grid">
+    {plantsArray.map((plant) => (
+      <div key={plant.id} className="product-card">
+        <img src={plant.image} alt={plant.name} />
+        <h3>{plant.name}</h3>
+        <p>{plant.description}</p>
+        <p>{plant.cost}</p>
+        <button
+          onClick={() => handleAddToCart(plant)}
+          disabled={addedToCart[plant.name]}
+        >
+          {addedToCart[plant.name] ? "Added to Cart" : "Add to Cart"}
+        </button>
+      </div>
+    ))}
+  </div>
+);

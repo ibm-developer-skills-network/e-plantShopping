@@ -1,0 +1,4 @@
+const handleAddToCart = (plant) => {
+  dispatch(addItem(plant)); // Send the plant data to Redux store
+  setAddedToCart((prevState) => ({ ...prevState, [plant.name]: true })); // Update local state
+};
