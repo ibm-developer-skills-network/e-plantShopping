@@ -3,13 +3,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .landing-page {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw; */
+  /* height: 100vh; */
   background-color: #f8f8f8;
 }
 
@@ -29,17 +29,17 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  width: 100vw;
- top: 100px;
+  /* width: 100vw; */
+  top: 100px;
   backdrop-filter: blur(4px);
   background-color: rgba(0,0,0,0.5);
-  gap: 20px;
+  /* gap: 20px; */
 }
 
 .landing_content {
  margin-top: 430px;
   margin-left: 100px;
-  transform: translate(-50%, -50%);
+  transform: translate(-20%, -50%);
   z-index: 1;
   text-align: center;
   /* background-color: red; */
@@ -113,6 +113,7 @@
 .product-list-container.visible {
   top: 0;
 }
+
 /* LandingPage.css */
 @media screen and (max-width: 768px) {
   .content {
@@ -131,7 +132,7 @@
 
   .aboutus_container {
     margin-top: 20px; /* Adjust as needed */
-    width: 80%; /* Adjust as needed */
+    width: 80%;  /* Adjust as needed */
   }
 }
 

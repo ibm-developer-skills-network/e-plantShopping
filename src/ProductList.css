@@ -58,6 +58,13 @@ body {
     align-items: center;
     justify-content: center;
 }
+.product-grid div h1 div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 /* Product Card */
 .product-card {
