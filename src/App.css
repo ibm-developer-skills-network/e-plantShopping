@@ -44,7 +44,7 @@
   text-align: center;
   /* background-color: red; */
   width: 400px;
-  height: 400px;
+  /* height: 400px; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -63,7 +63,7 @@
 }
 
 .content p {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .divider {
@@ -92,26 +92,33 @@
 /* ProductList.css */
 
 .product-list-container {
-  position: absolute;
+  /* visibility: hidden; */
+  position: fixed;
   overflow-x: hidden;
-  top: 100vh;
+  /* top: 100vh; */ 
+  top: 100%;
+  bottom: 0;
   /* Initially off-screen */
   left: 0;
   width: 100%;
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.9);
-  /* Adjust background opacity as needed */
-  transition: top 0.5s ease;
-  /* Smooth transition for top property */
+  transition: translateY(100%);
+  visibility: hidden;
+  opacity: 0;
   overflow-y: auto;
   /* Enable vertical scrolling */
   z-index: 2;
   /* Ensure it's above landing page content */
   backdrop-filter: blur(5px);
+  transition:  transform 0.5s ease, visibility 0s 0.5s, opacity 0.5s ease;
 }
 
 .product-list-container.visible {
-  top: 0;
+  transform: translateY(-100%);
+  visibility: visible;
+  opacity: 1;
+  transition: transform 0.5s ease, visibility 0s 0s, opacity 0.5s ease;
 }
 
 /* LandingPage.css */
@@ -145,4 +152,8 @@
   .aboutus_container {
     width: 90%; /* Adjust as needed */
   }
+}
+
+.aboutus_container {
+  margin-right: 80px;
 }
