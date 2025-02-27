@@ -8,28 +8,50 @@ const CartItem = ({ onContinueShopping }) => {
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
+  // This is not working fine, to be checked
   const calculateTotalAmount = () => {
- 
+    let total = 0;
+    cart.forEach((item) => {
+      total +=  calculateTotalCost(item);
+    });
+    return total; 
   };
 
+  // SStill not wprking
   const handleContinueShopping = (e) => {
-   
+    e.preventDefault();
+    if (onContinueShopping) {
+      onContinueShopping(e); // Call the function passed from the parent
+    }
   };
-
-
-
+  
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
+  };
   const handleIncrement = (item) => {
+    const updatedItem = { ...item, quantity: item.quantity + 1 }; // Create a new object
+    dispatch(updateQuantity(updatedItem));
   };
 
   const handleDecrement = (item) => {
-   
+    if (item.quantity == 0) {
+      dispatch(removeItem(item));
+    } else {
+      const updatedItem = { ...item, quantity: item.quantity - 1 }; // Create a new object
+      dispatch(updateQuantity(updatedItem));
+    }
   };
 
   const handleRemove = (item) => {
+    console.log("CartItem --> handleRemove-->item")
+    console.log("item")
+    dispatch(removeItem(item));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    const numericCost = parseFloat(item.cost.replace('$', ''));
+    return item.quantity*numericCost;
   };
 
   return (
@@ -57,12 +79,10 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
       </div>
     </div>
   );
 };
 
 export default CartItem;
-
-
