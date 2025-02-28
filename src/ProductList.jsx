@@ -6,7 +6,16 @@ function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false);
     const [addedToCart, setAddedToCart] = useState({});
+  reducers: {
+    addItem: (state, action) => {
+    
+    },
+    removeItem: (state, action) => {
+    },
+    updateQuantity: (state, action) => {
 
+    
+    },
     const plantsArray = [
         {
             category: "Air Purifying Plants",
