@@ -1,1 +1,1 @@
-# coding-project-template
+IBM React Test Code
