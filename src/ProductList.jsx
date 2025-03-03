@@ -6,16 +6,38 @@ function ProductList() {
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
 
     const plantsArray = [
+        <div className = "product-grid"  key = {plantsArray.map((category, index) => (
+                        <div key={index}>
+                            <h1><div>{category.category}</div></h1>
+                            <div className="product-list">
         {
-            category: "Air Purifying Plants",
+           {category.plants.map((plant, plantIndex) => ( category: "Air Purifying Plants",
             plants: [
                 {
-                    name: "Snake Plant",
-                    image: "https://cdn.pixabay.com/photo/2021/01/22/06/04/snake-plant-5939187_1280.jpg",
-                    description: "Produces oxygen at night, improving air quality.",
-                    cost: "$15"
-                },
-                {
+                                
+                                <div className="product-card" key={plantIndex}>
+                                    <img className="product-image" src={plant.image} alt={plant.name} />
+                                    <div className="product-title">{plant.name}</div>
+                                    {/*Similarly like the above plant.name show other details like description and cost*/}
+                                    <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                </div>
+                                ))}
+                            </div>
+                        </div>
+                        ))}
+                        const [addedToCart, setAddedToCart] = useState({});
+                        const handleAddToCart = (product) => {
+                            dispatch(addItem(state, action));
+                            setAddedToCart((prevState) => ({
+                               ...prevState,
+                               [product.name]: true, // CartSlice.jsx
+                             }));
+                          };
+                          <div className="product-title">{Snake Plant}</div>
+                          <img className="product-image" src={https://cdn.pixabay.com/photo/2021/01/22/06/04/snake-plant-5939187_1280.jpg} alt={plant.name} />
+                            <div className="product-cost">{"$15"}</div>
+                            <button  className="product-button" onClick={() => handleAddToCart(Snake Plant)}>Add to Cart</button>
+                }
                     name: "Spider Plant",
                     image: "https://cdn.pixabay.com/photo/2018/07/11/06/47/chlorophytum-3530413_1280.jpg",
                     description: "Filters formaldehyde and xylene from the air.",
