@@ -5,7 +5,7 @@ import './ProductList.css'; // Import CSS file
 import CartItem from './CartItem';
 import AboutUs from './AboutUs';
 
-function ProductList() {
+function ProductList({onHomeClick}) {
     const dispatch = useDispatch();
     const [showCart, setShowCart] = useState(false); // State to control the visibility of the Cart component
     const [addedToCart, setAddedToCart] = useState({}); // State to track which products are added to the cart
@@ -257,15 +257,16 @@ function ProductList() {
 
     const handleHomeClick = (e) => {
         e.preventDefault();
-
-        setShowAboutUs(false); // Set showAboutUs to false when "Home" link is clicked
-        setShowCart(false); // Hide the cart when navigating back to Home
+        onHomeClick();
+        // setShowAboutUs(false); // Set showAboutUs to false when "Home" link is clicked
+        // setShowCart(false); // Hide the cart when navigating back to Home
+        // setShowPlants(false);
     };
 
     const handleCartClick = (e) => {
         e.preventDefault();
         setShowCart(true); // Set showCart to true when cart icon is clicked
-        setShowAboutUs(false); // Hide the About Us page when opening the cart
+        // setShowAboutUs(false); // Hide the About Us page when opening the cart
     };
     const handleContinueShopping = (e) => {
         e.preventDefault();
@@ -277,7 +278,7 @@ function ProductList() {
                 <div className="tag">
                     <div className="luxury">
                         <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
-                        <a href="/" onClick={() => handleHomeClick()}>
+                        <a href="/" onClick={(e) => handleHomeClick(e)}>
                             <div className="tag_home_link">
                                 <h3>Paradise Nursery</h3>
                                 <i>Where Green Meets Serenity</i>
