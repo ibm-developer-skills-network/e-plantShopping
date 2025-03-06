@@ -234,6 +234,7 @@ function ProductList({ onHomeClick }) {
     }
 
     const handleHomeClick = (e) => {
+
         e.preventDefault();
         onHomeClick();
     };
