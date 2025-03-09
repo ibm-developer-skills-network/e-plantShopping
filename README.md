@@ -33,4 +33,4 @@ To get started with the project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/PlantShopping.git
+   git clone https://github.com/Shreyakulkarni132/PlantShopping.git
