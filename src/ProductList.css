@@ -81,6 +81,11 @@ body {
     z-index: 1;
 }
 
+.product-category {
+    text-align:center;
+    line-height:150%;
+}
+
 .product-title {
     font-weight: bold;
     margin-bottom: 10px;
@@ -150,27 +155,29 @@ body {
     height: 70px;
     width: 70px;
     border-radius: 70%;
-    
 }
 
 .luxury {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     width: 650px;
     font-size: 19px;
+}
+
+.cart_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .cart{
     color: white;
     display: flex;
 }
 .cart_quantity_count{
-    margin-top: 16px;
-    /* background-color: red; */
-    margin-left: 27px;
     position: absolute;
     font-size: 29px;
-
+    cursor: pointer;
 }
 .plantname_heading{
    display: flex;
