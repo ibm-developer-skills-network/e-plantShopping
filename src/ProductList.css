@@ -164,6 +164,19 @@ body {
     color: white;
     display: flex;
 }
+
+.cartQuantity {
+    position: absolute;
+    margin-left: 25px;
+    margin-top: 20px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
 .cart_quantity_count{
     margin-top: 16px;
     /* background-color: red; */
@@ -209,6 +222,10 @@ body {
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
+  }
+  .product-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
   }
   
   .product-button:hover {
