@@ -284,6 +284,8 @@ function ProductList({ onHomeClick }) {
             </div>
             {!showCart ? (
                 <div className="product-grid">
+                    <h2>Total Items in Cart: {calculateTotalQuantity()}</h2>
+      {plantsArray.map((category, index) => (
                     {plantsArray.map((category, index) => ( // Loop through each category in plantsArray
   <div key={index}> {/* Unique key for each category div */}
     <h1>
