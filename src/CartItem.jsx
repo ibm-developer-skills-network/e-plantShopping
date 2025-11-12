@@ -9,27 +9,67 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+       let total = 0;
+
+  cart.forEach((item) => {
+    // Extract cost as a number (remove "$" and parse)
+    const cost = parseFloat(item.cost.substring(1));
+
+    // Multiply cost by quantity
+    const itemTotal = cost * item.quantity;
+
+    // Add to running total
+    total += itemTotal;
+  });
+
+  return total;
   };
 
   const handleContinueShopping = (e) => {
-   
+   e.preventDefault();
+    onContinueShopping(e); 
   };
 
+  const handleCheckoutShopping = (e) => {
+  alert('Functionality to be added for future reference');
+};
 
 
   const handleIncrement = (item) => {
+    dispatch(
+      updateQuantity({
+        name: item.name,
+        quantity: item.quantity + 1, // increase by 1
+      })
+    );
   };
 
   const handleDecrement = (item) => {
-   
+    if (item.quantity > 1) {
+      // Decrease quantity
+      dispatch(
+        updateQuantity({
+          name: item.name,
+          quantity: item.quantity - 1,
+        })
+      );
+    } else {
+      // Remove item entirely
+      dispatch(removeItem({ name: item.name }));
+    }
   };
 
   const handleRemove = (item) => {
+     dispatch(removeItem({ name: item.name }));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    const unitPrice = parseFloat(item.cost.substring(1));
+
+  // Multiply by quantity to get subtotal
+  const totalCost = unitPrice * item.quantity;
+
   };
 
   return (
@@ -57,7 +97,7 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
       </div>
     </div>
   );
