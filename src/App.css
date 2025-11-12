@@ -11,6 +11,7 @@
   width: 100vw;
   height: 100vh;
   background-color: #f8f8f8;
+
 }
 
 .background-image {
@@ -50,6 +51,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 10px;
+  padding: 10px;
 }
 
 .content p,

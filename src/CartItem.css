@@ -1,5 +1,26 @@
 /* CartItem.css */
 /* CartItem.css */
+.cart {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-number {
+  position: absolute;
+  top: -5px;        
+  right: 8px;      
+  background-color: #e63946;  
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;         
+  min-width: 20px;           
+  text-align: center;
+  line-height: 1;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
 
 .cart-item {
   display: flex;
