@@ -16,7 +16,9 @@ export const CartSlice = createSlice({
       }
     },
     removeItem: (state, action) => {
-      state.items = state.items.filter((item) => item.name !== action.payload.name); // Remove item by filtering it out
+      // eslint-disable-next-line no-unused-vars
+      const itemName = action.payload; // Get the name of the item to be removed from action payload 
+      state.items = state.items.filter((item) => item.name !== itemName); // Remove item by filtering it out
     },
     updateQuantity: (state, action) => {
       const { name, quantity } = action.payload; // Destructure name and new quantity from action payload
@@ -24,10 +26,12 @@ export const CartSlice = createSlice({
       if (itemToUpdate) {
         itemToUpdate.quantity = quantity; // Update the quantity if the item exists
       }
+  
     }
   },
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
 
 export default CartSlice.reducer;
