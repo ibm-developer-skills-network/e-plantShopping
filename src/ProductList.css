@@ -40,6 +40,11 @@ body {
 }
 
 /* Product Grid */
+.product-section-title {
+    display: flex;
+    justify-content: center;
+    margin-top: 10pxß;
+}
 .product-grid {
     display:flex;
     flex-direction: column;
@@ -105,6 +110,11 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     margin-top: 10px;
+}
+
+.btn-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .product-button:hover {
@@ -188,6 +198,70 @@ body {
 
     
 }
+
+/* Modal Product */
+
+.modal-wraper {
+  position: fixed;      
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  z-index: 1000;   
+}
+
+.modal-container {
+    position: relative;  
+    z-index: 1001;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    padding: 25px;
+    border-radius: 5px;
+    background-color: white;
+} 
+
+.modal-titel {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.modal-btn {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.modal-btn-cancel {
+    background-color: #c0392b; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 /* Add Media Query for responsiveness */
 @media (max-width: 768px) {
     .product-card {
