@@ -2,7 +2,7 @@
   "name": "e-plantShopping",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://github.com/vishnuvb5991-spec/e-plantShopping.git",
+  "homepage": "https://vishnuvb5991-spec.github.io/e-plantShopping",
   "type": "module",
   "scripts": {
     "dev": "vite",
