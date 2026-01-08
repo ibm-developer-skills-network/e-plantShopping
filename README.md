@@ -1,4 +1,4 @@
-# 🌱 e-PlantShopping
+# e-PlantShopping
 
 **A sleek, interactive React-based e-commerce app for plant lovers.**
 
