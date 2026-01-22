@@ -1,40 +1,77 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
+import PropTypes from 'prop-types';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
-
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    let total =0;
+    cart.forEach(item => {
+      const cost = parseFloat(item.cost.substring(1));
+      return total + cost * item.quantity;
+    }, 0);
+    return total;
   };
 
-  const handleContinueShopping = (e) => {
-   
+  const handleContinueShopping = (e) => { 
+    // Call the callback passed from the parent if it's provided
+    if (typeof onContinueShopping === 'function') {
+      onContinueShopping(e);
+    } else {
+      // Fallback: log a warning so it's clear why nothing happened
+      // (keeps behavior safe if parent didn't provide the prop)
+      // eslint-disable-next-line no-console
+      console.warn('onContinueShopping prop not provided or not a function');
+    }
   };
 
 
 
   const handleIncrement = (item) => {
+    // Increase the item's quantity by 1
+    const newQuantity = item.quantity + 1;
+    dispatch(updateQuantity({ name: item.name, quantity: newQuantity }));
   };
 
   const handleDecrement = (item) => {
-   
+    // Decrease the item's quantity by 1, or remove if it reaches 0
+    if (item.quantity > 1) {
+      const newQuantity = item.quantity - 1;
+      dispatch(updateQuantity({ name: item.name, quantity: newQuantity }));
+    } else {
+      // If quantity would go to 0, remove the item from cart
+      dispatch(removeItem(item.name));
+    }
   };
 
   const handleRemove = (item) => {
+    // Remove the item from the cart using its name as the identifier
+    dispatch(removeItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    if (!item) return '0.00';
+    const cost = parseFloat(item.cost.substring(1));
+    const total = cost * item.quantity;
+    // Return a string with two decimal places (e.g., 12.50)
+    return total.toFixed(2);
   };
+  //const handleCheckoutShopping = (e) => {
+  //alert('Functionality to be added for future reference');
+//};
+const calculateTotalQuantity = () => {
+  return CartItems ? CartTiems.reduce((total,item) =>total + item.quantity,0):0;
+}
 
   return (
     <div className="cart-container">
-      <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
+      <h2 style={{ color: 'black' }}>
+        Total Cart Amount: ${calculateTotalAmount().toFixed(2)}</h2>
       <div>
         {cart.map(item => (
           <div className="cart-item" key={item.name}>
@@ -61,6 +98,9 @@ const CartItem = ({ onContinueShopping }) => {
       </div>
     </div>
   );
+  CartItem.propTypes = {
+    onContinueShopping: PropTypes.func.isRequired,
+  };
 };
 
 export default CartItem;
