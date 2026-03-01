@@ -7,12 +7,12 @@ body, h1, ul {
 /* Set a background color */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f0f0f0b6;
 }
 
 /* Navbar */
 .navbar {
-    background-color: #4CAF50;
+    background-color: #948a23;
     color: #fff!important;
     padding: 15px;
     display: flex;
@@ -61,10 +61,10 @@ body {
 
 /* Product Card */
 .product-card {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap */
-    max-width: calc(26.33% - 20px); /* Adjust max-width for 3 cards per row with 20px gap */
-    margin-bottom: 20px;
-    padding: 20px;
+    flex: 20rem; /* Adjust width for 3 cards per row with 20px gap */
+    max-width: 20rem; /* Adjust max-width for 3 cards per row with 20px gap */
+    margin-bottom: 2rem;
+    padding: 2rem;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;

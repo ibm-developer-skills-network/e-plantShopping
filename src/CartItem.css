@@ -11,8 +11,8 @@
 }
 
 .cart-item-image {
-  width: 200px;
-  height: 200px;
+  width: fit-content;
+  height: fit-content;
   /* object-fit: contain; */
   margin-right: 20px;
 }
