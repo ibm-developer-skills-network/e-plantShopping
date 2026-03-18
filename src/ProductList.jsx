@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+import { addItem } from './CartSlice';
+import { useSelector, useDispatch } from 'react-redux';
+
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    const dispatch = useDispatch();
+    const CartItems = useSelector(state => state.cart.items);
 
     const plantsArray = [
         {
@@ -228,9 +233,15 @@ function ProductList({ onHomeClick }) {
         width: '1100px',
     }
     const styleA = {
+        position: 'relative',
         color: 'white',
         fontSize: '30px',
         textDecoration: 'none',
+    }
+
+    const calculateTotalQuantity = () => {
+        console.log("calculateTotalQuantity function is called")
+        return CartItems? CartItems.reduce((total, item) => total + item.quantity, 0):0;
     }
 
     const handleHomeClick = (e) => {
@@ -252,6 +263,12 @@ function ProductList({ onHomeClick }) {
         e.preventDefault();
         setShowCart(false);
     };
+
+    const handleAddToCart = (product) => {
+    dispatch(addItem(product));
+    console.log('item added to the cart', product.name)
+    };
+
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -269,14 +286,160 @@ function ProductList({ onHomeClick }) {
                 </div>
                 <div style={styleObjUl}>
                     <div> <a href="#" onClick={(e) => handlePlantsClick(e)} style={styleA}>Plants</a></div>
-                    <div> <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}><h1 className='cart'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68"><rect width="156" height="156" fill="none"></rect><circle cx="80" cy="216" r="12"></circle><circle cx="184" cy="216" r="12"></circle><path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path></svg></h1></a></div>
+                    <div> <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}><h1 className='cart'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68">{calculateTotalQuantity()}<rect width="156" height="156" fill="none"></rect><circle cx="80" cy="216" r="12"></circle><circle cx="184" cy="216" r="12"></circle><path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path></svg>  
+                    <span style={{position: 'absolute',top: '0',right: '0',background: 'red',color: 'white',borderRadius: '50%',padding: '4px 8px',fontSize: '12px'}}>{calculateTotalQuantity()}</span>
+                    </h1></a></div>
                 </div>
             </div>
             {!showCart ? (
-                <div className="product-grid">
+                <div
+  className="product-grid"
+  style={{
+    margin: '0 1rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  }}
+>
+  {plantsArray.map((item) => (
+    <div key={item.category} style={{ width: '80%', marginBottom: '2rem' }}>
+      
+      {/* Category Heading */}
+      <h2 style={{ fontWeight: '600', marginBottom: '1rem' }}>
+        {item.category}
+      </h2>
 
+      {/* Cards Container */}
+      <div
+        className="card-container"
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '1.5rem',
+          justifyContent: 'center'
+        }}
+      >
+        {item.plants.map((plant) => (
+          
+          <div
+            key={plant.name}
+            className="card"
+            style={{
+              position: 'relative',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              padding: '1rem',
+              width: '220px',
+              borderRadius: '12px',
+              backgroundColor: '#fff',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-5px)';
+              e.currentTarget.style.boxShadow =
+                '0 8px 20px rgba(0,0,0,0.15)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow =
+                '0 4px 12px rgba(0,0,0,0.1)';
+            }}
+          >
+            {/* Sale Badge */}
+            <span
+              style={{
+                position: 'absolute',
+                top: '10px',
+                right: '10px',
+                backgroundColor: 'red',
+                color: 'white',
+                padding: '4px 8px',
+                borderRadius: '6px',
+                fontSize: '0.75rem',
+                fontWeight: 'bold'
+              }}
+            >
+              Sale
+            </span>
 
-                </div>
+            {/* Plant Name */}
+            <h4 style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
+              {plant.name}
+            </h4>
+
+            {/* Image */}
+            <img
+              src={plant.image}
+              alt={plant.name}
+              style={{
+                width: '100%',
+                height: '140px',
+                objectFit: 'contain',
+                marginBottom: '0.5rem'
+              }}
+            />
+
+            {/* Price */}
+            <span
+              style={{
+                color: '#2ecc71',
+                fontSize: '1.2rem',
+                fontWeight: '600'
+              }}
+            >
+              {plant.cost}
+            </span>
+
+            {/* Description */}
+            <p
+              style={{
+                fontSize: '0.9rem',
+                textAlign: 'center',
+                margin: '0.5rem 0'
+              }}
+            >
+              {plant.description}
+            </p>
+
+            {/* Button */}
+            <button
+                style={{
+                    marginTop: '0.5rem',
+                    padding: '0.5rem 1rem',
+                    border: 'none',
+                    borderRadius: '6px',
+                    backgroundColor: CartItems.some((thisItem) => thisItem.name === plant.name)
+                      ? '#95a5a6'   // disabled color
+                      : '#2c3e50',
+                    color: 'white',
+                    cursor: CartItems.some((thisItem) => thisItem.name === plant.name)
+                      ? 'not-allowed'
+                      : 'pointer',
+                    transition: 'background 0.2s',
+                    opacity: CartItems.some((thisItem) => thisItem.name === plant.name)
+                      ? 0.6
+                      : 1
+                  }}
+              onMouseEnter={(e) =>
+                (e.target.style.backgroundColor = '#1a252f')
+              }
+              onMouseLeave={(e) =>
+                (e.target.style.backgroundColor = '#2c3e50')
+              }
+              onClick = {() => {handleAddToCart(plant)}}
+              disabled = {CartItems.some((thisItem) => thisItem.name === plant.name)?true:false}
+            >
+              Add to Cart
+            </button>
+          </div>
+
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
             ) : (
                 <CartItem onContinueShopping={handleContinueShopping} />
             )}
