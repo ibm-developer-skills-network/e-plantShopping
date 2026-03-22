@@ -9,12 +9,12 @@ const CartItem = ({ onContinueShopping }) => {
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
-  const calculateTotalAmount = (item) => {
-    const total = ()
-    cart.forEach(){
-      total = parseFloat(item.cost.substring(1)) * item.quantity;
-    }
-    
+  const calculateTotalAmount = () => {
+    return cart.reduce((total, item) => {
+      // Eliminamos el símbolo '$' y multiplicamos
+      const price = parseFloat(item.cost.replace('$', ''));
+      return total + (price * item.quantity);
+    }, 0);
   };
 
   const handleContinueShopping = (e) => {   
