@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+import {useDispatch, useSelector} from "react-redux";
+import {addItem} from "./CartSlice.jsx";
+
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
@@ -252,6 +255,18 @@ function ProductList({ onHomeClick }) {
         e.preventDefault();
         setShowCart(false);
     };
+    
+    const dispatch = useDispatch();
+    const handleAddToCart = (product) => {
+        dispatch(addItem(product));
+    };
+    
+    const cartItems = useSelector((state) => state.cart.items);
+    const calculateTotalQuantity = () => {
+        return cartItems ? cartItems.reduce((total, item) => total + item.quantity, 0) : 0;
+    };
+    
+    
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -274,7 +289,31 @@ function ProductList({ onHomeClick }) {
             </div>
             {!showCart ? (
                 <div className="product-grid">
+                    {plantsArray.map((category, index) => (
+                        <div key={index}>
+                            
+                            <h1 style={{ textAlign: 'center', margin: '40px 0' }}>{category.category}</h1>
 
+                            <div className="product-list" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+                                {category.plants.map((plant, plantIndex) => (
+                                    <div className="product-card" key={plantIndex} style={{ border: '1px solid #ccc', margin: '15px', padding: '20px', width: '300px', borderRadius: '15px', textAlign: 'center' }}>
+                                        <img src={plant.image} alt={plant.name} style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '10px' }} />
+                                        <h2 style={{ color: '#4CAF50' }}>{plant.name}</h2>
+                                        <p style={{ fontStyle: 'italic' }}>{plant.description}</p>
+                                        <p style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>{plant.cost}</p>
+
+                                        <button
+                                            className="product-button"
+                                            onClick={() => handleAddToCart(plant)}
+                                            style={{ backgroundColor: '#4CAF50', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '5px', cursor: 'pointer' }}
+                                        >
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
 
                 </div>
             ) : (
