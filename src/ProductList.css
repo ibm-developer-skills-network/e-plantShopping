@@ -185,9 +185,21 @@ body {
     border: 1px solid rgb(5, 4, 4);
     border-left: none;
     border-right: none;
-
-    
 }
+
+.category-name{
+    text-align: center;
+    margin: 20px auto;
+}
+.product-button.disabled,
+.product-button:disabled {
+    background-color: #e57373;
+    color: white;
+    cursor: not-allowed;
+    border: none;
+    transform: none;
+}
+
 /* Add Media Query for responsiveness */
 @media (max-width: 768px) {
     .product-card {

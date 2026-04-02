@@ -1,8 +1,5 @@
 .about-us-container {
-    width: 1000px;
-    /* margin: 0 auto; */
-    /* padding: 20px; */
-    /* background-color: red; */
+    max-width: 760px;
     text-align: justify;
   }
   
