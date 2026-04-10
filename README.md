@@ -1,5 +1,3 @@
-This summary is formatted specifically for a GitHub README.md file, providing a professional overview of the project’s purpose and features.
-
 Paradise Nursery Shopping Application
 A responsive React-based front-end application designed for a houseplant nursery. This project allows users to browse a curated collection of plants, manage a dynamic shopping cart, and calculate costs in real-time.
 
