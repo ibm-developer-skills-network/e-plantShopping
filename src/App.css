@@ -24,20 +24,21 @@
   background-position: center;
   filter: brightness(0.8);
 }
+
 .content {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   width: 100vw;
- top: 100px;
+  top: 100px;
   backdrop-filter: blur(4px);
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   gap: 20px;
 }
 
 .landing_content {
- margin-top: 430px;
+  margin-top: 430px;
   margin-left: 100px;
   transform: translate(-50%, -50%);
   z-index: 1;
@@ -113,6 +114,7 @@
 .product-list-container.visible {
   top: 0;
 }
+
 /* LandingPage.css */
 @media screen and (max-width: 768px) {
   .content {
@@ -123,25 +125,32 @@
   }
 
   .landing_content {
-    margin-top: 100px; /* Adjust as needed */
+    margin-top: 100px;
+    /* Adjust as needed */
     margin-left: 0;
-    width: 80%; /* Adjust as needed */
+    width: 80%;
+    /* Adjust as needed */
     text-align: center;
   }
 
   .aboutus_container {
-    margin-top: 20px; /* Adjust as needed */
-    width: 80%; /* Adjust as needed */
+    margin-top: 20px;
+    /* Adjust as needed */
+    width: 80%;
+    /* Adjust as needed */
   }
 }
 
 @media screen and (max-width: 480px) {
   .landing_content {
-    margin-top: 50px; /* Adjust as needed */
-    width: 90%; /* Adjust as needed */
+    margin-top: 50px;
+    /* Adjust as needed */
+    width: 90%;
+    /* Adjust as needed */
   }
 
   .aboutus_container {
-    width: 90%; /* Adjust as needed */
+    width: 90%;
+    /* Adjust as needed */
   }
 }
