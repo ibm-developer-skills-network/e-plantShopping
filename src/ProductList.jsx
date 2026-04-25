@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from './CartSlice';
+
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
-    const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    //const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
 
+    const dispatch = useDispatch();
+    const cartItems = useSelector(state => state.cart.items);
+    
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -244,14 +250,20 @@ function ProductList({ onHomeClick }) {
     };
     const handlePlantsClick = (e) => {
         e.preventDefault();
-        setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
+       // setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
         setShowCart(false); // Hide the cart when navigating to About Us
     };
 
     const handleContinueShopping = (e) => {
-        e.preventDefault();
+       // e.preventDefault();
         setShowCart(false);
+        //etShowPlants(true); 
     };
+
+    const handleAddToCart = (plant) => {
+        dispatch(addItem(plant));
+    };
+
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -273,10 +285,54 @@ function ProductList({ onHomeClick }) {
                 </div>
             </div>
             {!showCart ? (
-                <div className="product-grid">
+                
+ <div className="product-grid">
+ {plantsArray.map((category) => (
+   <div key={category.category}>
+     <div className="plantname_heading">
+       <h2 className="plant_heading">{category.category}</h2>
+     </div>
 
+     {/* ✅ Matches your CSS: .product-list */}
+     <div className="product-list">
+       {category.plants.map((plant) => {
+         // ✅ Disable button if item already exists in cart
+       
+         const isInCart = cartItems.some(item => item.name === plant.name);
 
-                </div>
+         return (
+           <div className="product-card" key={`${category.category}-${plant.name}`}>
+             {/* ✅ IMAGE FIX: render <img>, not URL string */}
+             <img
+               className="product-image"
+               src={plant.image}
+               alt={plant.name}
+               onError={(e) => {
+                 // fallback if external image fails to load
+                 e.currentTarget.src =
+                   'https://via.placeholder.com/300x200?text=Image+Not+Available';
+               }}
+             />
+
+             <div className="product-title">{plant.name}</div>
+             <div className="product-price">{plant.cost}</div>
+
+           
+             <button
+               className={`product-button ${isInCart ? 'added-to-cart' : ''}`}
+               disabled={isInCart}
+               onClick={() => handleAddToCart(plant)}
+             >
+               {isInCart ? 'Added to Cart' : 'Add to Cart'}
+             </button> 
+           </div>
+         );
+       })}
+     </div>
+   </div>
+ ))}
+</div>
+
             ) : (
                 <CartItem onContinueShopping={handleContinueShopping} />
             )}
@@ -285,3 +341,4 @@ function ProductList({ onHomeClick }) {
 }
 
 export default ProductList;
+
