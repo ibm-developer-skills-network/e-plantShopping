@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import cartReducer from './CartSlice';
 
 export const CartSlice = createSlice({
   name: 'cart',
@@ -7,11 +8,29 @@ export const CartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-    
-    },
+  const { name, image, cost } = action.payload; // Destructure product details from the action payload
+  // Check if the item already exists in the cart by comparing names
+  const existingItem = state.items.find(item => item.name === name);
+  if (existingItem) {
+    // If item already exists in the cart, increase its quantity
+    existingItem.quantity++;
+  } else {
+    // If item does not exist, add it to the cart with quantity 1
+    state.items.push({ name, image, cost, quantity: 1 });
+  }
+},
+
     removeItem: (state, action) => {
+        state.items = state.items.filter(item => item.name !== action.payload);
+
     },
     updateQuantity: (state, action) => {
+        const { name, quantity } = action.payload; // Destructure the product name and new quantity from the action payload
+// Find the item in the cart that matches the given name
+const itemToUpdate = state.items.find(item => item.name === name);
+if (itemToUpdate) {
+  itemToUpdate.quantity = quantity; // If the item is found, update its quantity to the new value
+}
 
     
     },
@@ -21,3 +40,15 @@ export const CartSlice = createSlice({
 export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
 
 export default CartSlice.reducer;
+
+// Create a Redux store using configureStore from Redux Toolkit
+const store = configureStore({
+    // Define the root reducer object
+    reducer: {
+        // 'cart' is the name of the slice in the store, and it's managed by cartReducer
+        cart: cartReducer,
+    },
+});
+
+export default store; // Export the store for use in the app (e.g., in <Provider store={store}>)
+

@@ -1,1 +1,4 @@
-# coding-project-template
+TreeChain Network’s 11 billion trees project in the world
+TreeChain Network is a global project launched in December 2017 in Australia with the mission of “Make Our Planet Green Again”, to continuously develop and protect the status of the primary forest system in the world. TreeChain Network will implement 4.0 technology, using biochip, blockchain to plant and manage trees. The goal in the next ten years is connect all community resources to plant 11 billion new trees globally.
+
+The special feature of the project is the application of blockchain technology to tree planting and community connectivity through the tree map system. As a result, only in the first year of launch, the project has received the support of the governments of 12 countries around the world, the prestigious NGO for environmental protection.
