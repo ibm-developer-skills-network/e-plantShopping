@@ -1,5 +1,5 @@
 /* CartItem.css */
-/* CartItem.css */
+
 
 .cart-item {
   display: flex;
@@ -13,7 +13,7 @@
 .cart-item-image {
   width: 200px;
   height: 200px;
-  /* object-fit: contain; */
+ 
   margin-right: 20px;
 }
 
@@ -82,23 +82,23 @@
 @media (max-width: 768px) {
   .cart-item {
     flex-direction: column; /* Change flex direction to stack items vertically */
-    align-items: flex-start; /* Align items to the start of the container */
-    width: 100%; /* Set width to full width */
+    align-items: flex-start; 
+    width: 100%;
   }
 
   .cart-item-image {
-    width: 100%; /* Set image width to full width */
-    height: auto; /* Allow image height to adjust proportionally */
-    margin-right: 0; /* Remove margin */
-    margin-bottom: 10px; /* Add margin bottom for spacing */
+    width: 100%; 
+    height: auto; 
+    margin-right: 0; 
+    margin-bottom: 10px; 
   }
 
   .cart-item-details {
-    width: 100%; /* Set details width to full width */
+    width: 100%; 
   }
 
   .cart-item-quantity {
-    margin-top: 10px; /* Add margin top for spacing */
+    margin-top: 10px; 
   }
 }
 .cart-item {
@@ -181,24 +181,24 @@
   } */
   @media (max-width: 768px) {
     .cart-item {
-      flex-direction: column; /* Change flex direction to stack items vertically */
-      align-items: flex-start; /* Align items to the start of the container */
-      width: 100%; /* Set width to full width */
+      flex-direction: column;
+      align-items: flex-start; 
+      width: 100%; 
     }
   
     .cart-item-image {
-      width: 100%; /* Set image width to full width */
-      height: auto; /* Allow image height to adjust proportionally */
-      margin-right: 0; /* Remove margin */
-      margin-bottom: 10px; /* Add margin bottom for spacing */
+      width: 100%;
+      height: auto;
+      margin-right: 0;
+      margin-bottom: 10px; 
     }
   
     .cart-item-details {
-      width: 100%; /* Set details width to full width */
+      width: 100%;
     }
   
     .cart-item-quantity {
-      margin-top: 10px; /* Add margin top for spacing */
+      margin-top: 10px;
     }
   }
   
@@ -221,11 +221,11 @@
 }
    @media (max-width: 768px) {
     .cart-container {
-      padding: 10px; /* Reduce padding */
+      padding: 10px;
     }
   
     .total_cart_amount {
-      font-size: 18px; /* Reduce font size */
+      font-size: 18px; 
     }
   }
 

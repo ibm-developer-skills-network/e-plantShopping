@@ -1,33 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+  *{
+     font-family: "Quicksand";
+  }
 .about-us-container {
-    width: 1000px;
-    /* margin: 0 auto; */
-    /* padding: 20px; */
-    /* background-color: red; */
+    width: 800px;
+     margin: 0 auto; 
     text-align: justify;
   }
   
-  .about-us-heading {
-    font-size: 32px;
-    font-weight: bold;
+  /* .about-us-heading {
+    font-size: 30px;
+    font-weight: bolder;
     color: #333;
     margin-bottom: 20px;
-  }
+  } */
   
   .about-us-description {
-    font-size: 18px;
+    font-size: 14px;
     color: #666;
     margin-bottom: 30px;
     text-align: center;
   }
   
   .about-us-content {
-    font-size: 18px;
+    font-size: 14px;
     margin-bottom: 20px;
-  }
-  .plant_logo_right{
-    text-align: right;
-  }
-
-  .plant_logo_left{
-    text-align: left;
   }

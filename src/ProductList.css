@@ -1,10 +1,10 @@
-/* Reset some default styles */
+
 body, h1, ul {
     margin: 0;
     padding: 0;
 }
 
-/* Set a background color */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -51,8 +51,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
-    /* background-color: pink; */
-    /* justify-content: space-between; */
     padding: 20px;
     width: 100%;
     align-items: center;
@@ -74,7 +72,7 @@ body {
     gap: 20px;
 }
 
-/* Pseudo-classes - Hover effect on product button */
+/*  Hover effect on product button */
 .product-card:hover {
     transform: scale(1.05);
     transition: transform 0.3s ease-in-out;
@@ -84,6 +82,7 @@ body {
 .product-title {
     font-weight: bold;
     margin-bottom: 10px;
+    
 }
 
 .product-price {
@@ -94,7 +93,7 @@ body {
 
 .product-image {
     max-width: 100%;
-    height: 200px; /* Adjust height for better consistency */
+    height: 200px; 
 }
 
 .product-button {
@@ -111,7 +110,7 @@ body {
     background-color: #c0392b;
 }
 
-/* Pseudo-elements - Sale badge */
+/*  Sale badge */
 .product-card::before {
     content: "SALE";
     background-color: #e74c3c;
@@ -124,7 +123,6 @@ body {
 }
 .tag_home_link{
     display: flex;
-    /* background-color: red; */
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -166,7 +164,7 @@ body {
 }
 .cart_quantity_count{
     margin-top: 16px;
-    /* background-color: red; */
+     background-color: red; 
     margin-left: 27px;
     position: absolute;
     font-size: 29px;
@@ -176,8 +174,9 @@ body {
    display: flex;
    align-items: center;
    justify-content: center;
-    /* background-color: yellow; */
+    
 }
+
 .plant_heading{
     width: 400px;
     text-align: center;
@@ -198,7 +197,7 @@ body {
 /* ProductList.css */
 
 .product-button {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -216,7 +215,7 @@ body {
   }
   
   .product-button.added-to-cart {
-    background-color: grey; /* Grey when product is added */
+    background-color: grey; 
   }
   @media (max-width: 1200px) {
     .product-card {
@@ -231,22 +230,22 @@ body {
       max-width: calc(50% - 20px); /* Adjust max-width for 2 cards per row with 20px gap on small screens */
     }
     .navbar {
-        flex-direction: column; /* Change flex direction to stack items vertically */
-        align-items: center; /* Align items to the center of the container */
+        flex-direction: column; 
+        align-items: center; 
       }
     
       .tag {
-        margin-bottom: 20px; /* Add margin bottom for spacing */
-        text-align: center; /* Align text to the center */
+        margin-bottom: 20px; 
+        text-align: center; 
       }
     
       .ul {
-        display: flex; /* Set display to flex */
-        flex-direction: column; /* Change flex direction to stack items vertically */
-        gap: 10px; /* Add gap between items */
+        display: flex; 
+        flex-direction: column; 
+        gap: 10px; 
       }
     
       .ul div {
-        text-align: center; /* Align text to the center */
+        text-align: center;
       }
   }
