@@ -1,4 +1,3 @@
-import React from 'react';
 import './AboutUs.css';
 
 function AboutUs() {
@@ -15,7 +14,7 @@ function AboutUs() {
       {/* <p className="plant_logo_left"><img src="https://p1.hiclipart.com/preview/922/979/640/green-leaf-logo-emoji-seedling-emoticon-sticker-plant-plant-stem-flower-png-clipart-thumbnail.jpg" height='50px' width='50px' alt="" /></p> */}
       <p className="about-us-content">
         Our team of experts is dedicated to ensuring that each plant meets our strict standards of quality and care. 
-        Whether you're a seasoned gardener or just starting your green journey, we're here to support you every step of 
+        Whether you are a seasoned gardener or just starting your green journey, we are here to support you every step of 
         the way. Feel free to explore our collection, ask questions, and let us help you find the perfect plant for your 
         home or office.
       </p>
