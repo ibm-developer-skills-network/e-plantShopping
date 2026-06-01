@@ -11,7 +11,7 @@ export const CartSlice = createSlice({
         if (!name) return;
         const existingItem = state.items.find(item =>item.name === name);
         if(existingItem){
-            existingItem.quantity++;
+            alert("Ce produit est déjà dans votre panier.");
         }else{
             state.items.push({name,image,cost,quantity:1});
         }
