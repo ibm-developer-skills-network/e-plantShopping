@@ -36,14 +36,14 @@ body {
     color: white;
     font-size: 30px;
     text-decoration: none;
-   
+    
 }
 
 /* Product Grid */
 .product-grid {
     display:flex;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     align-items: center;
     justify-content: center;
 }
@@ -61,7 +61,7 @@ body {
 
 /* Product Card */
 .product-card {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap */
+    flex: 0 0 calc(26.33% - 20px); /* Adjust width for 3 cards per row with 20px gap */
     max-width: calc(26.33% - 20px); /* Adjust max-width for 3 cards per row with 20px gap */
     margin-bottom: 20px;
     padding: 20px;
@@ -94,21 +94,30 @@ body {
 
 .product-image {
     max-width: 100%;
-    height: 200px; /* Adjust height for better consistency */
+    height: 180px; /* Adjust height for better consistency */
 }
 
 .product-button {
-    background-color: #e74c3c;
-    color: #fff;
+    background-color: #4CAF50; /* Green */
     border: none;
+    color: white;
     padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    margin-top: 10px;
 }
 
 .product-button:hover {
-    background-color: #c0392b;
+    background-color: #45a049;
+}
+.product-button:disabled,
+.product-button.added-to-cart:disabled {
+    background-color: grey; /* Grey when product is added */
+    cursor: not-allowed;
 }
 
 /* Pseudo-elements - Sale badge */
@@ -156,8 +165,8 @@ body {
 .luxury {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 650px;
+    justify-content: space-between;
+    width: 350px;
     font-size: 19px;
 }
 .cart{
@@ -197,27 +206,6 @@ body {
 }
 /* ProductList.css */
 
-.product-button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-  }
-  
-  .product-button:hover {
-    background-color: #45a049;
-  }
-  
-  .product-button.added-to-cart {
-    background-color: grey; /* Grey when product is added */
-  }
   @media (max-width: 1200px) {
     .product-card {
       flex: 1 1 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap on medium screens */
@@ -233,20 +221,20 @@ body {
     .navbar {
         flex-direction: column; /* Change flex direction to stack items vertically */
         align-items: center; /* Align items to the center of the container */
-      }
+    }
     
-      .tag {
+    .tag {
         margin-bottom: 20px; /* Add margin bottom for spacing */
         text-align: center; /* Align text to the center */
-      }
+    }
     
-      .ul {
+    .ul {
         display: flex; /* Set display to flex */
         flex-direction: column; /* Change flex direction to stack items vertically */
         gap: 10px; /* Add gap between items */
-      }
+    }
     
-      .ul div {
+    .ul div {
         text-align: center; /* Align text to the center */
-      }
+    }
   }
