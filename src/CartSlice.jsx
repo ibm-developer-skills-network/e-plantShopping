@@ -9,6 +9,7 @@ export const CartSlice = createSlice({
     addItem: (state, action) => {
         const { name, image, cost } = action.payload;
         const exis = state.items.find(item => item.name === name);
+        dispatchEvent(addItem(prod))
         if (exis) {
             exis.quantity + 1;
         }
