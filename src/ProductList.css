@@ -46,6 +46,7 @@ body {
     width: 100vw;
     align-items: center;
     justify-content: center;
+    margin-top: 25px;
 }
 .product-list {
     display: flex;
@@ -150,7 +151,6 @@ body {
     height: 70px;
     width: 70px;
     border-radius: 70%;
-    
 }
 
 .luxury {
@@ -160,18 +160,21 @@ body {
     width: 650px;
     font-size: 19px;
 }
+
 .cart{
     color: white;
     display: flex;
 }
-.cart_quantity_count{
+
+.cart_quantity_count {
     margin-top: 16px;
+    top: 16px;
     /* background-color: red; */
     margin-left: 27px;
     position: absolute;
     font-size: 29px;
-
 }
+
 .plantname_heading{
    display: flex;
    align-items: center;
@@ -185,9 +188,8 @@ body {
     border: 1px solid rgb(5, 4, 4);
     border-left: none;
     border-right: none;
-
-    
 }
+
 /* Add Media Query for responsiveness */
 @media (max-width: 768px) {
     .product-card {
@@ -210,14 +212,15 @@ body {
     transition-duration: 0.4s;
     cursor: pointer;
   }
-  
+
   .product-button:hover {
     background-color: #45a049;
   }
-  
+
   .product-button.added-to-cart {
     background-color: grey; /* Grey when product is added */
   }
+
   @media (max-width: 1200px) {
     .product-card {
       flex: 1 1 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap on medium screens */
