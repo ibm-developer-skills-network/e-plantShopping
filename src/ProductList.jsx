@@ -110,7 +110,7 @@ function ProductList({ onHomeClick }) {
                   fill="none" stroke="#faf9f9" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                 ></path>
               </svg>
-              <span className="cart_quantity_count">{calculateTotalQuantity}</span>
+              <span className="cart_quantity_count">{calculateTotalQuantity()}</span>
             </h1>
           </a>
         </div>
